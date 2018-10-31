@@ -5,7 +5,7 @@
 A library that let you implement skeletons and shimmer animation for veiling layouts and recyclerView.
 
 ![gif0](https://user-images.githubusercontent.com/24237865/47777293-c736d780-dd37-11e8-9107-5242746a7b8c.gif)
-![gif1](https://user-images.githubusercontent.com/24237865/47777294-c736d780-dd37-11e8-846e-07f5940e4860.gif)
+![gif1](https://user-images.githubusercontent.com/24237865/47781860-1aae2300-dd42-11e8-8c5c-a2417b03b74d.gif)
 
 ## Download
 ### Gradle
