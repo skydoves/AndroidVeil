@@ -33,7 +33,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 #### VeilLayout in layout
 
-```xml
+```gradle
 <com.skydoves.androidveil.VeilLayout
       android:id="@+id/veilLayout"
       android:layout_width="match_parent"
@@ -77,7 +77,7 @@ veilLayout.layout = R.layout.layout_item_test
 
 #### VeilRecyclerFrameView in layout
 
-```xml
+```gradle
 <com.skydoves.androidveil.VeilRecyclerFrameView
         android:id="@+id/veilRecyclerView"
         android:layout_width="match_parent"
