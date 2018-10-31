@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VeilLayout">
+        <attr name="veilLayout_veiled" format="boolean"/>
+        <attr name="veilLayout_layout" format="reference"/>
+        <attr name="veilLayout_shimmerEnable" format="boolean"/>
+        <attr name="veilLayout_baseColor" format="color"/>
+        <attr name="veilLayout_highlightColor" format="color"/>
+        <attr name="veilLayout_baseAlpha" format="float"/>
+        <attr name="veilLayout_highlightAlpha" format="float"/>
+        <attr name="veilLayout_dropOff" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="VeilRecyclerFrameView">
+        <attr name="veilFrame_veiled" format="boolean"/>
+        <attr name="veilFrame_layout" format="reference"/>
+        <attr name="veilFrame_shimmerEnable" format="boolean"/>
+        <attr name="veilFrame_baseColor" format="color"/>
+        <attr name="veilFrame_highlightColor" format="color"/>
+        <attr name="veilFrame_baseAlpha" format="float"/>
+        <attr name="veilFrame_highlightAlpha" format="float"/>
+        <attr name="veilFrame_dropOff" format="float"/>
+    </declare-styleable>
+</resources>
