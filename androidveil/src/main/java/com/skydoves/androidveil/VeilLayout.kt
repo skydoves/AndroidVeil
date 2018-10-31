@@ -34,11 +34,11 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import java.util.*
 class VeilLayout : FrameLayout {
 
-    @ColorInt var baseColor = Color.LTGRAY
-    @ColorInt var highlightColor = Color.DKGRAY
-    var baseAlpha = 1.0f
-    var highlightAlpha = 1.0f
-    var dropOff = 0.5f
+    @ColorInt private var baseColor = Color.LTGRAY
+    @ColorInt private var highlightColor = Color.DKGRAY
+    private var baseAlpha = 1.0f
+    private var highlightAlpha = 1.0f
+    private var dropOff = 0.5f
 
     @LayoutRes var layout = -1
         set(value) {
