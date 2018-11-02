@@ -17,7 +17,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'androidveil'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'This is AndroidVeil by skydoves'
     website = 'https://github.com/skydoves/AndroidVeil'
     issueTracker = "${website}/issues"
