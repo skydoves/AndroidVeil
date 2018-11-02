@@ -21,7 +21,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.1"
+    implementation "com.github.skydoves:androidveil:1.0.2"
 }
 ```
 
@@ -105,6 +105,13 @@ You can implement veil skeletons using below methods.
 ```java
 veilRecyclerView.veil() // shows veil skeletons
 veilRecyclerView.unVeil() // disappear veils and shows your own recyclerView
+```
+
+#### RecyclerView
+You can access recyclerview and veiledRecyclerView using below methods.
+```java
+veilRecyclerView.getRecyclerView() // veilRecyclerView.getRecyclerView().setHasFixedSize(true)
+veilRecyclerView.getVeiledRecyclerView()
 ```
 
 ## Shimmer
