@@ -198,4 +198,14 @@ class VeilRecyclerFrameView : RelativeLayout {
         userRecyclerView.bringToFront()
         veiledRecyclerView.invisible()
     }
+
+    /** Returns veiled recyclerView */
+    fun getVeiledRecyclerView(): RecyclerView {
+        return veiledRecyclerView
+    }
+
+    /** Returns user's recyclerView */
+    fun getRecyclerView(): RecyclerView {
+        return userRecyclerView
+    }
 }

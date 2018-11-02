@@ -63,18 +63,20 @@
             app:veilLayout_veiled="true">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="And now here is my secret, a very simple secret"
                     android:textColor="@android:color/white"
-                    android:textSize="22sp"/>
+                    android:textSize="22sp" />
 
                 <TextView
                     android:layout_width="match_parent"

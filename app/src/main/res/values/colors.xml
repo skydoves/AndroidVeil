@@ -9,5 +9,5 @@
     <color name="HintText">#87ffffff</color>
     <color name="preview">#b0abb0</color>
     <color name="shimmerBase0">#c2c2c2</color>
-    <color name="shimmerHighlight0">#606060</color>
+    <color name="shimmerHighlight0">#ffffff</color>
 </resources>

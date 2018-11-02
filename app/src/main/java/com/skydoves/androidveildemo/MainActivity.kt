@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), VeiledItemOnClickListener, ProfileView
         adapter.addProfiles(ListItemUtils.getProfiles(this))
 
         // delay-auto-unveil
-        val delay = Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
+        val delay = Observable.just(0).delay(5000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { veilRecyclerView.unVeil() }
     }

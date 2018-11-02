@@ -2,6 +2,7 @@ package com.skydoves.androidveildemo
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.skydoves.androidveil.visible
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -20,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
         applyToolbarMargin(detail_toolbar)
 
         detail_veilLayout_header.shimmer = ShimmerUtils.getGrayShimmer(this)
+        detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
 
         // delay-auto-unveil
         val delay = Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
@@ -27,6 +29,7 @@ class DetailActivity : AppCompatActivity() {
                 .subscribe {
                     detail_veilLayout_header.unVeil()
                     detail_veilLayout_body.unVeil()
+                    linearLayout.visible()
                 }
     }
 }
