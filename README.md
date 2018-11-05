@@ -1,7 +1,8 @@
 # AndroidVeil
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) 
-[![Build Status](https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master)](https://travis-ci.org/skydoves/AndroidVeil) <br>
+[![Build Status](https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master)](https://travis-ci.org/skydoves/AndroidVeil) 
+[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23334-orange.svg)](https://androidweekly.net/issues/issue-334) <br>
 A library that let you implement skeletons and shimmer animation for veiling layouts and recyclerView.
 
 ![gif0](https://user-images.githubusercontent.com/24237865/47777293-c736d780-dd37-11e8-9107-5242746a7b8c.gif)
