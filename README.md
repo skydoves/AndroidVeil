@@ -40,7 +40,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
       android:id="@+id/veilLayout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:veilLayout_veiled="true" // showing veils initially
+      app:veilLayout_veiled="true" // shows veils initially
       app:veilLayout_shimmerEnable="true" // sets shimmer enable
       app:veilLayout_baseColor="@android:color/holo_green_dark" // sets shimmer base color
       app:veilLayout_highlightColor="@android:color/holo_green_light" // sets shimmer highlight color
@@ -85,7 +85,7 @@ veilLayout.layout = R.layout.layout_item_test
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:veilFrame_layout="@layout/item_profile" // sets to make veiling target layout
-        app:veilFrame_veiled="true" // sets shimmer enable
+        app:veilFrame_veiled="true" // shows veils initially
         app:veilFrame_shimmerEnable="true" // sets shimmer enable
         app:veilFrame_baseColor="@android:color/holo_green_dark" // sets shimmer base color
         app:veilFrame_highlightColor="@android:color/holo_green_light" // sets shimmer highlight color
@@ -130,6 +130,18 @@ val shimmer = Shimmer.ColorHighlightBuilder()
 veilLayout.shimmer = shimmer // sets shimmer to VeilLayout
 veilRecyclerView.shimmer = shimmer // sets shimmer to VeilRecyclerView
 ```
+
+## Attributes
+Attributes | Type | Default | Description
+--- | --- | --- | ---
+veiled | Boolean | false | shows veils initially.
+layout | Int | -1 | implement veils using the layout resource.
+shimmerEnable | Boolean | true | sets shimmer enable.
+baseColor | ColorInt | Color.LTGRAY | sets shimmer base color.
+highlightColor | ColorInt | Color.DKGRAY | sets shimmer highlight color.
+baseAlpha | Float | 1.0f | sets shimmer base alpha value.
+highlightAlpha | Float | 1.0f | sets shimmer highlight alpha value.
+dropOff | Float | 0.5f | sets how quickly the shimmer's gradient drops-off.
 
 # License
 ```xml
