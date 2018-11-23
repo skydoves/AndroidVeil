@@ -3,7 +3,7 @@
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) 
 [![Build Status](https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master)](https://travis-ci.org/skydoves/AndroidVeil) 
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23334-orange.svg)](https://androidweekly.net/issues/issue-334) <br>
-A library that let you implement skeletons and shimmer animation for veiling layouts and recyclerView.
+A library that lets you implement skeletons and shimmer animation for veiling layouts and recyclerView.
 
 ![gif0](https://user-images.githubusercontent.com/24237865/47777293-c736d780-dd37-11e8-9107-5242746a7b8c.gif)
 ![gif1](https://user-images.githubusercontent.com/24237865/47781860-1aae2300-dd42-11e8-8c5c-a2417b03b74d.gif)
@@ -22,7 +22,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.2"
+    implementation "com.github.skydoves:androidveil:1.0.3"
 }
 ```
 
