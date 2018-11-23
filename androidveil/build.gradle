@@ -17,7 +17,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'androidveil'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.3'
     desc = 'This is AndroidVeil by skydoves'
     website = 'https://github.com/skydoves/AndroidVeil'
     issueTracker = "${website}/issues"
@@ -26,8 +26,8 @@ publish {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_version"
     implementation "com.github.skydoves:baserecyclerviewadapter:$adapter_version"
     api "com.facebook.shimmer:shimmer:$shimmer_version"
 }

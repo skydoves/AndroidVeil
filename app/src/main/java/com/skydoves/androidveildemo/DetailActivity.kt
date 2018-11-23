@@ -1,7 +1,7 @@
 package com.skydoves.androidveildemo
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.androidveil.visible
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

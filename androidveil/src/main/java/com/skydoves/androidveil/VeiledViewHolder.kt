@@ -17,7 +17,7 @@
 
 package com.skydoves.androidveil
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.View
 import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
