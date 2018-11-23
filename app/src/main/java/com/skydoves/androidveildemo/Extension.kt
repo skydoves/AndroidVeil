@@ -2,9 +2,9 @@ package com.skydoves.androidveildemo
 
 import android.app.Activity
 import android.os.Build
-import android.support.design.widget.CollapsingToolbarLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.appbar.CollapsingToolbarLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 /**
  * Developed by skydoves on 2018-10-31.
