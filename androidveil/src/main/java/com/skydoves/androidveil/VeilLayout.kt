@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -21,26 +20,30 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-import androidx.annotation.ColorInt
-import androidx.annotation.LayoutRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
+import androidx.annotation.ColorInt
+import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import java.util.*
+
 class VeilLayout : FrameLayout {
 
-    @ColorInt private var baseColor = Color.LTGRAY
-    @ColorInt private var highlightColor = Color.DKGRAY
+    @ColorInt
+    private var baseColor = Color.LTGRAY
+    @ColorInt
+    private var highlightColor = Color.DKGRAY
     private var baseAlpha = 1.0f
     private var highlightAlpha = 1.0f
     private var dropOff = 0.5f
 
-    @LayoutRes var layout = -1
+    @LayoutRes
+    var layout = -1
         set(value) {
             field = value
             reDrawLayout(value)
@@ -53,14 +56,14 @@ class VeilLayout : FrameLayout {
     val shimmerContainer = ShimmerFrameLayout(context)
     val nonShimmer = Shimmer.AlphaHighlightBuilder().setBaseAlpha(1.0f).setDropoff(1.0f).build()
     var shimmer = Shimmer.AlphaHighlightBuilder().build()
-    set(value) {
-        field = value
-        shimmerContainer.setShimmer(value)
-    }
+        set(value) {
+            field = value
+            shimmerContainer.setShimmer(value)
+        }
     var shimmerEnable: Boolean = true
         set(value) {
             field = value
-            when(value) {
+            when (value) {
                 true -> shimmerContainer.setShimmer(shimmer)
                 false -> shimmerContainer.setShimmer(nonShimmer)
             }
@@ -157,10 +160,10 @@ class VeilLayout : FrameLayout {
                         var marginX = 0f
                         var marginY = 0f
                         var parentUpper = parent.parent
-                        while((parentUpper !is VeilLayout)) {
-                            if(parentUpper is ViewGroup) {
+                        while ((parentUpper !is VeilLayout)) {
+                            if (parentUpper is ViewGroup) {
                                 val params = parentUpper.layoutParams
-                                if(params is MarginLayoutParams) {
+                                if (params is MarginLayoutParams) {
                                     marginX += parentUpper.x
                                     marginY += parentUpper.y
                                 }
@@ -188,7 +191,7 @@ class VeilLayout : FrameLayout {
 
         // Auto veiled
         isVeiled = !isVeiled
-        when(isVeiled) {
+        when (isVeiled) {
             true -> unVeil()
             false -> veil()
         }
@@ -215,7 +218,7 @@ class VeilLayout : FrameLayout {
     /** Starts the shimmer animation. */
     fun startShimmer() {
         shimmerContainer.visible()
-        if(shimmerEnable) {
+        if (shimmerEnable) {
             shimmerContainer.startShimmer()
         }
     }

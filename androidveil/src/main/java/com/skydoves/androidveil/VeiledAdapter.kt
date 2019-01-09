@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -17,8 +16,8 @@
 
 package com.skydoves.androidveil
 
-import androidx.annotation.LayoutRes
 import android.view.View
+import androidx.annotation.LayoutRes
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
@@ -27,7 +26,7 @@ class VeiledAdapter(@LayoutRes private val userLayout: Int,
                     private val onItemClickListener: VeiledItemOnClickListener? = null)
     : BaseAdapter() {
 
-    fun addParams(params : List<VeilParams>) {
+    fun addParams(params: List<VeilParams>) {
         clearSections()
         addSection(ArrayList<VeilParams>())
         addItemsOnSection(0, params)
@@ -35,7 +34,7 @@ class VeiledAdapter(@LayoutRes private val userLayout: Int,
     }
 
     fun update(position: Int, threshold: Int) {
-        when(sections[0].size > position) {
+        when (sections[0].size > position) {
             true -> notifyItemChanged(position)
             false -> {
                 for (i in position..position + threshold) {

@@ -2,9 +2,9 @@ package com.skydoves.androidveildemo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.widget.Toast
 import com.skydoves.androidveil.VeiledItemOnClickListener
 import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile

@@ -4,25 +4,25 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/detail_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="@string/app_name"/>
+        app:title="@string/app_name" />
 
     <com.skydoves.androidveil.VeilRecyclerFrameView
         android:id="@+id/veilRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:veilFrame_baseAlpha="0.6"
+        app:veilFrame_baseColor="@android:color/holo_green_dark"
+        app:veilFrame_highlightAlpha="1.0"
+        app:veilFrame_highlightColor="@android:color/holo_green_light"
         app:veilFrame_layout="@layout/item_profile"
         app:veilFrame_shimmerEnable="true"
-        app:veilFrame_veiled="true"
-        app:veilFrame_baseColor="@android:color/holo_green_dark"
-        app:veilFrame_highlightColor="@android:color/holo_green_light"
-        app:veilFrame_baseAlpha="0.6"
-        app:veilFrame_highlightAlpha="1.0"/>
+        app:veilFrame_veiled="true" />
 </LinearLayout>

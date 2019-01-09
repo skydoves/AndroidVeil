@@ -2,9 +2,9 @@ package com.skydoves.androidveildemo
 
 import android.app.Activity
 import android.os.Build
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 /**
  * Developed by skydoves on 2018-10-31.
@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar
 fun Activity.checkIsMaterialVersion() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
 fun AppCompatActivity.applyToolbarMargin(toolbar: Toolbar) {
-    if(checkIsMaterialVersion()) {
+    if (checkIsMaterialVersion()) {
         toolbar.layoutParams = (toolbar.layoutParams as CollapsingToolbarLayout.LayoutParams).apply {
             topMargin = getStatusBarSize()
         }

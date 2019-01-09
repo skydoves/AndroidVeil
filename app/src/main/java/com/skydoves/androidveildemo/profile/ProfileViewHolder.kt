@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_profile.view.*
  */
 
 class ProfileViewHolder(val view: View,
-                        private val delegate: Delegate): BaseViewHolder(view) {
+                        private val delegate: Delegate) : BaseViewHolder(view) {
 
     interface Delegate {
         fun onItemClickListener(profile: Profile)
@@ -19,7 +19,7 @@ class ProfileViewHolder(val view: View,
     private lateinit var profileItem: Profile
 
     override fun bindData(data: Any) {
-        if(data is Profile) {
+        if (data is Profile) {
             this.profileItem = data
             drawItemUI()
         }

@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -17,8 +16,8 @@
 
 package com.skydoves.androidveil
 
-import androidx.annotation.LayoutRes
 import android.view.View
+import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 
@@ -38,7 +37,7 @@ class VeiledViewHolder(view: View, @LayoutRes val layout: Int,
 
     /** Draw ViewHolderItem by data */
     private fun drawItem() {
-        if(itemView is VeilLayout && itemView.layout == -1) {
+        if (itemView is VeilLayout && itemView.layout == -1) {
             itemView.layout = layout
             veilParams.shimmer?.let {
                 itemView.shimmer = it
@@ -49,7 +48,7 @@ class VeiledViewHolder(view: View, @LayoutRes val layout: Int,
             }
             itemView.shimmerEnable = veilParams.shimmerEnable
             itemView.veil()
-        } else if(itemView is VeilLayout) {
+        } else if (itemView is VeilLayout) {
             itemView.veil()
             itemView.startShimmer()
         }

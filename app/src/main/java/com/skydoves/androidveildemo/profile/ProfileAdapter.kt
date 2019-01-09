@@ -11,7 +11,7 @@ import com.skydoves.baserecyclerviewadapter.SectionRow
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-class ProfileAdapter(private val delegate: ProfileViewHolder.Delegate): BaseAdapter() {
+class ProfileAdapter(private val delegate: ProfileViewHolder.Delegate) : BaseAdapter() {
 
     init {
         addSection(ArrayList<Profile>())

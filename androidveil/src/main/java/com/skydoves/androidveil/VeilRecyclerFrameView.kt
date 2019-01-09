@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -19,18 +18,18 @@ package com.skydoves.androidveil
 
 import android.content.Context
 import android.graphics.Color
+import android.util.AttributeSet
+import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import android.util.AttributeSet
-import android.widget.RelativeLayout
 import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 
-@Suppress( "unused", "MemberVisibilityCanBePrivate")
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class VeilRecyclerFrameView : RelativeLayout {
 
     private val userRecyclerView: RecyclerView = RecyclerView(context)
@@ -40,12 +39,15 @@ class VeilRecyclerFrameView : RelativeLayout {
 
     private var isVeiled = false
 
-    @ColorInt private var baseColor = Color.LTGRAY
-    @ColorInt private var highlightColor = Color.DKGRAY
+    @ColorInt
+    private var baseColor = Color.LTGRAY
+    @ColorInt
+    private var highlightColor = Color.DKGRAY
     private var baseAlpha = 1.0f
     private var highlightAlpha = 1.0f
     private var dropOff = 0.5f
-    @LayoutRes private var layout = -1
+    @LayoutRes
+    private var layout = -1
 
     var shimmer: Shimmer? = null
     var shimmerEnable: Boolean = true
@@ -99,12 +101,12 @@ class VeilRecyclerFrameView : RelativeLayout {
         paginator.threshold = threshold
         addView(userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-        when(isVeiled) {
+        when (isVeiled) {
             true -> visibleVeilRecyclerView()
             false -> visibleUserRecyclerView()
         }
 
-        if(layout != -1)
+        if (layout != -1)
             setVeilLayout(layout)
     }
 
@@ -155,13 +157,13 @@ class VeilRecyclerFrameView : RelativeLayout {
 
     /** Sets RecyclerViews LayoutManager. */
     fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) {
-        if(layoutManager is GridLayoutManager) {
+        if (layoutManager is GridLayoutManager) {
             this.userRecyclerView.layoutManager = layoutManager
             this.veiledRecyclerView.layoutManager = GridLayoutManager(context, layoutManager.spanCount)
-        } else if(layoutManager is StaggeredGridLayoutManager) {
+        } else if (layoutManager is StaggeredGridLayoutManager) {
             this.userRecyclerView.layoutManager = layoutManager
             this.veiledRecyclerView.layoutManager = StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
-        } else if(layoutManager is LinearLayoutManager) { // This condition should be at the last.
+        } else if (layoutManager is LinearLayoutManager) { // This condition should be at the last.
             this.userRecyclerView.layoutManager = layoutManager
             this.veiledRecyclerView.layoutManager = LinearLayoutManager(context)
         }
