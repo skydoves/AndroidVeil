@@ -30,7 +30,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
-import java.util.*
 
 @Suppress("HasPlatformType", "MemberVisibilityCanBePrivate")
 class VeilLayout : FrameLayout {

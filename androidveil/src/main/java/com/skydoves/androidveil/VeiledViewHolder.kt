@@ -21,8 +21,11 @@ import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 
-class VeiledViewHolder(view: View, @LayoutRes val layout: Int,
-                       private val onItemClickListener: VeiledItemOnClickListener? = null)
+class VeiledViewHolder(
+    view: View,
+    @LayoutRes val layout: Int,
+    private val onItemClickListener: VeiledItemOnClickListener? = null
+)
     : BaseViewHolder(view) {
 
     private lateinit var veilParams: VeilParams

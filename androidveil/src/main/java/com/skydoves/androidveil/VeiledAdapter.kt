@@ -22,8 +22,10 @@ import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
-class VeiledAdapter(@LayoutRes private val userLayout: Int,
-                    private val onItemClickListener: VeiledItemOnClickListener? = null)
+class VeiledAdapter(
+    @LayoutRes private val userLayout: Int,
+    private val onItemClickListener: VeiledItemOnClickListener? = null
+)
     : BaseAdapter() {
 
     fun addParams(params: List<VeilParams>) {
