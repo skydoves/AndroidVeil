@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("CascadeIf", "SpellCheckingInspection")
+
 package com.skydoves.androidveil
 
 import android.content.Context
