@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'devmagician'
+    groupId = 'com.github.skydoves'
+    artifactId = 'androidveil'
+    publishVersion = '1.0.3'
+    desc = 'This is AndroidVeil by skydoves'
+    website = 'https://github.com/skydoves/AndroidVeil'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
