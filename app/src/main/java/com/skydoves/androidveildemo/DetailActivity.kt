@@ -1,5 +1,6 @@
 package com.skydoves.androidveildemo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.androidveil.visible
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
+@SuppressLint("CheckResult")
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
         detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
 
         // delay-auto-unveil
-        val delay = Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
+        Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     detail_veilLayout_header.unVeil()

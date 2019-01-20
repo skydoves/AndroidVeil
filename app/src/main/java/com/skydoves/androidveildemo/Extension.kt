@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.skydoves.androidveildemo
 
 import android.app.Activity

@@ -18,7 +18,6 @@ package com.skydoves.androidveil
 
 import android.view.View
 import androidx.annotation.LayoutRes
-import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 
 class VeiledViewHolder(
@@ -45,8 +44,13 @@ class VeiledViewHolder(
             veilParams.shimmer?.let {
                 itemView.shimmer = it
             } ?: let {
-                val shimmer = Shimmer.ColorHighlightBuilder().setBaseColor(veilParams.baseColor).setHighlightColor(veilParams.highlightColor)
-                        .setBaseAlpha(veilParams.baseAlpha).setHighlightAlpha(veilParams.highlightAlpha).setDropoff(veilParams.dropOff).build()
+                val shimmer = colorShimmer {
+                    setBaseColor(veilParams.baseColor)
+                    setBaseAlpha(veilParams.baseAlpha)
+                    setHighlightColor(veilParams.highlightColor)
+                    setHighlightAlpha(veilParams.highlightAlpha)
+                    setDropoff(veilParams.dropOff)
+                }
                 itemView.shimmer = shimmer
             }
             itemView.shimmerEnable = veilParams.shimmerEnable
@@ -62,7 +66,5 @@ class VeiledViewHolder(
         onItemClickListener?.onItemClicked(adapterPosition)
     }
 
-    override fun onLongClick(p0: View?): Boolean {
-        return false
-    }
+    override fun onLongClick(p0: View?) = false
 }

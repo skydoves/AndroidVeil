@@ -31,7 +31,18 @@ import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
-@Suppress("HasPlatformType", "MemberVisibilityCanBePrivate")
+/** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
+@Suppress("unused")
+fun alphaShimmer(block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
+        Shimmer.AlphaHighlightBuilder().apply(block).build()
+
+/** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
+@Suppress("unused")
+fun colorShimmer(block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
+        Shimmer.ColorHighlightBuilder().apply(block).build()
+
+/** VeilLayout creates skeletons about the complex child views with shimmering effect. */
+@Suppress("HasPlatformType", "MemberVisibilityCanBePrivate", "unused")
 class VeilLayout : FrameLayout {
 
     @ColorInt

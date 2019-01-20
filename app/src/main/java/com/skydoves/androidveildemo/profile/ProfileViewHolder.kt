@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.item_profile.view.*
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-class ProfileViewHolder(val view: View,
+class ProfileViewHolder(private val view: View,
                         private val delegate: Delegate) : BaseViewHolder(view) {
 
     interface Delegate {
