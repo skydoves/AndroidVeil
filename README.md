@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/24237865/50557081-fdd3a300-0d24-11e9-82e3-6ddad326cd40.png"/>
 </p>
 <p align="center">
-A library that lets you implement skeletons and shimmer animation for veiling layouts and recyclerView.
+An easy, flexible way to implement veil skeletons and shimmering effect for Android.
 </p>
 
 <p align="center">
@@ -10,6 +10,7 @@ A library that lets you implement skeletons and shimmer animation for veiling la
   <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://travis-ci.org/skydoves/AndroidVeil"><img alt="Build Status" src="https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master"/></a>
   <a href="https://androidweekly.net/issues/issue-334"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23334-orange.svg"/></a>
+    <a href="https://skydoves.github.io/libraries/androidveil/javadoc/androidveil/index.html"><img alt="Android Weekly" src="https://img.shields.io/badge/Javadoc-AndroidVeil-yellow.svg"/></a>
 </p>
 
 
@@ -69,7 +70,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 </com.skydoves.androidveil.VeilLayout>
 ```
 #### Veil and UnVeil
-You can implement veil skeletons using below methods.
+We can implement veiled skeletons using below methods.
 
 ```java
 veilLayout.veil()
@@ -77,14 +78,14 @@ veilLayout.unVeil()
 ```
 
 #### Implement veils using layout resource
-You can implement veils using the layout resource without any child.
+We can implement veiled skeletons using the layout resource.
 
 ```java
 veilLayout.layout = R.layout.layout_item_test
 ```
 
 ## VeilRecyclerFrameView
-`VeilRecyclerFrameView` lets implement skeletons and shimmer animation about RecyclerView.
+`VeilRecyclerFrameView` implements veiled skeletons for RecyclerView with the shimmer effect.
 
 #### VeilRecyclerFrameView in layout
 
@@ -102,7 +103,7 @@ veilLayout.layout = R.layout.layout_item_test
         app:veilFrame_highlightAlpha="1.0" // sets shimmer highlight alpha value />
 ```
 
-And you should attach your own adapter and LayoutManager.
+And we should attach our own adapter and LayoutManager.
 ```java
 veilRecyclerView.setAdapter(adapter) // sets your own adapter
 veilRecyclerView.setLayoutManager(LinearLayoutManager(this)) // sets LayoutManager
@@ -110,7 +111,7 @@ veilRecyclerView.addVeiledItems(15) // add veiled 15 items
 ```
 
 #### Veil and UnVeil
-You can implement veil skeletons using below methods.
+We can implement veiled skeletons using below methods.
 
 ```java
 veilRecyclerView.veil() // shows veil skeletons
@@ -118,29 +119,46 @@ veilRecyclerView.unVeil() // disappear veils and shows your own recyclerView
 ```
 
 #### RecyclerView
-You can access recyclerview and veiledRecyclerView using below methods.
+We can access our Recyclerview and veiledRecyclerView using the  below methods.
 ```java
 veilRecyclerView.getRecyclerView() // veilRecyclerView.getRecyclerView().setHasFixedSize(true)
 veilRecyclerView.getVeiledRecyclerView()
 ```
 
 ## Shimmer
-This library is used [shimmer-android](https://github.com/facebook/shimmer-android) by Facebook.<br>
-So you can customizing shimmer following by [shimmer-instruction](http://facebook.github.io/shimmer-android/) or following example.
+This library using [shimmer-android](https://github.com/facebook/shimmer-android) by Facebook.<br>
+Here are the detail [shimmer-instruction](http://facebook.github.io/shimmer-android/) about shimmer or you can reference below examples.
 
+### create using Builder
+This is how to create `Shimmer`'s instance using `Shimmer.Builder` class.
 ```kotlin
 val shimmer = Shimmer.ColorHighlightBuilder()
-                .setBaseColor(ContextCompat.getColor(context, R.color.shimmerBase0))
-                .setHighlightColor(ContextCompat.getColor(context, R.color.shimmerHighlight0))
-                .setBaseAlpha(1f)
-                .setHighlightAlpha(1f)
-                .build()
+      .setBaseColor(ContextCompat.getColor(context, R.color.shimmerBase0))
+      .setHighlightColor(ContextCompat.getColor(context, R.color.shimmerHighlight0))
+      .setBaseAlpha(1f)
+      .setHighlightAlpha(1f)
+      .build()
 
 veilLayout.shimmer = shimmer // sets shimmer to VeilLayout
 veilRecyclerView.shimmer = shimmer // sets shimmer to VeilRecyclerView
 ```
 
-## Attributes
+### create using kotlin dsl
+This is how to create `Shimmer`'s instance using kotlin dsl.
+```kotlin
+val shimmer_alpha = alphaShimmer {
+      setBaseAlpha(1.0f)
+      setHighlightAlpha(0.5f)
+}
+val shimmer_color = colorShimmer {
+      setBaseAlpha(1.0f)
+      setHighlightAlpha(0.5f)
+      setBaseColor(ContextCompat.getColor(context, R.color.colorPrimary))
+      setHighlightColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+}
+```
+
+## AndroidVeil Attributes
 Attributes | Type | Default | Description
 --- | --- | --- | ---
 veiled | Boolean | false | shows veils initially.

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 28
@@ -21,14 +22,13 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "com.google.android.material:material:$material_version"
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation "com.github.skydoves:baserecyclerviewadapter:$adapter_version"
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    implementation "com.google.android.material:material:$versions.googleMaterial"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation project(":androidveil")
 }
 
