@@ -22,11 +22,10 @@ import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
-class VeiledAdapter(
+internal class VeiledAdapter(
     @LayoutRes private val userLayout: Int,
     private val onItemClickListener: VeiledItemOnClickListener? = null
-)
-    : BaseAdapter() {
+) : BaseAdapter() {
 
     fun addParams(params: List<VeilParams>) {
         clearSections()

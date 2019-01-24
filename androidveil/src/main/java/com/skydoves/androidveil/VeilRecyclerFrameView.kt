@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.facebook.shimmer.Shimmer
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 
+/** VeilRecyclerFrameView implements skeleton veiling for user [RecyclerView] with shimmering effect. */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class VeilRecyclerFrameView : RelativeLayout {
 

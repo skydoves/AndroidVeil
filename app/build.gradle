@@ -31,3 +31,5 @@ dependencies {
 
     implementation project(":androidveil")
 }
+
+apply from: '../spotless.gradle'

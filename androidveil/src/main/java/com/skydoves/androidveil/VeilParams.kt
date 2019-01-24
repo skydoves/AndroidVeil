@@ -19,7 +19,7 @@ package com.skydoves.androidveil
 import androidx.annotation.ColorInt
 import com.facebook.shimmer.Shimmer
 
-data class VeilParams(
+internal data class VeilParams(
     @ColorInt var baseColor: Int,
     @ColorInt var highlightColor: Int,
     var baseAlpha: Float,
