@@ -20,12 +20,11 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 
-class VeiledViewHolder(
+internal class VeiledViewHolder(
     view: View,
     @LayoutRes val layout: Int,
     private val onItemClickListener: VeiledItemOnClickListener? = null
-)
-    : BaseViewHolder(view) {
+) : BaseViewHolder(view) {
 
     private lateinit var veilParams: VeilParams
 
