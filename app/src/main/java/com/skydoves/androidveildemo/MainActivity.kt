@@ -16,6 +16,7 @@
 
 package com.skydoves.androidveildemo
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -36,36 +37,40 @@ import java.util.concurrent.TimeUnit
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-class MainActivity : AppCompatActivity(), VeiledItemOnClickListener, ProfileViewHolder.Delegate {
+class MainActivity : AppCompatActivity(),
+    VeiledItemOnClickListener,
+    ProfileViewHolder.Delegate
+{
 
-    private val adapter by lazy { ProfileAdapter(this) }
+  private val adapter by lazy { ProfileAdapter(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  @SuppressLint("CheckResult")
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        // sets VeilRecyclerView's properties
-        veilRecyclerView.setVeilLayout(R.layout.item_profile, this)
-        veilRecyclerView.setAdapter(adapter)
-        veilRecyclerView.setLayoutManager(LinearLayoutManager(this))
-        veilRecyclerView.addVeiledItems(15)
+    // sets VeilRecyclerView's properties
+    veilRecyclerView.setVeilLayout(R.layout.item_profile, this)
+    veilRecyclerView.setAdapter(adapter)
+    veilRecyclerView.setLayoutManager(LinearLayoutManager(this))
+    veilRecyclerView.addVeiledItems(15)
 
-        // add profile times to adapter
-        adapter.addProfiles(ListItemUtils.getProfiles(this))
+    // add profile times to adapter
+    adapter.addProfiles(ListItemUtils.getProfiles(this))
 
-        // delay-auto-unveil
-        val delay = Observable.just(0).delay(5000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { veilRecyclerView.unVeil() }
-    }
+    // delay-auto-unveil
+    Observable.just(0).delay(5000, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe { veilRecyclerView.unVeil() }
+  }
 
-    /** OnItemClickListener by Veiled Item */
-    override fun onItemClicked(pos: Int) {
-        Toast.makeText(this, getString(R.string.msg_loading), Toast.LENGTH_SHORT).show()
-    }
+  /** OnItemClickListener by Veiled Item */
+  override fun onItemClicked(pos: Int) {
+    Toast.makeText(this, getString(R.string.msg_loading), Toast.LENGTH_SHORT).show()
+  }
 
-    /** OnItemClickListener by User Item */
-    override fun onItemClickListener(profile: Profile) {
-        startActivity(Intent(this, DetailActivity::class.java))
-    }
+  /** OnItemClickListener by User Item */
+  override fun onItemClickListener(profile: Profile) {
+    startActivity(Intent(this, DetailActivity::class.java))
+  }
 }

@@ -33,21 +33,21 @@ import java.util.concurrent.TimeUnit
 @SuppressLint("CheckResult")
 class DetailActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        applyToolbarMargin(detail_toolbar)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_detail)
+    applyToolbarMargin(detail_toolbar)
 
-        detail_veilLayout_header.shimmer = ShimmerUtils.getGrayShimmer(this)
-        detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
+    detail_veilLayout_header.shimmer = ShimmerUtils.getGrayShimmer(this)
+    detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
 
-        // delay-auto-unveil
-        Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    detail_veilLayout_header.unVeil()
-                    detail_veilLayout_body.unVeil()
-                    linearLayout.visible()
-                }
-    }
+    // delay-auto-unveil
+    Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+          detail_veilLayout_header.unVeil()
+          detail_veilLayout_body.unVeil()
+          linearLayout.visible()
+        }
+  }
 }

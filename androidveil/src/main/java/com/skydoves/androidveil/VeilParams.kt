@@ -20,11 +20,11 @@ import androidx.annotation.ColorInt
 import com.facebook.shimmer.Shimmer
 
 internal data class VeilParams(
-    @ColorInt var baseColor: Int,
-    @ColorInt var highlightColor: Int,
-    var baseAlpha: Float,
-    var highlightAlpha: Float,
-    var dropOff: Float,
-    var shimmerEnable: Boolean,
-    var shimmer: Shimmer?
+  @ColorInt var baseColor: Int,
+  @ColorInt var highlightColor: Int,
+  var baseAlpha: Float,
+  var highlightAlpha: Float,
+  var dropOff: Float,
+  var shimmerEnable: Boolean,
+  var shimmer: Shimmer?
 )

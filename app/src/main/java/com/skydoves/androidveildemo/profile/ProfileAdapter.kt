@@ -29,20 +29,20 @@ import com.skydoves.baserecyclerviewadapter.SectionRow
 
 class ProfileAdapter(private val delegate: ProfileViewHolder.Delegate) : BaseAdapter() {
 
-    init {
-        addSection(ArrayList<Profile>())
-    }
+  init {
+    addSection(ArrayList<Profile>())
+  }
 
-    fun addProfiles(profiles: List<Profile>) {
-        addItemsOnSection(0, profiles)
-        notifyDataSetChanged()
-    }
+  fun addProfiles(profiles: List<Profile>) {
+    addItemsOnSection(0, profiles)
+    notifyDataSetChanged()
+  }
 
-    override fun layout(sectionRow: SectionRow): Int {
-        return R.layout.item_profile
-    }
+  override fun layout(sectionRow: SectionRow): Int {
+    return R.layout.item_profile
+  }
 
-    override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-        return ProfileViewHolder(view, delegate)
-    }
+  override fun viewHolder(layout: Int, view: View): BaseViewHolder {
+    return ProfileViewHolder(view, delegate)
+  }
 }

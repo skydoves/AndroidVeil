@@ -26,38 +26,38 @@ import kotlinx.android.synthetic.main.item_profile.view.*
  */
 
 class ProfileViewHolder(
-    private val view: View,
-    private val delegate: Delegate
+  private val view: View,
+  private val delegate: Delegate
 ) : BaseViewHolder(view) {
 
-    interface Delegate {
-        fun onItemClickListener(profile: Profile)
-    }
+  interface Delegate {
+    fun onItemClickListener(profile: Profile)
+  }
 
-    private lateinit var profileItem: Profile
+  private lateinit var profileItem: Profile
 
-    override fun bindData(data: Any) {
-        if (data is Profile) {
-            this.profileItem = data
-            drawItemUI()
-        }
+  override fun bindData(data: Any) {
+    if (data is Profile) {
+      this.profileItem = data
+      drawItemUI()
     }
+  }
 
-    private fun drawItemUI() {
-        itemView.run {
-            profileItem.image?.let { profile.setImageDrawable(it) }
-            name.text = profileItem.name
-            name.visibility = View.VISIBLE
-            content.text = profileItem.content
-            content.visibility = View.VISIBLE
-        }
+  private fun drawItemUI() {
+    itemView.run {
+      profileItem.image?.let { profile.setImageDrawable(it) }
+      name.text = profileItem.name
+      name.visibility = View.VISIBLE
+      content.text = profileItem.content
+      content.visibility = View.VISIBLE
     }
+  }
 
-    override fun onClick(p0: View?) {
-        delegate.onItemClickListener(profile = profileItem)
-    }
+  override fun onClick(p0: View?) {
+    delegate.onItemClickListener(profile = profileItem)
+  }
 
-    override fun onLongClick(p0: View?): Boolean {
-        return false
-    }
+  override fun onLongClick(p0: View?): Boolean {
+    return false
+  }
 }
