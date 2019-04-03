@@ -29,14 +29,14 @@ internal class VeiledAdapter(
 {
 
   fun addParams(params: List<VeilParams>) {
-    clearSections()
+    clearAllSections()
     addSection(ArrayList<VeilParams>())
-    addItemsOnSection(0, params)
+    addItemListOnSection(0, params)
     notifyDataSetChanged()
   }
 
   fun update(position: Int, threshold: Int) {
-    when (sections[0].size > position) {
+    when (sections()[0].size > position) {
       true -> notifyItemChanged(position)
       false -> {
         for (i in position..position + threshold) {

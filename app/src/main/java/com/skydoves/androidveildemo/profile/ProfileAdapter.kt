@@ -34,7 +34,7 @@ class ProfileAdapter(private val delegate: ProfileViewHolder.Delegate) : BaseAda
   }
 
   fun addProfiles(profiles: List<Profile>) {
-    addItemsOnSection(0, profiles)
+    addItemListOnSection(0, profiles)
     notifyDataSetChanged()
   }
 

@@ -5,16 +5,16 @@ ext.versions = [
     versionName        : '1.0.4',
 
     gradleBuildTool    : '3.3.1',
-    spotlessGradle     : '3.17.0',
-    dokkaGradle        : '0.9.17',
+    spotlessGradle     : '3.21.0',
+    dokkaGradle        : '0.9.18',
     bintrayRelease     : '0.9',
 
-    kotlin             : '1.3.20',
-    androidxAppcompat  : '1.1.0-alpha02',
+    kotlin             : '1.3.21',
+    androidxAppcompat  : '1.1.0-alpha03',
     googleMaterial     : '1.1.0-alpha03',
-    recyclerView       : '1.1.0-alpha02',
-    shimmer            : '0.3.0',
-    baseAdapter        : '0.1.2',
+    recyclerView       : '1.1.0-alpha03',
+    shimmer            : '0.4.0',
+    baseAdapter        : '0.1.3',
     rxjava2            : '2.1.8',
-    rxAndroid          : '2.1.0'
+    rxAndroid          : '2.1.1'
 ]
