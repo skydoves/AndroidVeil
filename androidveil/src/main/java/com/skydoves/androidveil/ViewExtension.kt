@@ -18,10 +18,10 @@ package com.skydoves.androidveil
 
 import android.view.View
 
-internal fun View.visible() {
+fun View.visible() {
   this.visibility = View.VISIBLE
 }
 
-internal fun View.invisible() {
+fun View.invisible() {
   this.visibility = View.INVISIBLE
 }

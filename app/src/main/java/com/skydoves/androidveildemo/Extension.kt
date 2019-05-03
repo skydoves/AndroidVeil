@@ -29,8 +29,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-fun Activity.checkIsMaterialVersion()
-    = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+fun Activity.checkIsMaterialVersion() =
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
 fun AppCompatActivity.applyToolbarMargin(toolbar: Toolbar) {
   if (checkIsMaterialVersion()) {

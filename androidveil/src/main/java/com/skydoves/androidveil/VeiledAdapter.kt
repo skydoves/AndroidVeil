@@ -25,8 +25,7 @@ import com.skydoves.baserecyclerviewadapter.SectionRow
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
   private val onItemClickListener: VeiledItemOnClickListener? = null
-) : BaseAdapter()
-{
+) : BaseAdapter() {
 
   fun addParams(params: List<VeilParams>) {
     clearAllSections()

@@ -39,8 +39,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(),
     VeiledItemOnClickListener,
-    ProfileViewHolder.Delegate
-{
+    ProfileViewHolder.Delegate {
 
   private val adapter by lazy { ProfileAdapter(this) }
 
