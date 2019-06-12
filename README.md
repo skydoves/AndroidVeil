@@ -34,7 +34,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.5"
+    implementation "com.github.skydoves:androidveil:1.0.6"
 }
 ```
 
@@ -58,7 +58,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
       app:veilLayout_highlightColor="@android:color/holo_green_light" // sets shimmer highlight color
       app:veilLayout_baseAlpha="0.6" // sets shimmer base alpha value
       app:veilLayout_highlightAlpha="1.0" // sets shimmer highlight alpha value
-      app:veilLayout_dropOff="0.5"// sets how quickly the shimmer`s gradient drops-off.>
+      app:veilLayout_dropOff="0.5"// sets how quickly the shimmer`s gradient drops-off
+      app:veilLayout_radius="6dp" // sets a corner radius of the whole veiled items >
 
       <TextView
          android:layout_width="match_parent"
@@ -102,7 +103,8 @@ veilLayout.layout = R.layout.layout_item_test
         app:veilFrame_baseColor="@android:color/holo_green_dark" // sets shimmer base color
         app:veilFrame_highlightColor="@android:color/holo_green_light" // sets shimmer highlight color
         app:veilFrame_baseAlpha="0.6" // sets shimmer base alpha value
-        app:veilFrame_highlightAlpha="1.0" // sets shimmer highlight alpha value />
+        app:veilFrame_highlightAlpha="1.0" // sets shimmer highlight alpha value
+        app:veilFrame_radius="8dp" // sets a corner radius of the whole veiled items />
 ```
 
 And we should attach our own adapter and LayoutManager.
@@ -165,6 +167,8 @@ Attributes | Type | Default | Description
 --- | --- | --- | ---
 veiled | Boolean | false | shows veils initially.
 layout | Int | -1 | implement veils using the layout resource.
+radius | dimension | 8dp | sets corner radius to the veil items.
+drawable | Drawable | null | sets background drawable to the veil items.
 shimmerEnable | Boolean | true | sets shimmer enable.
 baseColor | ColorInt | Color.LTGRAY | sets shimmer base color.
 highlightColor | ColorInt | Color.DKGRAY | sets shimmer highlight color.
