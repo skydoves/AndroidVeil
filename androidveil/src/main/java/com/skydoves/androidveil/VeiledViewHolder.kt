@@ -52,6 +52,8 @@ internal class VeiledViewHolder(
         }
         itemView.shimmer = shimmer
       }
+      itemView.radius = veilParams.radius
+      itemView.drawable = veilParams.drawable
       itemView.shimmerEnable = veilParams.shimmerEnable
       itemView.veil()
     } else if (itemView is VeilLayout) {

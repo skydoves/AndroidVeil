@@ -14,20 +14,14 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.androidveil
 
-import android.graphics.drawable.Drawable
-import androidx.annotation.ColorInt
-import com.facebook.shimmer.Shimmer
+import android.content.res.Resources
 
-internal data class VeilParams(
-  @ColorInt var baseColor: Int,
-  @ColorInt var highlightColor: Int,
-  var drawable: Drawable?,
-  var radius: Float,
-  var baseAlpha: Float,
-  var highlightAlpha: Float,
-  var dropOff: Float,
-  var shimmerEnable: Boolean,
-  var shimmer: Shimmer?
-)
+/** dp size to px size */
+internal fun Float.dp2px(resources: Resources): Float {
+  val scale = resources.displayMetrics.density
+  return this * scale * 0.5f
+}

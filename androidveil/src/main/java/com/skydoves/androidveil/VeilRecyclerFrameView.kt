@@ -20,6 +20,7 @@ package com.skydoves.androidveil
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
@@ -51,6 +52,8 @@ class VeilRecyclerFrameView : RelativeLayout {
   private var dropOff = 0.5f
   @LayoutRes
   private var layout = -1
+  private var radius = 8f.dp2px(resources)
+  private var drawable: Drawable? = null
 
   var shimmer: Shimmer? = null
   var shimmerEnable: Boolean = true
@@ -77,6 +80,10 @@ class VeilRecyclerFrameView : RelativeLayout {
         isVeiled = a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_veiled, isVeiled)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_layout))
         layout = a.getResourceId(R.styleable.VeilRecyclerFrameView_veilFrame_layout, -1)
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_drawable))
+        drawable = a.getDrawable(R.styleable.VeilRecyclerFrameView_veilFrame_drawable)
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_radius))
+        radius = a.getDimension(R.styleable.VeilRecyclerFrameView_veilFrame_radius, radius)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable))
         shimmerEnable = a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable, shimmerEnable)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_baseColor))
@@ -96,10 +103,10 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   private fun onCreate() {
     val paginator = RecyclerViewPaginator(
-        recyclerView = veiledRecyclerView,
-        onLast = { false },
-        loadMore = { veiledRecyclerView.post { veiledAdapter?.update(it, threshold) } },
-        isLoading = { false }
+      recyclerView = veiledRecyclerView,
+      onLast = { false },
+      loadMore = { veiledRecyclerView.post { veiledAdapter?.update(it, threshold) } },
+      isLoading = { false }
     )
     paginator.threshold = threshold
     addView(userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
@@ -141,7 +148,7 @@ class VeilRecyclerFrameView : RelativeLayout {
   fun addVeiledItems(size: Int) {
     val paramList = ArrayList<VeilParams>()
     for (i in 0 until size) {
-      paramList.add(VeilParams(baseColor, highlightColor, baseAlpha, highlightAlpha, dropOff, shimmerEnable, shimmer))
+      paramList.add(VeilParams(baseColor, highlightColor, drawable, radius, baseAlpha, highlightAlpha, dropOff, shimmerEnable, shimmer))
     }
     veiledAdapter?.addParams(paramList)
   }

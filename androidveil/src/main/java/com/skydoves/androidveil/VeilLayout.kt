@@ -19,6 +19,8 @@ package com.skydoves.androidveil
 import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -28,18 +30,19 @@ import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
 @Suppress("unused")
 fun alphaShimmer(block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
-    Shimmer.AlphaHighlightBuilder().apply(block).build()
+  Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
 @Suppress("unused")
 fun colorShimmer(block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
-    Shimmer.ColorHighlightBuilder().apply(block).build()
+  Shimmer.ColorHighlightBuilder().apply(block).build()
 
 /** VeilLayout creates skeletons about the complex child views with shimmering effect. */
 @Suppress("HasPlatformType", "MemberVisibilityCanBePrivate", "unused")
@@ -52,6 +55,8 @@ class VeilLayout : FrameLayout {
   private var baseAlpha = 1.0f
   private var highlightAlpha = 1.0f
   private var dropOff = 0.5f
+  var radius = 8f.dp2px(resources)
+  var drawable: Drawable? = null
 
   @LayoutRes
   var layout = -1
@@ -107,6 +112,10 @@ class VeilLayout : FrameLayout {
         isVeiled = a.getBoolean(R.styleable.VeilLayout_veilLayout_veiled, isVeiled)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_layout))
         layout = a.getResourceId(R.styleable.VeilLayout_veilLayout_layout, -1)
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_drawable))
+        drawable = a.getDrawable(R.styleable.VeilLayout_veilLayout_drawable)
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_radius))
+        radius = a.getDimension(R.styleable.VeilLayout_veilLayout_radius, radius)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_shimmerEnable))
         shimmerEnable = a.getBoolean(R.styleable.VeilLayout_veilLayout_shimmerEnable, shimmerEnable)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseColor))
@@ -157,13 +166,8 @@ class VeilLayout : FrameLayout {
     for (i in 0 until parent.childCount) {
       val child = parent.getChildAt(i)
       child.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-        @Suppress("DEPRECATION")
         override fun onGlobalLayout() {
-          if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            viewTreeObserver.removeGlobalOnLayoutListener(this)
-          } else {
-            viewTreeObserver.removeOnGlobalLayoutListener(this)
-          }
+          viewTreeObserver.removeOnGlobalLayoutListener(this)
 
           if (child is ViewGroup) {
             addMaskElements(child)
@@ -186,10 +190,19 @@ class VeilLayout : FrameLayout {
 
             // create a masked view
             val view = View(context)
-            view.layoutParams = FrameLayout.LayoutParams(child.measuredWidth, child.measuredHeight)
+            view.layoutParams = LayoutParams(child.measuredWidth, child.measuredHeight)
             view.x = marginX + parent.x + child.x
             view.y = marginY + parent.y + child.y
             view.setBackgroundColor(baseColor)
+
+            if (drawable != null) {
+              view.background = drawable
+            } else {
+              val drawable = ContextCompat.getDrawable(context, R.drawable.rectangle) as GradientDrawable
+              drawable.cornerRadius = radius
+              view.background = drawable
+            }
+
             maskElements.add(view)
             shimmerContainer.addView(view)
           }
