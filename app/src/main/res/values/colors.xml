@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3d95c9</color>
-    <color name="colorPrimaryDark">#2485be</color>
-    <color name="colorAccent">#3d95c9</color>
-    <color name="background">#303030</color>
-    <color name="background800">#424242</color>
-    <color name="background900">#212121</color>
-    <color name="HintText">#87ffffff</color>
-    <color name="preview">#b0abb0</color>
-    <color name="shimmerBase0">#c2c2c2</color>
-    <color name="shimmerHighlight0">#ffffff</color>
+  <color name="colorPrimary">#3d95c9</color>
+  <color name="colorPrimaryDark">#2485be</color>
+  <color name="colorAccent">#3d95c9</color>
+  <color name="background">#303030</color>
+  <color name="background800">#424242</color>
+  <color name="background900">#212121</color>
+  <color name="HintText">#87ffffff</color>
+  <color name="preview">#b0abb0</color>
+  <color name="shimmerBase0">#c2c2c2</color>
+  <color name="shimmerHighlight0">#ffffff</color>
+  <color name="shimmerHighlight1">#DFDEDE</color>
 </resources>

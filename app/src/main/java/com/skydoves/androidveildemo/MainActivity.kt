@@ -38,8 +38,8 @@ import java.util.concurrent.TimeUnit
  */
 
 class MainActivity : AppCompatActivity(),
-    VeiledItemOnClickListener,
-    ProfileViewHolder.Delegate {
+  VeiledItemOnClickListener,
+  ProfileViewHolder.Delegate {
 
   private val adapter by lazy { ProfileAdapter(this) }
 
@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity(),
 
     // delay-auto-unveil
     Observable.just(0).delay(5000, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { veilRecyclerView.unVeil() }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { veilRecyclerView.unVeil() }
   }
 
   /** OnItemClickListener by Veiled Item */
