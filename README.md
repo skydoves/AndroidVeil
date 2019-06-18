@@ -15,8 +15,8 @@ An easy, flexible way to implement veil skeletons and shimmering effect for Andr
 
 
 # AndroidVeil
-![gif0](https://user-images.githubusercontent.com/24237865/47777293-c736d780-dd37-11e8-9107-5242746a7b8c.gif)
-![gif1](https://user-images.githubusercontent.com/24237865/47781860-1aae2300-dd42-11e8-8c5c-a2417b03b74d.gif)
+![gif0](https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer01.gif)
+![gif1](https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer02.gif)
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/androidveil/images/download.svg)](https://bintray.com/devmagician/maven/androidveil/_latestVersion)
