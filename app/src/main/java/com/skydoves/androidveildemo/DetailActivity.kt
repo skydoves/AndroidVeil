@@ -19,7 +19,6 @@ package com.skydoves.androidveildemo
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.skydoves.androidveil.visible
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -43,11 +42,11 @@ class DetailActivity : AppCompatActivity() {
 
     // delay-auto-unveil
     Observable.just(0).delay(3000, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-          detail_veilLayout_header.unVeil()
-          detail_veilLayout_body.unVeil()
-          linearLayout.visible()
-        }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe {
+        detail_veilLayout_header.unVeil()
+        detail_veilLayout_body.unVeil()
+        linearLayout.visible()
+      }
   }
 }

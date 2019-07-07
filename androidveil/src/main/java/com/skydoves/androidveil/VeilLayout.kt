@@ -174,15 +174,15 @@ class VeilLayout : FrameLayout {
           } else {
             var marginX = 0f
             var marginY = 0f
-            var parentUpper = parent.parent
-            while ((parentUpper !is VeilLayout)) {
-              if (parentUpper is ViewGroup) {
-                val params = parentUpper.layoutParams
+            var grandParent = parent.parent
+            while ((grandParent !is VeilLayout)) {
+              if (grandParent is ViewGroup) {
+                val params = grandParent.layoutParams
                 if (params is MarginLayoutParams) {
-                  marginX += parentUpper.x
-                  marginY += parentUpper.y
+                  marginX += grandParent.x
+                  marginY += grandParent.y
                 }
-                parentUpper = parentUpper.parent
+                grandParent = grandParent.parent
               } else {
                 break
               }

@@ -12,7 +12,6 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
     }
-
     buildTypes {
         release {
             minifyEnabled false
