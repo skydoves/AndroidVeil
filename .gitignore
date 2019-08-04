@@ -41,6 +41,9 @@ captures/
 .idea/dictionaries
 .idea/libraries
 
+# Mac
+*.DS_Store
+
 # Keystore files
 *.jks
 
