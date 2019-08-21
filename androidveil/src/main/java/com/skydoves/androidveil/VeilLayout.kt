@@ -26,7 +26,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
@@ -165,49 +164,45 @@ class VeilLayout : FrameLayout {
   private fun addMaskElements(parent: ViewGroup) {
     for (i in 0 until parent.childCount) {
       val child = parent.getChildAt(i)
-      child.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-        override fun onGlobalLayout() {
-          viewTreeObserver.removeOnGlobalLayoutListener(this)
-
-          if (child is ViewGroup) {
-            addMaskElements(child)
-          } else {
-            var marginX = 0f
-            var marginY = 0f
-            var grandParent = parent.parent
-            while ((grandParent !is VeilLayout)) {
-              if (grandParent is ViewGroup) {
-                val params = grandParent.layoutParams
-                if (params is MarginLayoutParams) {
-                  marginX += grandParent.x
-                  marginY += grandParent.y
-                }
-                grandParent = grandParent.parent
-              } else {
-                break
+      post {
+        if (child is ViewGroup) {
+          addMaskElements(child)
+        } else {
+          var marginX = 0f
+          var marginY = 0f
+          var grandParent = parent.parent
+          while ((grandParent !is VeilLayout)) {
+            if (grandParent is ViewGroup) {
+              val params = grandParent.layoutParams
+              if (params is MarginLayoutParams) {
+                marginX += grandParent.x
+                marginY += grandParent.y
               }
-            }
-
-            // create a masked view
-            val view = View(context)
-            view.layoutParams = LayoutParams(child.measuredWidth, child.measuredHeight)
-            view.x = marginX + parent.x + child.x
-            view.y = marginY + parent.y + child.y
-            view.setBackgroundColor(baseColor)
-
-            if (drawable != null) {
-              view.background = drawable
+              grandParent = grandParent.parent
             } else {
-              val drawable = ContextCompat.getDrawable(context, R.drawable.rectangle) as GradientDrawable
-              drawable.cornerRadius = radius
-              view.background = drawable
+              break
             }
-
-            maskElements.add(view)
-            shimmerContainer.addView(view)
           }
+
+          // create a masked view
+          val view = View(context)
+          view.layoutParams = LayoutParams(child.measuredWidth, child.measuredHeight)
+          view.x = marginX + parent.x + child.x
+          view.y = marginY + parent.y + child.y
+          view.setBackgroundColor(baseColor)
+
+          if (drawable != null) {
+            view.background = drawable
+          } else {
+            val drawable = ContextCompat.getDrawable(context, R.drawable.rectangle) as GradientDrawable
+            drawable.cornerRadius = radius
+            view.background = drawable
+          }
+
+          maskElements.add(view)
+          shimmerContainer.addView(view)
         }
-      })
+      }
     }
 
     // Invalidate the whole masked view.
