@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">AndroidVeilDemo</string>
+  <string name="msg_loading">Loading</string>
 </resources>

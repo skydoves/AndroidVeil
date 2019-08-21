@@ -29,7 +29,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
-import androidx.core.content.ContextCompat
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
@@ -194,7 +193,8 @@ class VeilLayout : FrameLayout {
           if (drawable != null) {
             view.background = drawable
           } else {
-            val drawable = ContextCompat.getDrawable(context, R.drawable.rectangle) as GradientDrawable
+            val drawable = GradientDrawable()
+            drawable.setColor(Color.DKGRAY)
             drawable.cornerRadius = radius
             view.background = drawable
           }
