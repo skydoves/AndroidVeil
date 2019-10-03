@@ -163,14 +163,14 @@ class VeilLayout : FrameLayout {
   private fun addMaskElements(parent: ViewGroup) {
     for (i in 0 until parent.childCount) {
       val child = parent.getChildAt(i)
-      post {
+      child.post {
         if (child is ViewGroup) {
           addMaskElements(child)
         } else {
           var marginX = 0f
           var marginY = 0f
           var grandParent = parent.parent
-          while ((grandParent !is VeilLayout)) {
+          while (grandParent !is VeilLayout) {
             if (grandParent is ViewGroup) {
               val params = grandParent.layoutParams
               if (params is MarginLayoutParams) {

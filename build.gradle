@@ -1,11 +1,9 @@
 buildscript {
     apply from: './dependencies.gradle'
-
     repositories {
         google()
         jcenter()
     }
-
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"

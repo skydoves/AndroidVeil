@@ -22,6 +22,5 @@ import android.content.res.Resources
 
 /** dp size to px size */
 internal fun Float.dp2px(resources: Resources): Float {
-  val scale = resources.displayMetrics.density
-  return this * scale * 0.5f
+  return this * resources.displayMetrics.density * 0.5f
 }
