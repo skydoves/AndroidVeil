@@ -25,3 +25,11 @@ internal fun View.visible() {
 internal fun View.invisible() {
   this.visibility = View.INVISIBLE
 }
+
+internal fun View.visible(visible: Boolean) {
+  if (visible) {
+    visible()
+  } else {
+    invisible()
+  }
+}
