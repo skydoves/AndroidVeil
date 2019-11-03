@@ -26,8 +26,7 @@
       android:text="The Little Prince"
       android:textColor="@android:color/white"
       android:textSize="17sp"
-      android:textStyle="bold"
-      android:visibility="invisible" />
+      android:textStyle="bold" />
 
     <TextView
       android:id="@+id/content"

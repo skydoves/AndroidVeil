@@ -57,6 +57,7 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   var shimmer: Shimmer? = null
   var shimmerEnable: Boolean = true
+  var defaultChildVisible = false
   private val threshold = 10
 
   constructor(context: Context) : super(context) {
@@ -96,6 +97,8 @@ class VeilRecyclerFrameView : RelativeLayout {
         highlightAlpha = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha, highlightAlpha)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff))
         dropOff = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff, dropOff)
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible))
+        defaultChildVisible = a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible, defaultChildVisible)
     } finally {
       a.recycle()
     }
@@ -148,9 +151,21 @@ class VeilRecyclerFrameView : RelativeLayout {
   fun addVeiledItems(size: Int) {
     val paramList = ArrayList<VeilParams>()
     for (i in 0 until size) {
-      paramList.add(VeilParams(baseColor, highlightColor, drawable, radius, baseAlpha, highlightAlpha, dropOff, shimmerEnable, shimmer))
+      paramList.add(
+        VeilParams(
+          baseColor,
+          highlightColor,
+          drawable,
+          radius,
+          baseAlpha,
+          highlightAlpha,
+          dropOff,
+          shimmerEnable,
+          shimmer,
+          defaultChildVisible)
+      )
     }
-    veiledAdapter?.addParams(paramList)
+    this.veiledAdapter?.addParams(paramList)
   }
 
   /** Sets userRecyclerView's adapter. */
@@ -181,9 +196,9 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   /** Make appear the mask. */
   fun veil() {
-    veiledAdapter?.let {
-      if (!isVeiled) {
-        isVeiled = true
+    this.veiledAdapter?.let {
+      if (!this.isVeiled) {
+        this.isVeiled = true
         visibleVeilRecyclerView()
       }
     }
@@ -191,33 +206,33 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   /** Make disappear the mask. */
   fun unVeil() {
-    if (isVeiled) {
-      isVeiled = false
+    if (this.isVeiled) {
+      this.isVeiled = false
       visibleUserRecyclerView()
     }
   }
 
   /** Visible veiledRecyclerView and Invisible userRecyclerView. */
   private fun visibleVeilRecyclerView() {
-    veiledRecyclerView.visible()
-    veiledRecyclerView.bringToFront()
-    userRecyclerView.invisible()
+    this.veiledRecyclerView.visible()
+    this.veiledRecyclerView.bringToFront()
+    this.userRecyclerView.invisible()
   }
 
   /** Invisible veiledRecyclerView and Visible userRecyclerView. */
   private fun visibleUserRecyclerView() {
-    userRecyclerView.visible()
-    userRecyclerView.bringToFront()
-    veiledRecyclerView.invisible()
+    this.userRecyclerView.visible()
+    this.userRecyclerView.bringToFront()
+    this.veiledRecyclerView.invisible()
   }
 
   /** Returns veiled recyclerView */
   fun getVeiledRecyclerView(): RecyclerView {
-    return veiledRecyclerView
+    return this.veiledRecyclerView
   }
 
   /** Returns user's recyclerView */
   fun getRecyclerView(): RecyclerView {
-    return userRecyclerView
+    return this.userRecyclerView
   }
 }

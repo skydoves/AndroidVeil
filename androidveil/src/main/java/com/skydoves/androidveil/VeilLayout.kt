@@ -82,6 +82,7 @@ class VeilLayout : FrameLayout {
         false -> shimmerContainer.setShimmer(nonShimmer)
       }
     }
+  var defaultChildVisible = false
 
   constructor(context: Context) : super(context) {
     onCreate()
@@ -126,6 +127,8 @@ class VeilLayout : FrameLayout {
         highlightAlpha = a.getFloat(R.styleable.VeilLayout_veilLayout_highlightAlpha, highlightAlpha)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_dropOff))
         dropOff = a.getFloat(R.styleable.VeilLayout_veilLayout_dropOff, dropOff)
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_defaultChildVisible))
+        defaultChildVisible = a.getBoolean(R.styleable.VeilLayout_veilLayout_defaultChildVisible, defaultChildVisible)
     } finally {
       a.recycle()
     }
@@ -236,21 +239,36 @@ class VeilLayout : FrameLayout {
 
   /** Starts the shimmer animation. */
   fun startShimmer() {
-    shimmerContainer.visible()
-    if (shimmerEnable) {
-      shimmerContainer.startShimmer()
+    this.shimmerContainer.visible()
+    if (this.shimmerEnable) {
+      this.shimmerContainer.startShimmer()
+    }
+    if (!this.defaultChildVisible) {
+      setChildVisibility(false)
     }
   }
 
   /** Stops the shimmer animation. */
   fun stopShimmer() {
-    shimmerContainer.invisible()
-    shimmerContainer.stopShimmer()
+    this.shimmerContainer.invisible()
+    this.shimmerContainer.stopShimmer()
+    if (!this.defaultChildVisible) {
+      setChildVisibility(true)
+    }
+  }
+
+  private fun setChildVisibility(visible: Boolean) {
+    for (i in 0 until childCount) {
+      val child = getChildAt(i)
+      if (child != this.shimmerContainer) {
+        child.visible(visible)
+      }
+    }
   }
 
   /** Invalidate VeilLayout & Shimmer */
   override fun invalidate() {
     super.invalidate()
-    shimmerContainer.invalidate()
+    this.shimmerContainer.invalidate()
   }
 }
