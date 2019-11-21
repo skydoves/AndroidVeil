@@ -29,8 +29,8 @@ import com.skydoves.androidveildemo.profile.ProfileAdapter
 import com.skydoves.androidveildemo.profile.ProfileViewHolder
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Developed by skydoves on 2018-10-30.

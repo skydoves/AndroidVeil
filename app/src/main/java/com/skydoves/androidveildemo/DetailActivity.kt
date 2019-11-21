@@ -21,8 +21,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.activity_detail.*
 import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.activity_detail.*
 
 /**
  * Developed by skydoves on 2018-10-30.

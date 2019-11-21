@@ -19,7 +19,6 @@ package com.skydoves.androidveil
 import android.view.View
 import androidx.annotation.LayoutRes
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
-import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 
 internal class VeiledAdapter(
@@ -27,9 +26,12 @@ internal class VeiledAdapter(
   private val onItemClickListener: VeiledItemOnClickListener? = null
 ) : BaseAdapter() {
 
-  fun addParams(params: List<VeilParams>) {
-    clearAllSections()
+  init {
     addSection(ArrayList<VeilParams>())
+  }
+
+  fun addParams(params: List<VeilParams>) {
+    sections()[0].clear()
     addItemListOnSection(0, params)
     notifyDataSetChanged()
   }
@@ -45,11 +47,8 @@ internal class VeiledAdapter(
     }
   }
 
-  override fun layout(sectionRow: SectionRow): Int {
-    return R.layout.item_veiled_layout
-  }
+  override fun layout(sectionRow: SectionRow) = R.layout.item_veiled_layout
 
-  override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-    return VeiledViewHolder(view, userLayout, onItemClickListener)
-  }
+  override fun viewHolder(layout: Int, view: View) =
+    VeiledViewHolder(view, userLayout, onItemClickListener)
 }

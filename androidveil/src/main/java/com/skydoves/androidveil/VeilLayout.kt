@@ -28,6 +28,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -50,8 +51,11 @@ class VeilLayout : FrameLayout {
   private var baseColor = Color.LTGRAY
   @ColorInt
   private var highlightColor = Color.DKGRAY
+  @FloatRange(from = 0.0, to = 1.0)
   private var baseAlpha = 1.0f
+  @FloatRange(from = 0.0, to = 1.0)
   private var highlightAlpha = 1.0f
+  @FloatRange(from = 0.0, to = 1.0)
   private var dropOff = 0.5f
   var radius = 8f.dp2px(resources)
   var drawable: Drawable? = null
@@ -92,13 +96,15 @@ class VeilLayout : FrameLayout {
     onCreate()
   }
 
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs,
+    defStyleAttr) {
     getAttrs(attrs)
     onCreate()
   }
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
+    context, attrs, defStyleAttr, defStyleRes) {
     getAttrs(attrs)
     onCreate()
   }
@@ -119,11 +125,13 @@ class VeilLayout : FrameLayout {
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseColor))
         baseColor = a.getColor(R.styleable.VeilLayout_veilLayout_baseColor, baseColor)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightColor))
-        highlightColor = a.getColor(R.styleable.VeilLayout_veilLayout_highlightColor, highlightColor)
+        highlightColor =
+          a.getColor(R.styleable.VeilLayout_veilLayout_highlightColor, highlightColor)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseAlpha))
         baseAlpha = a.getFloat(R.styleable.VeilLayout_veilLayout_baseAlpha, baseAlpha)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightAlpha))
-        highlightAlpha = a.getFloat(R.styleable.VeilLayout_veilLayout_highlightAlpha, highlightAlpha)
+        highlightAlpha =
+          a.getFloat(R.styleable.VeilLayout_veilLayout_highlightAlpha, highlightAlpha)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_dropOff))
         dropOff = a.getFloat(R.styleable.VeilLayout_veilLayout_dropOff, dropOff)
     } finally {
@@ -132,19 +140,24 @@ class VeilLayout : FrameLayout {
   }
 
   private fun onCreate() {
-    shimmerContainer.invisible()
-    val shimmerBuilder = Shimmer.ColorHighlightBuilder()
-    shimmerBuilder.setBaseColor(baseColor).setHighlightColor(highlightColor)
-    shimmerBuilder.setBaseAlpha(baseAlpha).setDropoff(highlightAlpha).setDropoff(dropOff)
-    shimmerBuilder.setAutoStart(false)
-    shimmer = shimmerBuilder.build()
-    shimmerEnable = shimmerEnable
+    this.shimmerContainer.invisible()
+    Shimmer.ColorHighlightBuilder().apply {
+      setBaseColor(baseColor).setHighlightColor(highlightColor)
+      setBaseAlpha(baseAlpha).setDropoff(highlightAlpha).setDropoff(dropOff)
+      setAutoStart(false)
+    }.also { this.shimmer = it.build() }
+    this.shimmerEnable = this.shimmerEnable // calling for backing field
   }
 
-  /** Remove previous views and inflate a new layout. */
-  private fun reDrawLayout(layout: Int) {
+  /** Remove previous views and inflate a new layout using layout resource */
+  private fun reDrawLayout(@LayoutRes layout: Int) {
+    setLayout(LayoutInflater.from(context).inflate(layout, this, false))
+  }
+
+  /** Remove previous views and inflate a new layout using an inflated view. */
+  fun setLayout(layout: View) {
     removeAllViews()
-    LayoutInflater.from(context).inflate(layout, this, true)
+    addView(layout)
     onFinishInflate()
   }
 
@@ -209,8 +222,8 @@ class VeilLayout : FrameLayout {
     invalidate()
 
     // Auto veiled
-    isVeiled = !isVeiled
-    when (isVeiled) {
+    this.isVeiled = !this.isVeiled
+    when (this.isVeiled) {
       true -> unVeil()
       false -> veil()
     }
@@ -218,8 +231,8 @@ class VeilLayout : FrameLayout {
 
   /** Make appear the mask. */
   fun veil() {
-    if (!isVeiled) {
-      isVeiled = true
+    if (!this.isVeiled) {
+      this.isVeiled = true
       startShimmer()
       invalidate()
     }
@@ -227,8 +240,8 @@ class VeilLayout : FrameLayout {
 
   /** Make disappear the mask. */
   fun unVeil() {
-    if (isVeiled) {
-      isVeiled = false
+    if (this.isVeiled) {
+      this.isVeiled = false
       stopShimmer()
       invalidate()
     }
@@ -236,21 +249,21 @@ class VeilLayout : FrameLayout {
 
   /** Starts the shimmer animation. */
   fun startShimmer() {
-    shimmerContainer.visible()
-    if (shimmerEnable) {
-      shimmerContainer.startShimmer()
+    this.shimmerContainer.visible()
+    if (this.shimmerEnable) {
+      this.shimmerContainer.startShimmer()
     }
   }
 
   /** Stops the shimmer animation. */
   fun stopShimmer() {
-    shimmerContainer.invisible()
-    shimmerContainer.stopShimmer()
+    this.shimmerContainer.invisible()
+    this.shimmerContainer.stopShimmer()
   }
 
   /** Invalidate VeilLayout & Shimmer */
   override fun invalidate() {
     super.invalidate()
-    shimmerContainer.invalidate()
+    this.shimmerContainer.invalidate()
   }
 }
