@@ -29,5 +29,6 @@ internal data class VeilParams(
   var highlightAlpha: Float,
   var dropOff: Float,
   var shimmerEnable: Boolean,
-  var shimmer: Shimmer?
+  var shimmer: Shimmer?,
+  var defaultChildVisible: Boolean
 )

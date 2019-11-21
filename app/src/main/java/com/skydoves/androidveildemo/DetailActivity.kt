@@ -46,7 +46,6 @@ class DetailActivity : AppCompatActivity() {
       .subscribe {
         detail_veilLayout_header.unVeil()
         detail_veilLayout_body.unVeil()
-        linearLayout.visible()
       }
   }
 }

@@ -49,9 +49,7 @@ class ProfileViewHolder(
     itemView.run {
       profileItem.image?.let { profile.setImageDrawable(it) }
       name.text = profileItem.name
-      name.visibility = View.VISIBLE
       content.text = profileItem.content
-      content.visibility = View.VISIBLE
     }
   }
 

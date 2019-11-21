@@ -61,6 +61,7 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   var shimmer: Shimmer? = null
   var shimmerEnable: Boolean = true
+  var defaultChildVisible = false
   private val threshold = 10
 
   constructor(context: Context) : super(context) {
@@ -104,6 +105,10 @@ class VeilRecyclerFrameView : RelativeLayout {
           a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha, highlightAlpha)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff))
         dropOff = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff, dropOff)
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible))
+        defaultChildVisible =
+          a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible,
+            defaultChildVisible)
     } finally {
       a.recycle()
     }
@@ -157,15 +162,17 @@ class VeilRecyclerFrameView : RelativeLayout {
     for (i in 0 until size) {
       paramList.add(
         VeilParams(
-          this.baseColor,
-          this.highlightColor,
-          this.drawable,
-          this.radius,
-          this.baseAlpha,
-          this.highlightAlpha,
-          this.dropOff,
-          this.shimmerEnable,
-          this.shimmer))
+          baseColor,
+          highlightColor,
+          drawable,
+          radius,
+          baseAlpha,
+          highlightAlpha,
+          dropOff,
+          shimmerEnable,
+          shimmer,
+          defaultChildVisible)
+      )
     }
     this.veiledAdapter?.updateParams(paramList)
   }
@@ -219,7 +226,7 @@ class VeilRecyclerFrameView : RelativeLayout {
   private fun visibleVeilRecyclerView() {
     this.veiledRecyclerView.visible()
     this.veiledRecyclerView.bringToFront()
-    userRecyclerView.invisible()
+    this.userRecyclerView.invisible()
   }
 
   /** Invisible veiledRecyclerView and Visible userRecyclerView. */

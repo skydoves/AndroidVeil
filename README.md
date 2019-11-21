@@ -34,7 +34,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.6"
+    implementation "com.github.skydoves:androidveil:1.0.7"
 }
 ```
 
@@ -175,6 +175,7 @@ highlightColor | ColorInt | Color.DKGRAY | sets shimmer highlight color.
 baseAlpha | Float | 1.0f | sets shimmer base alpha value.
 highlightAlpha | Float | 1.0f | sets shimmer highlight alpha value.
 dropOff | Float | 0.5f | sets how quickly the shimmer's gradient drops-off.
+defaultChildVisible | Boolean | false | sets the child view's visibility when called veil and unveil.
 
 ## Find this library useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/AndroidVeil/stargazers)__ for this repository. :star:
