@@ -167,7 +167,7 @@ class VeilRecyclerFrameView : RelativeLayout {
           this.shimmerEnable,
           this.shimmer))
     }
-    this.veiledAdapter?.addParams(paramList)
+    this.veiledAdapter?.updateParams(paramList)
   }
 
   /** Sets userRecyclerView's adapter. */

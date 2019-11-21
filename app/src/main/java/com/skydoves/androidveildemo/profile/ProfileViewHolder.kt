@@ -18,7 +18,9 @@ package com.skydoves.androidveildemo.profile
 
 import android.view.View
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
-import kotlinx.android.synthetic.main.item_profile.view.*
+import kotlinx.android.synthetic.main.item_profile.view.content
+import kotlinx.android.synthetic.main.item_profile.view.name
+import kotlinx.android.synthetic.main.item_profile.view.profile
 
 /**
  * Developed by skydoves on 2018-10-30.
@@ -26,7 +28,7 @@ import kotlinx.android.synthetic.main.item_profile.view.*
  */
 
 class ProfileViewHolder(
-  private val view: View,
+  view: View,
   private val delegate: Delegate
 ) : BaseViewHolder(view) {
 
@@ -53,11 +55,7 @@ class ProfileViewHolder(
     }
   }
 
-  override fun onClick(p0: View?) {
-    delegate.onItemClickListener(profile = profileItem)
-  }
+  override fun onClick(p0: View?) = this.delegate.onItemClickListener(profile = profileItem)
 
-  override fun onLongClick(p0: View?): Boolean {
-    return false
-  }
+  override fun onLongClick(p0: View?) = false
 }

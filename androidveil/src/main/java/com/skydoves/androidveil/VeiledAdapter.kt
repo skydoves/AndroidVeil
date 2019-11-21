@@ -30,7 +30,7 @@ internal class VeiledAdapter(
     addSection(ArrayList<VeilParams>())
   }
 
-  fun addParams(params: List<VeilParams>) {
+  fun updateParams(params: List<VeilParams>) {
     sections()[0].clear()
     addItemListOnSection(0, params)
     notifyDataSetChanged()
