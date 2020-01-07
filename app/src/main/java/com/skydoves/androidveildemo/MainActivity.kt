@@ -30,7 +30,7 @@ import com.skydoves.androidveildemo.profile.ProfileViewHolder
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.veilRecyclerView
 
 /**
  * Developed by skydoves on 2018-10-30.

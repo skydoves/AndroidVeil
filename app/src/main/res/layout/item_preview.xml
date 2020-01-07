@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="?attr/selectableItemBackground"
+  android:foreground="?attr/selectableItemBackground"
   android:orientation="vertical"
-  android:padding="20dp">
+  android:padding="20dp"
+  tools:ignore="UnusedAttribute">
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
     android:layout_width="match_parent"
     android:layout_height="140dp" />
 
-  <TextView
+  <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="match_parent"
     android:layout_height="12dp"
     android:layout_marginTop="20dp" />
 
-  <TextView
+  <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="match_parent"
     android:layout_height="12dp"
     android:layout_marginTop="8dp"

@@ -27,7 +27,7 @@ import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
 import com.skydoves.androidveildemo.profile.ProfileAdapter
 import com.skydoves.androidveildemo.profile.ProfileViewHolder
-import kotlinx.android.synthetic.main.activity_second.*
+import kotlinx.android.synthetic.main.activity_second.veilFrameView
 
 class SecondActivity : AppCompatActivity(), VeiledItemOnClickListener,
   ProfileViewHolder.Delegate {

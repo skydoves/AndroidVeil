@@ -16,39 +16,65 @@
 
 package com.skydoves.androidveil
 
-import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.skydoves.baserecyclerviewadapter.BaseAdapter
-import com.skydoves.baserecyclerviewadapter.SectionRow
+import androidx.recyclerview.widget.RecyclerView
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
   private val onItemClickListener: VeiledItemOnClickListener? = null
-) : BaseAdapter() {
+) : RecyclerView.Adapter<VeiledViewHolder>() {
 
-  init {
-    addSection(ArrayList<VeilParams>())
+  private val veilParamList: MutableList<VeilParams> = mutableListOf()
+
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeiledViewHolder {
+    val inflater = LayoutInflater.from(parent.context)
+    return VeiledViewHolder(
+      inflater.inflate(R.layout.item_veiled_layout, parent, false))
   }
 
-  fun updateParams(params: List<VeilParams>) {
-    sections()[0].clear()
-    addItemListOnSection(0, params)
-    notifyDataSetChanged()
-  }
-
-  fun update(position: Int, threshold: Int) {
-    when (sections()[0].size > position) {
-      true -> notifyItemChanged(position)
-      false -> {
-        for (i in position..position + threshold) {
-          notifyItemChanged(i)
+  override fun onBindViewHolder(holder: VeiledViewHolder, position: Int) {
+    val veilParams = getVeilParams(position)
+    with(holder) {
+      if (itemView is VeilLayout) {
+        itemView.apply {
+          if (layout == -1) {
+            layout = userLayout
+            veilParams.shimmer?.let {
+              shimmer = it
+            } ?: let {
+              shimmer = colorShimmer {
+                setBaseColor(veilParams.baseColor)
+                setBaseAlpha(veilParams.baseAlpha)
+                setHighlightColor(veilParams.highlightColor)
+                setHighlightAlpha(veilParams.highlightAlpha)
+                setDropoff(veilParams.dropOff)
+              }
+            }
+            radius = veilParams.radius
+            drawable = veilParams.drawable
+            shimmerEnable = veilParams.shimmerEnable
+            defaultChildVisible = veilParams.defaultChildVisible
+          } else {
+            startShimmer()
+          }
+          setOnClickListener { onItemClickListener?.onItemClicked(position) }
+          veil()
         }
       }
     }
   }
 
-  override fun layout(sectionRow: SectionRow) = R.layout.item_veiled_layout
+  private fun getVeilParams(position: Int): VeilParams = this.veilParamList[position]
 
-  override fun viewHolder(layout: Int, view: View) =
-    VeiledViewHolder(view, userLayout, onItemClickListener)
+  fun updateParams(params: List<VeilParams>) {
+    this.veilParamList.apply {
+      clear()
+      addAll(params)
+    }
+    notifyDataSetChanged()
+  }
+
+  override fun getItemCount() = this.veilParamList.size
 }

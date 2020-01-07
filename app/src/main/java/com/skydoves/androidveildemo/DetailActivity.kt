@@ -22,7 +22,9 @@ import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
-import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_detail.detail_toolbar
+import kotlinx.android.synthetic.main.activity_detail.detail_veilLayout_body
+import kotlinx.android.synthetic.main.activity_detail.detail_veilLayout_header
 
 /**
  * Developed by skydoves on 2018-10-30.

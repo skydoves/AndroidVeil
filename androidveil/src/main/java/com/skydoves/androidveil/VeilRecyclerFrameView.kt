@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.facebook.shimmer.Shimmer
-import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 
 /** VeilRecyclerFrameView implements skeleton veiling for user [RecyclerView] with shimmering effect. */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -115,14 +114,9 @@ class VeilRecyclerFrameView : RelativeLayout {
   }
 
   private fun onCreate() {
-    RecyclerViewPaginator(
-      recyclerView = veiledRecyclerView,
-      onLast = { false },
-      loadMore = { veiledRecyclerView.post { veiledAdapter?.update(it, threshold) } },
-      isLoading = { false }
-    ).apply { threshold = this@VeilRecyclerFrameView.threshold }
-    addView(userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-    addView(veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    addView(this.userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    addView(this.veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    this.veiledRecyclerView.setHasFixedSize(true)
     when (this.isVeiled) {
       true -> visibleVeilRecyclerView()
       false -> visibleUserRecyclerView()

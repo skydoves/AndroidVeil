@@ -30,6 +30,7 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
+import androidx.annotation.Px
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
@@ -57,6 +58,7 @@ class VeilLayout : FrameLayout {
   private var highlightAlpha = 1.0f
   @FloatRange(from = 0.0, to = 1.0)
   private var dropOff = 0.5f
+  @Px
   var radius = 8f.dp2px(resources)
   var drawable: Drawable? = null
 

@@ -17,10 +17,7 @@
 package com.skydoves.androidveildemo.profile
 
 import android.view.View
-import com.skydoves.baserecyclerviewadapter.BaseViewHolder
-import kotlinx.android.synthetic.main.item_profile.view.content
-import kotlinx.android.synthetic.main.item_profile.view.name
-import kotlinx.android.synthetic.main.item_profile.view.profile
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Developed by skydoves on 2018-10-30.
@@ -28,32 +25,10 @@ import kotlinx.android.synthetic.main.item_profile.view.profile
  */
 
 class ProfileViewHolder(
-  view: View,
-  private val delegate: Delegate
-) : BaseViewHolder(view) {
+  view: View
+) : RecyclerView.ViewHolder(view) {
 
   interface Delegate {
     fun onItemClickListener(profile: Profile)
   }
-
-  private lateinit var profileItem: Profile
-
-  override fun bindData(data: Any) {
-    if (data is Profile) {
-      this.profileItem = data
-      drawItemUI()
-    }
-  }
-
-  private fun drawItemUI() {
-    itemView.run {
-      profileItem.image?.let { profile.setImageDrawable(it) }
-      name.text = profileItem.name
-      content.text = profileItem.content
-    }
-  }
-
-  override fun onClick(p0: View?) = this.delegate.onItemClickListener(profile = profileItem)
-
-  override fun onLongClick(p0: View?) = false
 }

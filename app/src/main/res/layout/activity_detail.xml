@@ -28,9 +28,9 @@
         android:id="@+id/detail_veilLayout_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:veilLayout_radius="6dp"
         app:veilLayout_shimmerEnable="true"
-        app:veilLayout_veiled="true"
-        app:veilLayout_radius="6dp">
+        app:veilLayout_veiled="true">
 
         <ImageView
           android:id="@+id/movie_detail_poster"
@@ -59,9 +59,9 @@
       android:id="@+id/detail_veilLayout_body"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      app:veilLayout_radius="6dp"
       app:veilLayout_shimmerEnable="true"
-      app:veilLayout_veiled="true"
-      app:veilLayout_radius="6dp">
+      app:veilLayout_veiled="true">
 
       <LinearLayout
         android:id="@+id/linearLayout"
