@@ -34,7 +34,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.7"
+    implementation "com.github.skydoves:androidveil:1.0.8"
 }
 ```
 
@@ -180,9 +180,10 @@ defaultChildVisible | Boolean | false | sets the child view's visibility when ca
 ## Find this library useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/AndroidVeil/stargazers)__ for this repository. :star:
 
-## Supports :coffee:
-If you feel like support me a coffee for my efforts, I would greatly appreciate it. <br><br>
-<a href="https://www.buymeacoffee.com/skydoves" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+## Sponsor :coffee:
+If you feel like to sponsor me a coffee for my efforts, I would greatly appreciate it! <br><br>
+
+<a href="https://www.buymeacoffee.com/skydoves" target="_blank"><img src="https://skydoves.github.io/sponsor.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 # License
 ```xml
