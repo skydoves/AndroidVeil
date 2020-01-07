@@ -16,9 +16,9 @@
 
 package com.skydoves.androidveildemo
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,9 +27,6 @@ import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
 import com.skydoves.androidveildemo.profile.ProfileAdapter
 import com.skydoves.androidveildemo.profile.ProfileViewHolder
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.activity_main.veilRecyclerView
 
 /**
@@ -41,9 +38,8 @@ class MainActivity : AppCompatActivity(),
   VeiledItemOnClickListener,
   ProfileViewHolder.Delegate {
 
-  private val adapter by lazy { ProfileAdapter(this) }
+  private val adapter = ProfileAdapter(this)
 
-  @SuppressLint("CheckResult")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -58,9 +54,9 @@ class MainActivity : AppCompatActivity(),
     adapter.addProfiles(ListItemUtils.getProfiles(this))
 
     // delay-auto-unveil
-    Observable.just(0).delay(5000, TimeUnit.MILLISECONDS)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { veilRecyclerView.unVeil() }
+    Handler().postDelayed({
+      veilRecyclerView.unVeil()
+    }, 5000)
   }
 
   /** OnItemClickListener by Veiled Item */
