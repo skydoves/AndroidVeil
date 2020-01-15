@@ -26,6 +26,7 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
+import androidx.annotation.Px
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,10 +38,8 @@ import com.facebook.shimmer.Shimmer
 class VeilRecyclerFrameView : RelativeLayout {
 
   private val userRecyclerView: RecyclerView = RecyclerView(context)
-
   private val veiledRecyclerView: RecyclerView = RecyclerView(context)
   private var veiledAdapter: VeiledAdapter? = null
-
   private var isVeiled = false
 
   @ColorInt
@@ -55,6 +54,7 @@ class VeilRecyclerFrameView : RelativeLayout {
   private var dropOff = 0.5f
   @LayoutRes
   private var layout = -1
+  @Px
   private var radius = 8f.dp2px(resources)
   private var drawable: Drawable? = null
 
@@ -122,30 +122,31 @@ class VeilRecyclerFrameView : RelativeLayout {
       false -> visibleUserRecyclerView()
     }
 
-    if (this.layout != -1)
+    if (this.layout != -1) {
       setVeilLayout(this.layout)
+    }
   }
 
   /** Sets mask layout. */
-  fun setVeilLayout(layout: Int) {
+  fun setVeilLayout(@LayoutRes layout: Int) {
     this.veiledAdapter = VeiledAdapter(layout)
     this.veiledRecyclerView.adapter = this.veiledAdapter
   }
 
   /** Sets mask layout and VeiledItemOnClickListener. */
-  fun setVeilLayout(layout: Int, onItemClickListener: VeiledItemOnClickListener) {
+  fun setVeilLayout(@LayoutRes layout: Int, onItemClickListener: VeiledItemOnClickListener) {
     this.veiledAdapter = VeiledAdapter(layout, onItemClickListener)
     this.veiledRecyclerView.adapter = this.veiledAdapter
   }
 
   /** Sets mask layout and adds masked items. */
-  fun setVeilLayout(layout: Int, size: Int) {
+  fun setVeilLayout(@LayoutRes layout: Int, size: Int) {
     this.setVeilLayout(layout)
     this.addVeiledItems(size)
   }
 
   /** Sets mask layout and VeiledItemOnClickListener and adds masked items. */
-  fun setVeilLayout(layout: Int, onItemClickListener: VeiledItemOnClickListener, size: Int) {
+  fun setVeilLayout(@LayoutRes layout: Int, onItemClickListener: VeiledItemOnClickListener, size: Int) {
     this.setVeilLayout(layout, onItemClickListener)
     this.addVeiledItems(size)
   }
