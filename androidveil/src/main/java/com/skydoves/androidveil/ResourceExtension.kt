@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-@file:Suppress("unused")
-
 package com.skydoves.androidveil
 
-import android.content.res.Resources
+import android.view.View
 
 /** dp size to px size */
-internal fun Float.dp2px(resources: Resources): Float {
-  return this * resources.displayMetrics.density * 0.5f
+internal fun Float.dp2px(view: View): Float {
+  return this * view.resources.displayMetrics.density * 0.5f
 }

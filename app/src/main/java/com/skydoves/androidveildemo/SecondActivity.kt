@@ -16,7 +16,6 @@
 
 package com.skydoves.androidveildemo
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -32,18 +31,19 @@ import kotlinx.android.synthetic.main.activity_second.veilFrameView
 class SecondActivity : AppCompatActivity(), VeiledItemOnClickListener,
   ProfileViewHolder.Delegate {
 
-  private val adapter by lazy { ProfileAdapter(this) }
+  private val adapter = ProfileAdapter(this)
 
-  @SuppressLint("CheckResult")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_second)
 
     // sets VeilRecyclerView's properties
-    veilFrameView.setVeilLayout(R.layout.item_preview, this)
-    veilFrameView.setAdapter(adapter)
-    veilFrameView.setLayoutManager(GridLayoutManager(this, 2))
-    veilFrameView.addVeiledItems(12)
+    veilFrameView.run {
+      setVeilLayout(R.layout.item_preview, this@SecondActivity)
+      setAdapter(adapter)
+      setLayoutManager(GridLayoutManager(this@SecondActivity, 2))
+      addVeiledItems(12)
+    }
 
     // add profile times to adapter
     adapter.addProfiles(ListItemUtils.getProfiles(this))

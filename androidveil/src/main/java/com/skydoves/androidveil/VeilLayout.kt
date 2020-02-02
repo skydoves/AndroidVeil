@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.androidveil
 
 import android.annotation.TargetApi
@@ -35,17 +37,15 @@ import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
-@Suppress("unused")
 fun alphaShimmer(block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
-@Suppress("unused")
 fun colorShimmer(block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.ColorHighlightBuilder().apply(block).build()
 
 /** VeilLayout creates skeletons about the complex child views with shimmering effect. */
-@Suppress("HasPlatformType", "MemberVisibilityCanBePrivate", "unused")
+@Suppress("HasPlatformType", "MemberVisibilityCanBePrivate")
 class VeilLayout : FrameLayout {
 
   @ColorInt
@@ -59,7 +59,7 @@ class VeilLayout : FrameLayout {
   @FloatRange(from = 0.0, to = 1.0)
   private var dropOff = 0.5f
   @Px
-  var radius = 8f.dp2px(resources)
+  var radius = 8f.dp2px(this)
   var drawable: Drawable? = null
 
   @LayoutRes
@@ -203,23 +203,24 @@ class VeilLayout : FrameLayout {
           }
 
           // create a masked view
-          val view = View(context)
-          view.layoutParams = LayoutParams(child.measuredWidth, child.measuredHeight)
-          view.x = marginX + parent.x + child.x
-          view.y = marginY + parent.y + child.y
-          view.setBackgroundColor(baseColor)
+          View(context).apply {
+            layoutParams = LayoutParams(child.width, child.height)
+            x = marginX + parent.x + child.x
+            y = marginY + parent.y + child.y
+            setBackgroundColor(baseColor)
 
-          if (drawable != null) {
-            view.background = drawable
-          } else {
-            val drawable = GradientDrawable()
-            drawable.setColor(Color.DKGRAY)
-            drawable.cornerRadius = radius
-            view.background = drawable
+            if (drawable != null) {
+              background = drawable
+            } else {
+              background = GradientDrawable().apply {
+                setColor(Color.DKGRAY)
+                cornerRadius = radius
+              }
+            }
+
+            maskElements.add(this)
+            shimmerContainer.addView(this)
           }
-
-          maskElements.add(view)
-          shimmerContainer.addView(view)
         }
       }
     }

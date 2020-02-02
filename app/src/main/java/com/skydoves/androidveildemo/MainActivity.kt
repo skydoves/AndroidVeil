@@ -45,10 +45,12 @@ class MainActivity : AppCompatActivity(),
     setContentView(R.layout.activity_main)
 
     // sets VeilRecyclerView's properties
-    veilRecyclerView.setVeilLayout(R.layout.item_profile, this)
-    veilRecyclerView.setAdapter(adapter)
-    veilRecyclerView.setLayoutManager(LinearLayoutManager(this))
-    veilRecyclerView.addVeiledItems(15)
+    veilRecyclerView.run {
+      setVeilLayout(R.layout.item_profile, this@MainActivity)
+      setAdapter(adapter)
+      setLayoutManager(LinearLayoutManager(this@MainActivity))
+      addVeiledItems(15)
+    }
 
     // add profile times to adapter
     adapter.addProfiles(ListItemUtils.getProfiles(this))

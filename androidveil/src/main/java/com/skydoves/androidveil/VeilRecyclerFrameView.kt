@@ -55,7 +55,7 @@ class VeilRecyclerFrameView : RelativeLayout {
   @LayoutRes
   private var layout = -1
   @Px
-  private var radius = 8f.dp2px(resources)
+  private var radius = 8f.dp2px(this)
   private var drawable: Drawable? = null
 
   var shimmer: Shimmer? = null
@@ -146,7 +146,11 @@ class VeilRecyclerFrameView : RelativeLayout {
   }
 
   /** Sets mask layout and VeiledItemOnClickListener and adds masked items. */
-  fun setVeilLayout(@LayoutRes layout: Int, onItemClickListener: VeiledItemOnClickListener, size: Int) {
+  fun setVeilLayout(
+    @LayoutRes layout: Int,
+    onItemClickListener: VeiledItemOnClickListener,
+    size: Int
+  ) {
     this.setVeilLayout(layout, onItemClickListener)
     this.addVeiledItems(size)
   }
