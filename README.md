@@ -10,7 +10,8 @@ An easy, flexible way to implement veil skeletons and shimmering effect for Andr
   <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://travis-ci.org/skydoves/AndroidVeil"><img alt="Build Status" src="https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master"/></a>
   <a href="https://androidweekly.net/issues/issue-334"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23334-orange.svg"/></a>
-    <a href="https://skydoves.github.io/libraries/androidveil/javadoc/androidveil/index.html"><img alt="Android Weekly" src="https://img.shields.io/badge/Javadoc-AndroidVeil-yellow.svg"/></a>
+  <a href="https://medium.com/swlh/how-to-implement-veil-skeletons-and-shimmering-effects-to-your-layouts-and-recyclerview-on-android-44af35d90de5"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
+  <a href="https://skydoves.github.io/libraries/androidveil/javadoc/androidveil/index.html"><img alt="Android Weekly" src="https://img.shields.io/badge/Javadoc-AndroidVeil-yellow.svg"/></a>
 </p>
 
 
