@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'org.jetbrains.dokka'
 apply from: '../dependencies.gradle'
 apply from: '../publish.gradle'
 
@@ -22,9 +22,11 @@ dependencies {
 }
 
 dokka {
-    moduleName = 'androidveil'
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
+    configuration {
+        moduleName = 'androidveil'
+    }
 }
 
 tasks.withType(Javadoc) {
