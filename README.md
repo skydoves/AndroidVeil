@@ -1,23 +1,27 @@
+
+<h1 align="center">AndroidVeil</h1></br>
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/50557081-fdd3a300-0d24-11e9-82e3-6ddad326cd40.png"/>
 </p>
 <p align="center">
 An easy, flexible way to implement veil skeletons and shimmering effect for Android.
-</p>
+</p><br>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://travis-ci.org/skydoves/AndroidVeil"><img alt="Build Status" src="https://travis-ci.org/skydoves/AndroidVeil.svg?branch=master"/></a>
+  <a href="https://github.com/skydoves/AndroidVeil/actions"><img alt="Build Status" src="https://github.com/skydoves/TransformationLayout/workflows/Android%20CI/badge.svg"/></a> 
   <a href="https://androidweekly.net/issues/issue-334"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23334-orange.svg"/></a>
   <a href="https://medium.com/swlh/how-to-implement-veil-skeletons-and-shimmering-effects-to-your-layouts-and-recyclerview-on-android-44af35d90de5"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
   <a href="https://skydoves.github.io/libraries/androidveil/javadoc/androidveil/index.html"><img alt="Android Weekly" src="https://img.shields.io/badge/Javadoc-AndroidVeil-yellow.svg"/></a>
 </p>
 
-
-# AndroidVeil
-![gif0](https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer01.gif)
-![gif1](https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer02.gif)
+## Screeshots
+<p align="center">
+<img src="https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer01.gif" width="32%"/>
+<img src="https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer02.gif" width="32%"/>
+</p>
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/androidveil/images/download.svg)](https://bintray.com/devmagician/maven/androidveil/_latestVersion)
@@ -35,7 +39,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.0.8"
+    implementation "com.github.skydoves:androidveil:1.0.9"
 }
 ```
 

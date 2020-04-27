@@ -33,7 +33,7 @@ internal class VeiledAdapter(
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeiledViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    itemVeiledLayoutBinding = ItemVeiledLayoutBinding.inflate(inflater, parent , false)
+    itemVeiledLayoutBinding = ItemVeiledLayoutBinding.inflate(inflater, parent, false)
     return VeiledViewHolder(itemVeiledLayoutBinding.root)
   }
 
