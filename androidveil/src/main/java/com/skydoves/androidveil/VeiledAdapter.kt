@@ -20,6 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.skydoves.androidveil.databinding.ItemVeiledLayoutBinding
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
@@ -28,10 +29,12 @@ internal class VeiledAdapter(
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
 
+  private lateinit var itemVeiledLayoutBinding: ItemVeiledLayoutBinding
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeiledViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    return VeiledViewHolder(
-      inflater.inflate(R.layout.item_veiled_layout, parent, false))
+    itemVeiledLayoutBinding = ItemVeiledLayoutBinding.inflate(inflater, parent , false)
+    return VeiledViewHolder(itemVeiledLayoutBinding.root)
   }
 
   override fun onBindViewHolder(holder: VeiledViewHolder, position: Int) {
