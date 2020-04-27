@@ -17,7 +17,6 @@ An easy, flexible way to implement veil skeletons and shimmering effect for Andr
   <a href="https://skydoves.github.io/libraries/androidveil/javadoc/androidveil/index.html"><img alt="Android Weekly" src="https://img.shields.io/badge/Javadoc-AndroidVeil-yellow.svg"/></a>
 </p>
 
-## Screeshots
 <p align="center">
 <img src="https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer01.gif" width="32%"/>
 <img src="https://github.com/skydoves/AndroidVeil/blob/master/art/shimmer02.gif" width="32%"/>
