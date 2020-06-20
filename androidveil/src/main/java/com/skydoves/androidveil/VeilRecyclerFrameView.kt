@@ -22,6 +22,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.view.View
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
@@ -117,6 +118,7 @@ class VeilRecyclerFrameView : RelativeLayout {
     addView(this.userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
     addView(this.veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
     this.veiledRecyclerView.setHasFixedSize(true)
+    applyOverScrollMode()
     when (this.isVeiled) {
       true -> visibleVeilRecyclerView()
       false -> visibleUserRecyclerView()
@@ -221,6 +223,16 @@ class VeilRecyclerFrameView : RelativeLayout {
     }
   }
 
+  /** Returns veiled recyclerView */
+  fun getVeiledRecyclerView(): RecyclerView {
+    return this.veiledRecyclerView
+  }
+
+  /** Returns user's recyclerView */
+  fun getRecyclerView(): RecyclerView {
+    return this.userRecyclerView
+  }
+
   /** Visible veiledRecyclerView and Invisible userRecyclerView. */
   private fun visibleVeilRecyclerView() {
     this.veiledRecyclerView.visible()
@@ -235,13 +247,8 @@ class VeilRecyclerFrameView : RelativeLayout {
     this.veiledRecyclerView.invisible()
   }
 
-  /** Returns veiled recyclerView */
-  fun getVeiledRecyclerView(): RecyclerView {
-    return this.veiledRecyclerView
-  }
-
-  /** Returns user's recyclerView */
-  fun getRecyclerView(): RecyclerView {
-    return this.userRecyclerView
+  private fun applyOverScrollMode() {
+    this.veiledRecyclerView.overScrollMode = overScrollMode
+    this.userRecyclerView.overScrollMode = overScrollMode
   }
 }
