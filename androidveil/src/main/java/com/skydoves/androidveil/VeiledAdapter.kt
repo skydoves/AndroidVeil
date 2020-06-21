@@ -17,6 +17,7 @@
 package com.skydoves.androidveil
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ import com.skydoves.androidveil.databinding.ItemVeiledLayoutBinding
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
   private val onItemClickListener: VeiledItemOnClickListener? = null
-) : RecyclerView.Adapter<VeiledViewHolder>() {
+) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
 
@@ -80,4 +81,6 @@ internal class VeiledAdapter(
   }
 
   override fun getItemCount() = this.veilParamList.size
+
+  class VeiledViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

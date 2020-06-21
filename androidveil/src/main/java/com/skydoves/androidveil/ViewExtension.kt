@@ -18,14 +18,17 @@ package com.skydoves.androidveil
 
 import android.view.View
 
+/** Makes visible a view. */
 internal fun View.visible() {
   this.visibility = View.VISIBLE
 }
 
+/** Makes invisible a view. */
 internal fun View.invisible() {
   this.visibility = View.INVISIBLE
 }
 
+/** makes visible or invisible a View align the value parameter. */
 internal fun View.visible(visible: Boolean) {
   if (visible) {
     visible()

@@ -209,15 +209,10 @@ class VeilLayout : FrameLayout {
             y = marginY + parent.y + child.y
             setBackgroundColor(baseColor)
 
-            if (drawable != null) {
-              background = drawable
-            } else {
-              background = GradientDrawable().apply {
-                setColor(Color.DKGRAY)
-                cornerRadius = radius
-              }
+            background = drawable ?: GradientDrawable().apply {
+              setColor(Color.DKGRAY)
+              cornerRadius = radius
             }
-
             maskElements.add(this)
             shimmerContainer.addView(this)
           }

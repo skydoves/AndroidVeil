@@ -44,16 +44,22 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   @ColorInt
   private var baseColor = Color.LTGRAY
+
   @ColorInt
   private var highlightColor = Color.DKGRAY
+
   @FloatRange(from = 0.0, to = 1.0)
   private var baseAlpha = 1.0f
+
   @FloatRange(from = 0.0, to = 1.0)
   private var highlightAlpha = 1.0f
+
   @FloatRange(from = 0.0, to = 1.0)
   private var dropOff = 0.5f
+
   @LayoutRes
   private var layout = -1
+
   @Px
   private var radius = 8f.dp2px(this)
   private var drawable: Drawable? = null
@@ -191,16 +197,16 @@ class VeilRecyclerFrameView : RelativeLayout {
 
   /** Sets RecyclerViews LayoutManager. */
   fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) {
-    if (layoutManager is GridLayoutManager) {
-      this.userRecyclerView.layoutManager = layoutManager
-      this.veiledRecyclerView.layoutManager = GridLayoutManager(context, layoutManager.spanCount)
-    } else if (layoutManager is StaggeredGridLayoutManager) {
-      this.userRecyclerView.layoutManager = layoutManager
-      this.veiledRecyclerView.layoutManager =
-        StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
-    } else if (layoutManager is LinearLayoutManager) { // This condition should be at the last.
-      this.userRecyclerView.layoutManager = layoutManager
-      this.veiledRecyclerView.layoutManager = LinearLayoutManager(context)
+    this.userRecyclerView.layoutManager = layoutManager
+    when (layoutManager) {
+      is GridLayoutManager ->
+        this.veiledRecyclerView.layoutManager = GridLayoutManager(context, layoutManager.spanCount)
+      is StaggeredGridLayoutManager ->
+        this.veiledRecyclerView.layoutManager =
+          StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
+      is LinearLayoutManager ->
+        this.veiledRecyclerView.layoutManager = LinearLayoutManager(context)
+      else -> this.veiledRecyclerView.layoutManager
     }
   }
 
@@ -222,12 +228,12 @@ class VeilRecyclerFrameView : RelativeLayout {
     }
   }
 
-  /** Returns veiled recyclerView */
+  /** Returns a veiled recyclerView. */
   fun getVeiledRecyclerView(): RecyclerView {
     return this.veiledRecyclerView
   }
 
-  /** Returns user's recyclerView */
+  /** Returns a user recyclerView. */
   fun getRecyclerView(): RecyclerView {
     return this.userRecyclerView
   }
@@ -246,6 +252,7 @@ class VeilRecyclerFrameView : RelativeLayout {
     this.veiledRecyclerView.invisible()
   }
 
+  /** Apply overscrollModel of parent to veiled and user recyclerview. */
   private fun applyOverScrollMode() {
     this.veiledRecyclerView.overScrollMode = overScrollMode
     this.userRecyclerView.overScrollMode = overScrollMode
