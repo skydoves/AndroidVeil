@@ -17,7 +17,8 @@
 package com.skydoves.androidveil
 
 /** VeiledItemOnClickListener is a delegation of veil item click. */
-interface VeiledItemOnClickListener {
+fun interface VeiledItemOnClickListener {
+
   /** will be invoked when the item on the [VeilRecyclerFrameView] clicked. */
   fun onItemClicked(pos: Int)
 }
