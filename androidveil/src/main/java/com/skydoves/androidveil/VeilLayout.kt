@@ -37,10 +37,12 @@ import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
+@JvmSynthetic
 fun alphaShimmer(block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
+@JvmSynthetic
 fun colorShimmer(block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.ColorHighlightBuilder().apply(block).build()
 
@@ -50,14 +52,19 @@ class VeilLayout : FrameLayout {
 
   @ColorInt
   private var baseColor = Color.LTGRAY
+
   @ColorInt
   private var highlightColor = Color.DKGRAY
+
   @FloatRange(from = 0.0, to = 1.0)
   private var baseAlpha = 1.0f
+
   @FloatRange(from = 0.0, to = 1.0)
   private var highlightAlpha = 1.0f
+
   @FloatRange(from = 0.0, to = 1.0)
   private var dropOff = 0.5f
+
   @Px
   var radius = 8f.dp2px(this)
   var drawable: Drawable? = null
