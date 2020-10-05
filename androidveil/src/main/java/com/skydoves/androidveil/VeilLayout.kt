@@ -99,15 +99,18 @@ class VeilLayout : FrameLayout {
     onCreate()
   }
 
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs,
-    defStyleAttr) {
+  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    context, attrs,
+    defStyleAttr
+  ) {
     getAttrs(attrs)
     onCreate()
   }
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
-    context, attrs, defStyleAttr, defStyleRes) {
+    context, attrs, defStyleAttr, defStyleRes
+  ) {
     getAttrs(attrs)
     onCreate()
   }

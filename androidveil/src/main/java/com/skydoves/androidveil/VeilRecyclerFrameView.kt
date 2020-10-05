@@ -78,8 +78,10 @@ class VeilRecyclerFrameView : RelativeLayout {
     onCreate()
   }
 
-  constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs,
-    defStyle) {
+  constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
+    context, attrs,
+    defStyle
+  ) {
     getAttrs(attrs)
     onCreate()
   }
@@ -112,8 +114,10 @@ class VeilRecyclerFrameView : RelativeLayout {
         dropOff = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff, dropOff)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible))
         defaultChildVisible =
-          a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible,
-            defaultChildVisible)
+          a.getBoolean(
+            R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible,
+            defaultChildVisible
+          )
     } finally {
       a.recycle()
     }
@@ -177,7 +181,8 @@ class VeilRecyclerFrameView : RelativeLayout {
           dropOff,
           shimmerEnable,
           shimmer,
-          defaultChildVisible)
+          defaultChildVisible
+        )
       )
     }
     this.veiledAdapter?.updateParams(paramList)

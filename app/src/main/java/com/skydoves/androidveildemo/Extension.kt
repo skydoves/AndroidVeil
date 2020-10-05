@@ -34,8 +34,10 @@ fun Activity.checkIsMaterialVersion() =
 
 fun AppCompatActivity.applyToolbarMargin(toolbar: Toolbar) {
   if (checkIsMaterialVersion()) {
-    toolbar.layoutParams = (toolbar.layoutParams
-      as CollapsingToolbarLayout.LayoutParams).apply {
+    toolbar.layoutParams = (
+      toolbar.layoutParams
+        as CollapsingToolbarLayout.LayoutParams
+      ).apply {
       topMargin = getStatusBarSize()
     }
   }

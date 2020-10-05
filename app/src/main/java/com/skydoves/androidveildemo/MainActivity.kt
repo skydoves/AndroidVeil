@@ -34,7 +34,8 @@ import kotlinx.android.synthetic.main.activity_main.veilRecyclerView
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-class MainActivity : AppCompatActivity(),
+class MainActivity :
+  AppCompatActivity(),
   VeiledItemOnClickListener,
   ProfileViewHolder.Delegate {
 
@@ -56,9 +57,12 @@ class MainActivity : AppCompatActivity(),
     adapter.addProfiles(ListItemUtils.getProfiles(this))
 
     // delay-auto-unveil
-    Handler().postDelayed({
-      veilRecyclerView.unVeil()
-    }, 5000)
+    Handler().postDelayed(
+      {
+        veilRecyclerView.unVeil()
+      },
+      5000
+    )
   }
 
   /** OnItemClickListener by Veiled Item */

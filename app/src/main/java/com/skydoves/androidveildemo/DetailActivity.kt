@@ -39,9 +39,12 @@ class DetailActivity : AppCompatActivity() {
     detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
 
     // delay-auto-unveil
-    Handler().postDelayed({
-      detail_veilLayout_header.unVeil()
-      detail_veilLayout_body.unVeil()
-    }, 3000)
+    Handler().postDelayed(
+      {
+        detail_veilLayout_header.unVeil()
+        detail_veilLayout_body.unVeil()
+      },
+      3000
+    )
   }
 }
