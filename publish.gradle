@@ -10,22 +10,24 @@ ext.repository = [
 ]
 
 bintray {
-    user = project.hasProperty('bintray.user') ? project.property('bintray.user') : ''
-    key = project.hasProperty('bintray.key') ? project.property('bintray.key') : ''
+    user = project.hasProperty("bintray.user") ? project.property("bintray.user") : ""
+    key = project.hasProperty("bintray.key") ? project.property("bintray.key") : ""
 
-    publications = ['release']
+    publications = ["release"]
     publish = true
+    override = true
+    dryRun = false
 
     pkg {
-        repo = 'maven'
+        repo = "maven"
         name = repository.name
-        userOrg = 'devmagician'
+        userOrg = "devmagician"
         desc = repository.description
         websiteUrl = repository.websiteUrl
         vcsUrl = "${websiteUrl}.git"
         issueTrackerUrl = "${websiteUrl}/issues"
-        licenses = ['Apache-2.0']
-        labels = ['android']
+        licenses = ["Apache-2.0"]
+        labels = ["android"]
         publicDownloadNumbers = false
 
         githubRepo = websiteUrl
@@ -36,9 +38,7 @@ bintray {
             name = versions.versionName
             vcsTag = versions.versionName
             released = new Date()
-            gpg {
-                sign = true
-            }
+            gpg { sign = true }
         }
     }
 }
@@ -49,7 +49,7 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                group = 'com.github.skydoves'
+                group = "com.github.skydoves"
                 artifactId = repository.name
                 version = versions.versionName
 
@@ -62,14 +62,14 @@ afterEvaluate {
                     url = repository.websiteUrl
                     licenses {
                         license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                         }
                     }
                     developers {
                         developer {
-                            id = 'skydoves'
-                            name = 'Jaewgoon Eum'
+                            id = "skydoves"
+                            name = "Jaewgoon Eum"
                         }
                     }
                     scm {
