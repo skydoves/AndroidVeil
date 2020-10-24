@@ -1,13 +1,58 @@
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 apply from: '../dependencies.gradle'
 
-publish {
-    userOrg = 'devmagician'
-    groupId = 'com.github.skydoves'
-    artifactId = 'androidveil'
-    publishVersion = versions.versionName
-    desc = 'This is AndroidVeil by skydoves'
-    website = 'https://github.com/skydoves/AndroidVeil'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
+def getBintrayProperties() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+    return [
+        properties.getProperty("bintray.user"),
+        properties.getProperty("bintray.key")
+    ]
+}
+
+task checkBintrayConfig {
+    doLast {
+        def (user, key) = getBintrayProperties()
+        if (user == null || user.isEmpty() || key == null || key.isEmpty()) {
+            throw new IllegalArgumentException("Must specify Bintray information! Check your local.properties file.")
+        }
+    }
+}
+
+def (property_user, property_key) = getBintrayProperties()
+bintray {
+    user = property_user
+    key = property_key
+
+    configurations = ['archives']
+
+    publish = true
+    dryRun = false
+
+    pkg {
+        repo = 'maven'
+        name = 'androidveil'
+        userOrg = 'devmagician'
+        desc = 'An easy, flexible way to implement veil skeletons and shimmering effect for Android.'
+        websiteUrl = 'https://github.com/skydoves/AndroidVeil'
+        vcsUrl = "${websiteUrl}.git"
+        issueTrackerUrl = "${websiteUrl}/issues"
+        licenses = ['Apache-2.0']
+        labels = ['android']
+        publicDownloadNumbers = false
+
+        githubRepo = websiteUrl
+        githubReleaseNotesFile = "${websiteUrl}/releases"
+
+        version {
+            name = versions.versionName
+            desc = pkg.desc
+
+            gpg {
+                sign = true
+                passphrase = 'passphrase'
+            }
+        }
+    }
 }
