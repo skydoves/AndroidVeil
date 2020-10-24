@@ -9,10 +9,9 @@ ext.repository = [
     scm        : 'scm:git@github.com/skydoves/AndroidVeil.git'
 ]
 
-def (property_user, property_key) = getBintrayProperties()
 bintray {
-    user = property_user
-    key = property_key
+    user = project.hasProperty('bintray.user') ? project.property('bintray.user') : ''
+    key = project.hasProperty('bintray.key') ? project.property('bintray.key') : ''
 
     publications = ['release']
     publish = true
@@ -82,15 +81,6 @@ afterEvaluate {
             }
         }
     }
-}
-
-def getBintrayProperties() {
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file("local.properties").newDataInputStream())
-    return [
-        properties.getProperty("bintray.user"),
-        properties.getProperty("bintray.key")
-    ]
 }
 
 task androidJavadocs(type: Javadoc) {
