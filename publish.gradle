@@ -9,9 +9,10 @@ ext.repository = [
     scm        : 'scm:git@github.com/skydoves/AndroidVeil.git'
 ]
 
+def (property_user, property_key) = getBintrayProperties()
 bintray {
-    user = project.hasProperty("bintray.user") ? project.property("bintray.user") : ""
-    key = project.hasProperty("bintray.key") ? project.property("bintray.key") : ""
+    user = property_user
+    key = property_key
 
     publications = ["release"]
     publish = true
@@ -79,6 +80,30 @@ afterEvaluate {
                     }
                 }
             }
+        }
+    }
+}
+
+def getBintrayProperties() {
+    def filename = "local.properties"
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file(filename).newDataInputStream())
+        return [
+            properties.getProperty("bintray.user"),
+            properties.getProperty("bintray.key")
+        ]
+    } else {
+        print(filename + " does not exist!")
+    }
+}
+
+task checkBintrayConfig {
+    doLast {
+        def (user, key) = getBintrayProperties()
+        if (user == null || user.isEmpty() || key == null || key.isEmpty()) {
+            throw new IllegalArgumentException("Must specify Bintray information! Check your local.properties file.")
         }
     }
 }
