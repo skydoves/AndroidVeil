@@ -9,8 +9,8 @@ ext.repository = [
     scm        : 'scm:git@github.com/skydoves/AndroidVeil.git'
 ]
 
+def (property_user, property_key) = getBintrayProperties()
 bintray {
-    def (property_user, property_key) = getBintrayProperties()
     user = property_user
     key = property_key
 
@@ -96,6 +96,7 @@ def getBintrayProperties() {
         ]
     } else {
         print(filename + " does not exist!")
+        return ["", ""]
     }
 }
 
