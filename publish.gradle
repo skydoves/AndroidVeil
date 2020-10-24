@@ -93,15 +93,6 @@ def getBintrayProperties() {
     ]
 }
 
-task checkBintrayConfig {
-    doLast {
-        def (user, key) = getBintrayProperties()
-        if (user == null || user.isEmpty() || key == null || key.isEmpty()) {
-            throw new IllegalArgumentException("Must specify Bintray information! Check your local.properties file.")
-        }
-    }
-}
-
 task androidJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
