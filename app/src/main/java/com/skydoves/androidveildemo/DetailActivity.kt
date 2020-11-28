@@ -18,10 +18,9 @@ package com.skydoves.androidveildemo
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_detail.detail_toolbar
-import kotlinx.android.synthetic.main.activity_detail.detail_veilLayout_body
-import kotlinx.android.synthetic.main.activity_detail.detail_veilLayout_header
+import com.skydoves.androidveildemo.databinding.ActivityDetailBinding
 
 /**
  * Developed by skydoves on 2018-10-30.
@@ -32,17 +31,19 @@ class DetailActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_detail)
-    applyToolbarMargin(detail_toolbar)
 
-    detail_veilLayout_header.shimmer = ShimmerUtils.getGrayShimmer(this)
-    detail_veilLayout_body.shimmer = ShimmerUtils.getGrayShimmer(this)
+    val binding = ActivityDetailBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+    applyToolbarMargin(binding.detailToolbar)
+
+    binding.detailVeilLayoutHeader.shimmer = ShimmerUtils.getGrayShimmer(this)
+    binding.detailVeilLayoutBody.shimmer = ShimmerUtils.getGrayShimmer(this)
 
     // delay-auto-unveil
-    Handler().postDelayed(
+    Handler(Looper.getMainLooper()).postDelayed(
       {
-        detail_veilLayout_header.unVeil()
-        detail_veilLayout_body.unVeil()
+        binding.detailVeilLayoutHeader.unVeil()
+        binding.detailVeilLayoutBody.unVeil()
       },
       3000
     )

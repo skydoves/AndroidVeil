@@ -22,25 +22,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.androidveil.VeiledItemOnClickListener
+import com.skydoves.androidveildemo.databinding.ActivitySecondBinding
 import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
 import com.skydoves.androidveildemo.profile.ProfileAdapter
-import com.skydoves.androidveildemo.profile.ProfileViewHolder
-import kotlinx.android.synthetic.main.activity_second.veilFrameView
 
 class SecondActivity :
   AppCompatActivity(),
   VeiledItemOnClickListener,
-  ProfileViewHolder.Delegate {
+  ProfileAdapter.ProfileViewHolder.Delegate {
 
   private val adapter = ProfileAdapter(this)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_second)
+
+    val binding = ActivitySecondBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     // sets VeilRecyclerView's properties
-    veilFrameView.run {
+    binding.veilFrameView.run {
       setVeilLayout(R.layout.item_preview, this@SecondActivity)
       setAdapter(adapter)
       setLayoutManager(GridLayoutManager(this@SecondActivity, 2))

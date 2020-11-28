@@ -19,10 +19,7 @@ package com.skydoves.androidveildemo.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.androidveildemo.R
-import kotlinx.android.synthetic.main.item_profile.view.content
-import kotlinx.android.synthetic.main.item_profile.view.name
-import kotlinx.android.synthetic.main.item_profile.view.profile
+import com.skydoves.androidveildemo.databinding.ItemProfileBinding
 
 /**
  * Developed by skydoves on 2018-10-30.
@@ -31,24 +28,22 @@ import kotlinx.android.synthetic.main.item_profile.view.profile
 
 class ProfileAdapter(
   private val delegate: ProfileViewHolder.Delegate
-) : RecyclerView.Adapter<ProfileViewHolder>() {
+) : RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
 
   private val profileList: MutableList<Profile> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    return ProfileViewHolder(inflater.inflate(R.layout.item_profile, parent, false))
+    val binding = ItemProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    return ProfileViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
     val profileItem = profileList[position]
-    holder.apply {
-      itemView.run {
-        profileItem.image?.let { profile.setImageDrawable(it) }
-        name.text = profileItem.name
-        content.text = profileItem.content
-        setOnClickListener { delegate.onItemClickListener(profileItem) }
-      }
+    holder.binding.apply {
+      profileItem.image?.let { profile.setImageDrawable(it) }
+      name.text = profileItem.name
+      content.text = profileItem.content
+      root.setOnClickListener { delegate.onItemClickListener(profileItem) }
     }
   }
 
@@ -58,4 +53,12 @@ class ProfileAdapter(
   }
 
   override fun getItemCount() = this.profileList.size
+
+  class ProfileViewHolder(val binding: ItemProfileBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun interface Delegate {
+      fun onItemClickListener(profile: Profile)
+    }
+  }
 }
