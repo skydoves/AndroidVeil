@@ -24,6 +24,7 @@ An easy, flexible way to implement veil skeletons and shimmering effect for Andr
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/androidveil/images/download.svg)](https://bintray.com/devmagician/maven/androidveil/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/androidveil.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22androidveil%22)
 [![Jitpack](https://jitpack.io/v/skydoves/AndroidVeil.svg)](https://jitpack.io/#skydoves/AndroidVeil)
 ### Gradle
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
