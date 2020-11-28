@@ -10,7 +10,7 @@ ext.versions = [
     dokkaGradle      : '0.10.1',
     bintrayPlugin    : '1.8.5',
 
-    kotlin           : '1.4.10',
+    kotlin           : '1.4.20',
     androidxAppcompat: '1.2.0',
     recyclerView     : '1.1.0',
     shimmer          : '0.5.0',
