@@ -1,5 +1,5 @@
 buildscript {
-    apply from: './dependencies.gradle'
+    apply from: "$rootDir/dependencies.gradle"
     repositories {
         google()
         jcenter()
@@ -8,8 +8,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaGradle"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintrayPlugin"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaGradle"
     }
 }
 
