@@ -38,12 +38,12 @@ import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
 @JvmSynthetic
-fun alphaShimmer(block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
+inline fun alphaShimmer(crossinline block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
 @JvmSynthetic
-fun colorShimmer(block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
+inline fun colorShimmer(crossinline block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.ColorHighlightBuilder().apply(block).build()
 
 /** VeilLayout creates skeletons about the complex child views with shimmering effect. */
