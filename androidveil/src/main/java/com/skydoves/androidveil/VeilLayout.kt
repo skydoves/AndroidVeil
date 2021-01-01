@@ -73,7 +73,7 @@ class VeilLayout : FrameLayout {
   var layout = -1
     set(value) {
       field = value
-      reDrawLayout(value)
+      invalidateLayout(value)
     }
 
   var isVeiled = false
@@ -166,7 +166,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Remove previous views and inflate a new layout using layout resource */
-  private fun reDrawLayout(@LayoutRes layout: Int) {
+  private fun invalidateLayout(@LayoutRes layout: Int) {
     setLayout(LayoutInflater.from(context).inflate(layout, this, false))
   }
 
@@ -177,7 +177,7 @@ class VeilLayout : FrameLayout {
     onFinishInflate()
   }
 
-  /** Call addMaskElements method after inflating. */
+  /** Invokes addMaskElements method after inflating. */
   override fun onFinishInflate() {
     super.onFinishInflate()
     removeView(shimmerContainer)
@@ -186,12 +186,13 @@ class VeilLayout : FrameLayout {
   }
 
   /**
-   * Called when addMaskElements is called.
-   * Adds masked views by viewTree structure except for ViewGroup.
+   * Adds a masked skeleton views depending on the view tree structure of the [VeilLayout].
+   * This method will ignore the ViewGroup for creating masked skeletons.
+   *
+   * @param parent A parent view for creating the masked skeleton.
    */
   private fun addMaskElements(parent: ViewGroup) {
-    for (i in 0 until parent.childCount) {
-      val child = parent.getChildAt(i)
+    (0 until parent.childCount).map { parent.getChildAt(it) }.forEach { child ->
       child.post {
         if (child is ViewGroup) {
           addMaskElements(child)
@@ -280,8 +281,7 @@ class VeilLayout : FrameLayout {
   }
 
   private fun setChildVisibility(visible: Boolean) {
-    for (i in 0 until childCount) {
-      val child = getChildAt(i)
+    (0 until childCount).map { getChildAt(it) }.forEach { child ->
       if (child != this.shimmerContainer) {
         child.visible(visible)
       }
