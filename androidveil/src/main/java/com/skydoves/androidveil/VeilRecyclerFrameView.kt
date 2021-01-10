@@ -210,7 +210,8 @@ class VeilRecyclerFrameView : RelativeLayout {
         this.veiledRecyclerView.layoutManager =
           StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
       is LinearLayoutManager ->
-        this.veiledRecyclerView.layoutManager = LinearLayoutManager(context)
+        this.veiledRecyclerView.layoutManager =
+          LinearLayoutManager(context, layoutManager.orientation, layoutManager.reverseLayout)
       else -> this.veiledRecyclerView.layoutManager
     }
   }
