@@ -31,11 +31,10 @@ Add below codes to your **root** `build.gradle` file (not your module build.grad
 ```gradle
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 ```
-
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
