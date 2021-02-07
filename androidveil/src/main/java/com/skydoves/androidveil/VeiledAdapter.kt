@@ -67,7 +67,7 @@ internal class VeiledAdapter(
     }
   }
 
-  private fun getVeilParams(position: Int): VeilParams = this.veilParamList[position]
+  private fun getVeilParams(position: Int): VeilParams = veilParamList[position]
 
   fun updateParams(params: List<VeilParams>) {
     veilParamList.clear()
@@ -75,7 +75,7 @@ internal class VeiledAdapter(
     notifyDataSetChanged()
   }
 
-  override fun getItemCount() = this.veilParamList.size
+  override fun getItemCount() = veilParamList.size
 
   class VeiledViewHolder(val binding: ItemVeiledLayoutAndroidveilSkydovesBinding) :
     RecyclerView.ViewHolder(binding.root)
