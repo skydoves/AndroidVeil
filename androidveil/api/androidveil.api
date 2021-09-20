@@ -1,0 +1,61 @@
+public final class com/skydoves/androidveil/VeilLayout : android/widget/FrameLayout {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;II)V
+	public final fun getDefaultChildVisible ()Z
+	public final fun getDrawable ()Landroid/graphics/drawable/Drawable;
+	public final fun getLayout ()I
+	public final fun getNonShimmer ()Lcom/facebook/shimmer/Shimmer;
+	public final fun getRadius ()F
+	public final fun getShimmer ()Lcom/facebook/shimmer/Shimmer;
+	public final fun getShimmerContainer ()Lcom/facebook/shimmer/ShimmerFrameLayout;
+	public final fun getShimmerEnable ()Z
+	public fun invalidate ()V
+	public final fun isVeiled ()Z
+	public final fun setDefaultChildVisible (Z)V
+	public final fun setDrawable (Landroid/graphics/drawable/Drawable;)V
+	public final fun setLayout (I)V
+	public final fun setLayout (Landroid/view/View;)V
+	public final fun setRadius (F)V
+	public final fun setShimmer (Lcom/facebook/shimmer/Shimmer;)V
+	public final fun setShimmerEnable (Z)V
+	public final fun startShimmer ()V
+	public final fun stopShimmer ()V
+	public final fun unVeil ()V
+	public final fun veil ()V
+}
+
+public final class com/skydoves/androidveil/VeilLayoutKt {
+	public static final synthetic fun alphaShimmer (Lkotlin/jvm/functions/Function1;)Lcom/facebook/shimmer/Shimmer;
+	public static final synthetic fun colorShimmer (Lkotlin/jvm/functions/Function1;)Lcom/facebook/shimmer/Shimmer;
+}
+
+public final class com/skydoves/androidveil/VeilRecyclerFrameView : android/widget/RelativeLayout {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public final fun addVeiledItems (I)V
+	public final fun getDefaultChildVisible ()Z
+	public final fun getRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun getShimmer ()Lcom/facebook/shimmer/Shimmer;
+	public final fun getShimmerEnable ()Z
+	public final fun getVeiledRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
+	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+	public final fun setDefaultChildVisible (Z)V
+	public final fun setLayoutManager (Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+	public final fun setShimmer (Lcom/facebook/shimmer/Shimmer;)V
+	public final fun setShimmerEnable (Z)V
+	public final fun setVeilLayout (I)V
+	public final fun setVeilLayout (II)V
+	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;)V
+	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;I)V
+	public final fun unVeil ()V
+	public final fun veil ()V
+}
+
+public abstract interface class com/skydoves/androidveil/VeiledItemOnClickListener {
+	public abstract fun onItemClicked (I)V
+}
+
