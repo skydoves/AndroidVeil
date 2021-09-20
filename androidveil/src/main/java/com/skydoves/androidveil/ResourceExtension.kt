@@ -19,6 +19,7 @@ package com.skydoves.androidveil
 import android.view.View
 
 /** dp size to px size */
+@JvmSynthetic
 internal fun Float.dp2px(view: View): Float {
   return this * view.resources.displayMetrics.density * 0.5f
 }

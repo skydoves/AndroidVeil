@@ -30,7 +30,11 @@ internal class VeiledAdapter(
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeiledViewHolder {
-    val binding = ItemVeiledLayoutAndroidveilSkydovesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val binding = ItemVeiledLayoutAndroidveilSkydovesBinding.inflate(
+      LayoutInflater.from(parent.context),
+      parent,
+      false
+    )
     return VeiledViewHolder(binding).apply {
       binding.root.setOnClickListener {
         val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
