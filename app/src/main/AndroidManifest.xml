@@ -15,7 +15,9 @@
       android:name=".DetailActivity"
       android:theme="@style/DetailTheme" />
     <activity android:name=".SecondActivity" />
-    <activity android:name=".MainActivity">
+    <activity
+      android:name=".MainActivity"
+      android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
