@@ -79,7 +79,6 @@ class VeilLayout : FrameLayout {
   var isVeiled = false
     private set
 
-  private val maskElements = ArrayList<View>()
   val shimmerContainer = ShimmerFrameLayout(context)
   val nonShimmer = Shimmer.AlphaHighlightBuilder().setBaseAlpha(1.0f).setDropoff(1.0f).build()
   var shimmer = Shimmer.AlphaHighlightBuilder().build()
@@ -174,6 +173,7 @@ class VeilLayout : FrameLayout {
   fun setLayout(layout: View) {
     removeAllViews()
     addView(layout)
+    shimmerContainer.removeAllViews()
     onFinishInflate()
   }
 
@@ -224,7 +224,6 @@ class VeilLayout : FrameLayout {
               setColor(Color.DKGRAY)
               cornerRadius = radius
             }
-            maskElements.add(this)
             shimmerContainer.addView(this)
           }
         }
