@@ -1,21 +1,20 @@
 ext.versions = [
     minSdk           : 16,
-    compileSdk       : 31,
-    versionCode      : 12,
-    versionName      : '1.1.1',
+    compileSdk       : 32,
+    versionCode      : 13,
+    versionName      : '1.1.2',
 
-    gradleBuildTool  : '7.0.2',
-    spotlessGradle   : '5.14.0',
-    ktlintGradle     : '0.41.0',
+    gradleBuildTool  : '7.1.3',
+    spotlessGradle   : '6.3.0',
     dokkaGradle      : '1.4.32',
     binaryValidator  : '0.7.1',
     mavenPublish     : '0.15.1',
 
-    kotlin           : '1.4.31',
-    androidxAppcompat: '1.2.0',
-    recyclerView     : '1.1.0',
+    kotlin           : '1.6.0',
+    androidxAppcompat: '1.4.1',
+    recyclerView     : '1.2.1',
     shimmer          : '0.5.0',
 
     // for demo
-    googleMaterial   : '1.3.0-alpha03'
+    googleMaterial   : '1.6.0'
 ]
