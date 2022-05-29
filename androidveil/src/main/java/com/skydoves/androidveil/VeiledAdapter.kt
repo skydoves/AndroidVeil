@@ -37,7 +37,7 @@ internal class VeiledAdapter(
     )
     return VeiledViewHolder(binding).apply {
       binding.root.setOnClickListener {
-        val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+        val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
         onItemClickListener?.onItemClicked(position)
       }
