@@ -68,6 +68,7 @@ class VeilRecyclerFrameView : RelativeLayout {
   var shimmerEnable: Boolean = true
   var defaultChildVisible = false
   private val threshold = 10
+  private var isItemWrapContent = false
 
   constructor(context: Context) : super(context) {
     onCreate()
@@ -90,7 +91,8 @@ class VeilRecyclerFrameView : RelativeLayout {
     val a = context.obtainStyledAttributes(attrs, R.styleable.VeilRecyclerFrameView)
     try {
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_veiled))
-        isVeiled = a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_veiled, isVeiled)
+        isVeiled =
+          a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_veiled, isVeiled)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_layout))
         layout = a.getResourceId(R.styleable.VeilRecyclerFrameView_veilFrame_layout, -1)
       if (a.hasValue(R.styleable.VeilLayout_veilLayout_drawable))
@@ -99,17 +101,28 @@ class VeilRecyclerFrameView : RelativeLayout {
         radius = a.getDimension(R.styleable.VeilRecyclerFrameView_veilFrame_radius, radius)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable))
         shimmerEnable =
-          a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable, shimmerEnable)
+          a.getBoolean(
+            R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable,
+            shimmerEnable
+          )
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_baseColor))
-        baseColor = a.getColor(R.styleable.VeilRecyclerFrameView_veilFrame_baseColor, baseColor)
+        baseColor =
+          a.getColor(R.styleable.VeilRecyclerFrameView_veilFrame_baseColor, baseColor)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_highlightColor))
         highlightColor =
-          a.getColor(R.styleable.VeilRecyclerFrameView_veilFrame_highlightColor, highlightColor)
+          a.getColor(
+            R.styleable.VeilRecyclerFrameView_veilFrame_highlightColor,
+            highlightColor
+          )
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_baseAlpha))
-        baseAlpha = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_baseAlpha, baseAlpha)
+        baseAlpha =
+          a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_baseAlpha, baseAlpha)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha))
         highlightAlpha =
-          a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha, highlightAlpha)
+          a.getFloat(
+            R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha,
+            highlightAlpha
+          )
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff))
         dropOff = a.getFloat(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff, dropOff)
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible))
@@ -134,26 +147,34 @@ class VeilRecyclerFrameView : RelativeLayout {
     }
 
     if (this.layout != -1) {
-      setVeilLayout(this.layout)
+      setVeilLayout(this.layout, isItemWrapContent)
     }
   }
 
   /** Sets mask layout. */
-  fun setVeilLayout(@LayoutRes layout: Int) {
-    this.veiledAdapter = VeiledAdapter(layout)
+  fun setVeilLayout(@LayoutRes layout: Int, isItemWrapContent: Boolean) {
+    this.isItemWrapContent = isItemWrapContent
+    this.veiledAdapter = VeiledAdapter(layout, isListItemWrapContent = isItemWrapContent)
     this.veiledRecyclerView.adapter = this.veiledAdapter
+    requestLayout()
   }
 
   /** Sets mask layout and VeiledItemOnClickListener. */
-  fun setVeilLayout(@LayoutRes layout: Int, onItemClickListener: VeiledItemOnClickListener) {
-    this.veiledAdapter = VeiledAdapter(layout, onItemClickListener)
+  fun setVeilLayout(
+    @LayoutRes layout: Int,
+    onItemClickListener: VeiledItemOnClickListener
+  ) {
+    this.veiledAdapter =
+      VeiledAdapter(layout, onItemClickListener, isListItemWrapContent = isItemWrapContent)
     this.veiledRecyclerView.adapter = this.veiledAdapter
+
   }
 
   /** Sets mask layout and adds masked items. */
   fun setVeilLayout(@LayoutRes layout: Int, size: Int) {
-    this.setVeilLayout(layout)
+    this.setVeilLayout(layout, isItemWrapContent)
     this.addVeiledItems(size)
+    requestLayout()
   }
 
   /** Sets mask layout and VeiledItemOnClickListener and adds masked items. */
@@ -205,13 +226,18 @@ class VeilRecyclerFrameView : RelativeLayout {
     this.userRecyclerView.layoutManager = layoutManager
     when (layoutManager) {
       is GridLayoutManager ->
-        this.veiledRecyclerView.layoutManager = GridLayoutManager(context, layoutManager.spanCount)
+        this.veiledRecyclerView.layoutManager =
+          GridLayoutManager(context, layoutManager.spanCount)
       is StaggeredGridLayoutManager ->
         this.veiledRecyclerView.layoutManager =
           StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
       is LinearLayoutManager ->
         this.veiledRecyclerView.layoutManager =
-          LinearLayoutManager(context, layoutManager.orientation, layoutManager.reverseLayout)
+          LinearLayoutManager(
+            context,
+            layoutManager.orientation,
+            layoutManager.reverseLayout
+          )
       else -> this.veiledRecyclerView.layoutManager
     }
   }
