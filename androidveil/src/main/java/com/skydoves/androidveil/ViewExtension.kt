@@ -24,6 +24,11 @@ internal fun View.visible() {
   this.visibility = View.VISIBLE
 }
 
+@JvmSynthetic
+internal fun View.gone() {
+  this.visibility = View.GONE
+}
+
 /** Makes invisible a view. */
 @JvmSynthetic
 internal fun View.invisible() {
