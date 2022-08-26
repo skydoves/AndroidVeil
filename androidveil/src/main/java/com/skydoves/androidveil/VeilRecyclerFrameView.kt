@@ -167,7 +167,6 @@ class VeilRecyclerFrameView : RelativeLayout {
     this.veiledAdapter =
       VeiledAdapter(layout, onItemClickListener, isListItemWrapContent = isItemWrapContent)
     this.veiledRecyclerView.adapter = this.veiledAdapter
-
   }
 
   /** Sets mask layout and adds masked items. */
