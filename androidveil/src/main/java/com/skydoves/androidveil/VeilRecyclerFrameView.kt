@@ -273,14 +273,14 @@ class VeilRecyclerFrameView : RelativeLayout {
   private fun visibleVeilRecyclerView() {
     this.veiledRecyclerView.visible()
     this.veiledRecyclerView.bringToFront()
-    this.userRecyclerView.invisible()
+    this.userRecyclerView.gone()
   }
 
   /** Invisible veiledRecyclerView and Visible userRecyclerView. */
   private fun visibleUserRecyclerView() {
     this.userRecyclerView.visible()
     this.userRecyclerView.bringToFront()
-    this.veiledRecyclerView.invisible()
+    this.veiledRecyclerView.gone()
   }
 
   /** Apply overscrollModel of parent to veiled and user recyclerview. */
