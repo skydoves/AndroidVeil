@@ -47,10 +47,10 @@ public final class com/skydoves/androidveil/VeilRecyclerFrameView : android/widg
 	public final fun setLayoutManager (Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
 	public final fun setShimmer (Lcom/facebook/shimmer/Shimmer;)V
 	public final fun setShimmerEnable (Z)V
+	public final fun setVeilLayout (I)V
 	public final fun setVeilLayout (II)V
 	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;)V
 	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;I)V
-	public final fun setVeilLayout (IZ)V
 	public final fun unVeil ()V
 	public final fun veil ()V
 }
