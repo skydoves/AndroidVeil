@@ -67,8 +67,9 @@ class VeilRecyclerFrameView : RelativeLayout {
   var shimmer: Shimmer? = null
   var shimmerEnable: Boolean = true
   var defaultChildVisible = false
+  private var isItemWrapContentWidth = false
+  private var isItemWrapContentHeight = true
   private val threshold = 10
-  private var isItemWrapContent = false
 
   constructor(context: Context) : super(context) {
     onCreate()
@@ -131,6 +132,18 @@ class VeilRecyclerFrameView : RelativeLayout {
             R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible,
             defaultChildVisible
           )
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth)) {
+        isItemWrapContentWidth = a.getBoolean(
+          R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth,
+          isItemWrapContentWidth
+        )
+      }
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentHeight)) {
+        isItemWrapContentHeight = a.getBoolean(
+          R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentHeight,
+          isItemWrapContentHeight
+        )
+      }
     } finally {
       a.recycle()
     }
@@ -147,14 +160,18 @@ class VeilRecyclerFrameView : RelativeLayout {
     }
 
     if (this.layout != -1) {
-      setVeilLayout(this.layout, isItemWrapContent)
+      setVeilLayout(this.layout)
     }
   }
 
   /** Sets mask layout. */
-  fun setVeilLayout(@LayoutRes layout: Int, isItemWrapContent: Boolean) {
-    this.isItemWrapContent = isItemWrapContent
-    this.veiledAdapter = VeiledAdapter(layout, isListItemWrapContent = isItemWrapContent)
+  fun setVeilLayout(@LayoutRes layout: Int) {
+    this.veiledAdapter =
+      VeiledAdapter(
+        userLayout = layout,
+        isListItemWrapContentWidth = isItemWrapContentWidth,
+        isListItemWrapContentHeight = isItemWrapContentHeight,
+      )
     this.veiledRecyclerView.adapter = this.veiledAdapter
     requestLayout()
   }
@@ -165,13 +182,18 @@ class VeilRecyclerFrameView : RelativeLayout {
     onItemClickListener: VeiledItemOnClickListener
   ) {
     this.veiledAdapter =
-      VeiledAdapter(layout, onItemClickListener, isListItemWrapContent = isItemWrapContent)
+      VeiledAdapter(
+        userLayout = layout,
+        onItemClickListener = onItemClickListener,
+        isListItemWrapContentWidth = isItemWrapContentWidth,
+        isListItemWrapContentHeight = isItemWrapContentHeight,
+      )
     this.veiledRecyclerView.adapter = this.veiledAdapter
   }
 
   /** Sets mask layout and adds masked items. */
   fun setVeilLayout(@LayoutRes layout: Int, size: Int) {
-    this.setVeilLayout(layout, isItemWrapContent)
+    this.setVeilLayout(layout)
     this.addVeiledItems(size)
     requestLayout()
   }
@@ -192,16 +214,16 @@ class VeilRecyclerFrameView : RelativeLayout {
     for (i in 0 until size) {
       paramList.add(
         VeilParams(
-          baseColor,
-          highlightColor,
-          drawable,
-          radius,
-          baseAlpha,
-          highlightAlpha,
-          dropOff,
-          shimmerEnable,
-          shimmer,
-          defaultChildVisible
+          baseColor = baseColor,
+          highlightColor = highlightColor,
+          drawable = drawable,
+          radius = radius,
+          baseAlpha = baseAlpha,
+          highlightAlpha = highlightAlpha,
+          dropOff = dropOff,
+          shimmerEnable = shimmerEnable,
+          shimmer = shimmer,
+          defaultChildVisible = defaultChildVisible
         )
       )
     }

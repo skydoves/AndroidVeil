@@ -25,7 +25,8 @@ import com.skydoves.androidveil.databinding.ItemVeiledLayoutAndroidveilSkydovesB
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
-  private val isListItemWrapContent: Boolean = false
+  private val isListItemWrapContentWidth: Boolean = false,
+  private val isListItemWrapContentHeight: Boolean = true,
 ) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
@@ -48,16 +49,10 @@ internal class VeiledAdapter(
   override fun onBindViewHolder(holder: VeiledViewHolder, position: Int) {
     val veilParams = getVeilParams(position)
     with(holder.binding.itemVeilLayoutMain) {
-      layoutParams = if (isListItemWrapContent)
-        ViewGroup.LayoutParams(
-          ViewGroup.LayoutParams.WRAP_CONTENT,
-          ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-      else
-        ViewGroup.LayoutParams(
-          ViewGroup.LayoutParams.MATCH_PARENT,
-          ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+      layoutParams = ViewGroup.LayoutParams(
+        getLayoutParams(isListItemWrapContentWidth),
+        getLayoutParams(isListItemWrapContentHeight),
+      )
       if (layout == -1) {
         layout = userLayout
         veilParams.shimmer?.let {
@@ -79,6 +74,14 @@ internal class VeiledAdapter(
         startShimmer()
       }
       veil()
+    }
+  }
+
+  private fun getLayoutParams(isWrapContent: Boolean): Int {
+    return if (isWrapContent) {
+      ViewGroup.LayoutParams.WRAP_CONTENT
+    } else {
+      ViewGroup.LayoutParams.MATCH_PARENT
     }
   }
 
