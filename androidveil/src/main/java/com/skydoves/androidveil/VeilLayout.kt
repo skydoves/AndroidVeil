@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Designed and developed by 2018 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,17 +38,17 @@ import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
 @JvmSynthetic
-inline fun alphaShimmer(crossinline block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
+public inline fun alphaShimmer(crossinline block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
 @JvmSynthetic
-inline fun colorShimmer(crossinline block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
+public inline fun colorShimmer(crossinline block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
   Shimmer.ColorHighlightBuilder().apply(block).build()
 
 /** VeilLayout creates skeletons about the complex child views with shimmering effect. */
 @Suppress("HasPlatformType", "MemberVisibilityCanBePrivate")
-class VeilLayout : FrameLayout {
+public class VeilLayout : FrameLayout {
 
   @ColorInt
   private var baseColor = Color.LTGRAY
@@ -66,27 +66,28 @@ class VeilLayout : FrameLayout {
   private var dropOff = 0.5f
 
   @Px
-  var radius = 8f.dp2px(this)
-  var drawable: Drawable? = null
+  public var radius: Float = 8f.dp2px(this)
+  public var drawable: Drawable? = null
 
   @LayoutRes
-  var layout = -1
+  public var layout: Int = -1
     set(value) {
       field = value
       invalidateLayout(value)
     }
 
-  var isVeiled = false
+  public var isVeiled: Boolean = false
     private set
 
-  val shimmerContainer = ShimmerFrameLayout(context)
-  val nonShimmer = Shimmer.AlphaHighlightBuilder().setBaseAlpha(1.0f).setDropoff(1.0f).build()
-  var shimmer = Shimmer.AlphaHighlightBuilder().build()
+  public val shimmerContainer: ShimmerFrameLayout = ShimmerFrameLayout(context)
+  public val nonShimmer: Shimmer =
+    Shimmer.AlphaHighlightBuilder().setBaseAlpha(1.0f).setDropoff(1.0f).build()
+  public var shimmer: Shimmer = Shimmer.AlphaHighlightBuilder().build()
     set(value) {
       field = value
       shimmerContainer.setShimmer(value)
     }
-  var shimmerEnable: Boolean = true
+  public var shimmerEnable: Boolean = true
     set(value) {
       field = value
       when (value) {
@@ -94,19 +95,20 @@ class VeilLayout : FrameLayout {
         false -> shimmerContainer.setShimmer(nonShimmer)
       }
     }
-  var defaultChildVisible = false
+  public var defaultChildVisible: Boolean = false
 
-  constructor(context: Context) : super(context) {
+  public constructor(context: Context) : super(context) {
     onCreate()
   }
 
-  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+  public constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
     getAttrs(attrs)
     onCreate()
   }
 
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-    context, attrs,
+  public constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    context,
+    attrs,
     defStyleAttr
   ) {
     getAttrs(attrs)
@@ -114,8 +116,16 @@ class VeilLayout : FrameLayout {
   }
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
-    context, attrs, defStyleAttr, defStyleRes
+  public constructor(
+    context: Context,
+    attrs: AttributeSet?,
+    defStyleAttr: Int,
+    defStyleRes: Int
+  ) : super(
+    context,
+    attrs,
+    defStyleAttr,
+    defStyleRes
   ) {
     getAttrs(attrs)
     onCreate()
@@ -124,31 +134,42 @@ class VeilLayout : FrameLayout {
   private fun getAttrs(attrs: AttributeSet?) {
     val a = context.obtainStyledAttributes(attrs, R.styleable.VeilLayout)
     try {
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_veiled))
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_veiled)) {
         isVeiled = a.getBoolean(R.styleable.VeilLayout_veilLayout_veiled, isVeiled)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_layout))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_layout)) {
         layout = a.getResourceId(R.styleable.VeilLayout_veilLayout_layout, -1)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_drawable))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_drawable)) {
         drawable = a.getDrawable(R.styleable.VeilLayout_veilLayout_drawable)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_radius))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_radius)) {
         radius = a.getDimension(R.styleable.VeilLayout_veilLayout_radius, radius)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_shimmerEnable))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_shimmerEnable)) {
         shimmerEnable = a.getBoolean(R.styleable.VeilLayout_veilLayout_shimmerEnable, shimmerEnable)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseColor))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseColor)) {
         baseColor = a.getColor(R.styleable.VeilLayout_veilLayout_baseColor, baseColor)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightColor))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightColor)) {
         highlightColor =
           a.getColor(R.styleable.VeilLayout_veilLayout_highlightColor, highlightColor)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseAlpha))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_baseAlpha)) {
         baseAlpha = a.getFloat(R.styleable.VeilLayout_veilLayout_baseAlpha, baseAlpha)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightAlpha))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_highlightAlpha)) {
         highlightAlpha =
           a.getFloat(R.styleable.VeilLayout_veilLayout_highlightAlpha, highlightAlpha)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_dropOff))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_dropOff)) {
         dropOff = a.getFloat(R.styleable.VeilLayout_veilLayout_dropOff, dropOff)
-      if (a.hasValue(R.styleable.VeilLayout_veilLayout_defaultChildVisible))
+      }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_defaultChildVisible)) {
         defaultChildVisible =
           a.getBoolean(R.styleable.VeilLayout_veilLayout_defaultChildVisible, defaultChildVisible)
+      }
     } finally {
       a.recycle()
     }
@@ -170,7 +191,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Remove previous views and inflate a new layout using an inflated view. */
-  fun setLayout(layout: View) {
+  public fun setLayout(layout: View) {
     removeAllViews()
     addView(layout)
     shimmerContainer.removeAllViews()
@@ -242,7 +263,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Make appear the mask. */
-  fun veil() {
+  public fun veil() {
     if (!this.isVeiled) {
       this.isVeiled = true
       startShimmer()
@@ -251,7 +272,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Make disappear the mask. */
-  fun unVeil() {
+  public fun unVeil() {
     if (this.isVeiled) {
       this.isVeiled = false
       stopShimmer()
@@ -260,7 +281,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Starts the shimmer animation. */
-  fun startShimmer() {
+  public fun startShimmer() {
     this.shimmerContainer.visible()
     if (this.shimmerEnable) {
       this.shimmerContainer.startShimmer()
@@ -271,7 +292,7 @@ class VeilLayout : FrameLayout {
   }
 
   /** Stops the shimmer animation. */
-  fun stopShimmer() {
+  public fun stopShimmer() {
     this.shimmerContainer.invisible()
     this.shimmerContainer.stopShimmer()
     if (!this.defaultChildVisible) {

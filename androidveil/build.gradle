@@ -12,19 +12,35 @@ android {
     versionCode versions.versionCode
     versionName versions.versionName
   }
+
+  resourcePrefix "veil"
+
   buildFeatures {
     buildConfig false
     viewBinding true
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+
+  lintOptions {
+    abortOnError false
+  }
 }
 
 apiValidation {
-  ignoredPackages += [
-      "com/skydoves/androidveil/databinding",
-  ]
-  nonPublicMarkers += [
-      "kotlin.PublishedApi",
-  ]
+  ignoredPackages += ["com/skydoves/androidveil/databinding"]
+  nonPublicMarkers += ["kotlin.PublishedApi"]
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+  kotlinOptions.freeCompilerArgs += ["-Xexplicit-api=strict"]
 }
 
 dependencies {
@@ -34,4 +50,3 @@ dependencies {
 }
 
 apply plugin: "com.vanniktech.maven.publish"
-apply from: '../spotless.gradle'

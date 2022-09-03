@@ -27,4 +27,3 @@ dependencies {
     implementation project(":androidveil")
 }
 
-apply from: "$rootDir/spotless.gradle"

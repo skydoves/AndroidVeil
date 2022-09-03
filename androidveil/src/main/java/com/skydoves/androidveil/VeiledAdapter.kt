@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Designed and developed by 2018 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,19 +20,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.androidveil.databinding.ItemVeiledLayoutAndroidveilSkydovesBinding
+import com.skydoves.androidveil.databinding.VeilItemLayoutBinding
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
-  private val isListItemWrapContentHeight: Boolean = true,
+  private val isListItemWrapContentHeight: Boolean = true
 ) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeiledViewHolder {
-    val binding = ItemVeiledLayoutAndroidveilSkydovesBinding.inflate(
+    val binding = VeilItemLayoutBinding.inflate(
       LayoutInflater.from(parent.context),
       parent,
       false
@@ -51,7 +51,7 @@ internal class VeiledAdapter(
     with(holder.binding.itemVeilLayoutMain) {
       layoutParams = ViewGroup.LayoutParams(
         getLayoutParams(isListItemWrapContentWidth),
-        getLayoutParams(isListItemWrapContentHeight),
+        getLayoutParams(isListItemWrapContentHeight)
       )
       if (layout == -1) {
         layout = userLayout
@@ -95,6 +95,5 @@ internal class VeiledAdapter(
 
   override fun getItemCount() = veilParamList.size
 
-  class VeiledViewHolder(val binding: ItemVeiledLayoutAndroidveilSkydovesBinding) :
-    RecyclerView.ViewHolder(binding.root)
+  class VeiledViewHolder(val binding: VeilItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Designed and developed by 2018 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,49 +30,57 @@ object ListItemUtils {
     val list = ArrayList<Profile>()
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person0), "The Little Prince",
+        ContextCompat.getDrawable(context, R.drawable.person0),
+        "The Little Prince",
         "And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is essential is invisible to the eye."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person1), "Mia Vance",
+        ContextCompat.getDrawable(context, R.drawable.person1),
+        "Mia Vance",
         "All grown-ups were once children... but only few of them remember it."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person2), "Ryker Beil",
+        ContextCompat.getDrawable(context, R.drawable.person2),
+        "Ryker Beil",
         "What makes the desert beautiful,' said the little prince, 'is that somewhere it hides a well..."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person3), "Kayden Bautista",
+        ContextCompat.getDrawable(context, R.drawable.person3),
+        "Kayden Bautista",
         "It is the time you have wasted for your rose that makes your rose so important."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person4), "Skylar Odom",
+        ContextCompat.getDrawable(context, R.drawable.person4),
+        "Skylar Odom",
         "The most beautiful things in the world cannot be seen or touched, they are felt with the heart."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person5), "Autumn Villegas",
+        ContextCompat.getDrawable(context, R.drawable.person5),
+        "Autumn Villegas",
         "It is such a mysterious place, the land of tears."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person6), "Wyatt Sherman",
+        ContextCompat.getDrawable(context, R.drawable.person6),
+        "Wyatt Sherman",
         "Well, I must endure the presence of a few caterpillars if I wish to become acquainted with the butterflies."
       )
     )
     list.add(
       Profile(
-        ContextCompat.getDrawable(context, R.drawable.person7), "Rachel Alvarado",
+        ContextCompat.getDrawable(context, R.drawable.person7),
+        "Rachel Alvarado",
         "You see, one loves the sunset when one is so sad."
       )
     )

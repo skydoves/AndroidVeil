@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Designed and developed by 2018 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 package com.skydoves.androidveil
 
 /** VeiledItemOnClickListener is a delegation of veil item click. */
-fun interface VeiledItemOnClickListener {
+public fun interface VeiledItemOnClickListener {
 
   /** will be invoked when the item on the [VeilRecyclerFrameView] clicked. */
-  fun onItemClicked(pos: Int)
+  public fun onItemClicked(pos: Int)
 }
