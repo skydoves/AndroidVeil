@@ -24,6 +24,8 @@
     <attr name="veilFrame_baseAlpha" format="float" />
     <attr name="veilFrame_highlightAlpha" format="float" />
     <attr name="veilFrame_dropOff" format="float" />
+    <attr name="veilFrame_isItemWrapContentWidth" format="boolean" />
+    <attr name="veilFrame_isItemWrapContentHeight" format="boolean" />
     <attr name="veilFrame_defaultChildVisible" format="boolean" />
   </declare-styleable>
 </resources>
