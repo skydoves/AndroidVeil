@@ -182,13 +182,9 @@ highlightAlpha | Float | 1.0f | sets shimmer highlight alpha value.
 dropOff | Float | 0.5f | sets how quickly the shimmer's gradient drops-off.
 defaultChildVisible | Boolean | false | sets the child view's visibility when called veil and unveil.
 
-## Find this library useful? :heart:
-Support it by joining __[stargazers](https://github.com/skydoves/AndroidVeil/stargazers)__ for this repository. :star:
-
-## Sponsor :coffee:
-If you feel like to sponsor me a coffee for my efforts, I would greatly appreciate it! <br><br>
-
-<a href="https://www.buymeacoffee.com/skydoves" target="_blank"><img src="https://skydoves.github.io/sponsor.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+## Find this repository useful? :heart:
+Support it by joining __[stargazers](https://github.com/skydoves/androidveil/stargazers)__ for this repository. :star: <br>
+Also __[follow](https://github.com/skydoves)__ me for my next creations! 🤩
 
 # License
 ```xml
