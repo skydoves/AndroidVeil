@@ -41,6 +41,7 @@ public final class com/skydoves/androidveil/VeilRecyclerFrameView : android/widg
 	public final fun getShimmer ()Lcom/facebook/shimmer/Shimmer;
 	public final fun getShimmerEnable ()Z
 	public final fun getVeiledRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun isVeiled ()Z
 	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
 	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
 	public final fun setDefaultChildVisible (Z)V

@@ -40,7 +40,8 @@ public class VeilRecyclerFrameView : RelativeLayout {
   private val userRecyclerView: RecyclerView = RecyclerView(context)
   private val veiledRecyclerView: RecyclerView = RecyclerView(context)
   private var veiledAdapter: VeiledAdapter? = null
-  private var isVeiled = false
+  public var isVeiled: Boolean = false
+    private set
 
   @ColorInt
   private var baseColor = Color.LTGRAY
