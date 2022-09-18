@@ -109,7 +109,9 @@ veilLayout.layout = R.layout.layout_item_test
         app:veilFrame_highlightColor="@android:color/holo_green_light" // sets shimmer highlight color
         app:veilFrame_baseAlpha="0.6" // sets shimmer base alpha value
         app:veilFrame_highlightAlpha="1.0" // sets shimmer highlight alpha value
-        app:veilFrame_radius="8dp" // sets a corner radius of the whole veiled items />
+        app:veilFrame_radius="8dp" // sets a corner radius of the whole veiled items 
+        app:veilFrame_isItemWrapContentHeight="true"  // sets height of list item wrap_content
+        app:veilFrame_isItemWrapContentWidth="true"   // sets width of list item wrap_content />
 ```
 
 And we should attach our own adapter and LayoutManager.
@@ -181,6 +183,8 @@ baseAlpha | Float | 1.0f | sets shimmer base alpha value.
 highlightAlpha | Float | 1.0f | sets shimmer highlight alpha value.
 dropOff | Float | 0.5f | sets how quickly the shimmer's gradient drops-off.
 defaultChildVisible | Boolean | false | sets the child view's visibility when called veil and unveil.
+isItemWrapContentHeight | Boolean | false | sets height of veiled list item wrap_content
+isItemWrapContentWidth | Boolean | false | sets width of veiled list item wrap_content
 
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/androidveil/stargazers)__ for this repository. :star: <br>
