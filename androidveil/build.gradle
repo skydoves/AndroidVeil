@@ -5,7 +5,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'binary-compatibility-validator'
-apply from: "$rootDir/dependencies.gradle"
 
 ext {
   PUBLISH_GROUP_ID = Configuration.artifactGroup

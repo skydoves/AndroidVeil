@@ -3,7 +3,6 @@ import com.skydoves.androidveil.Dependencies
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: "$rootDir/dependencies.gradle"
 
 android {
   compileSdkVersion Configuration.compileSdk

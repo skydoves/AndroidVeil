@@ -1,5 +1,4 @@
 apply plugin: "com.diffplug.spotless"
-apply from: "$rootDir/dependencies.gradle"
 
 spotless {
   kotlin {

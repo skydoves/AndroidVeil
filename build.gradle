@@ -4,7 +4,6 @@ apply plugin: 'io.github.gradle-nexus.publish-plugin'
 apply plugin: 'org.jetbrains.dokka'
 
 buildscript {
-  apply from: "$rootDir/dependencies.gradle"
   repositories {
     google()
     mavenCentral()
