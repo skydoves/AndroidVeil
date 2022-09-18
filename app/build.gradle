@@ -1,29 +1,32 @@
+import com.skydoves.androidveil.Configuration
+import com.skydoves.androidveil.Dependencies
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$rootDir/dependencies.gradle"
 
 android {
-    compileSdkVersion versions.compileSdk
-    defaultConfig {
-        applicationId "com.skydoves.androidveildemo"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
-    }
-    lintOptions {
-        abortOnError false
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
-    }
+  compileSdkVersion Configuration.compileSdk
+  defaultConfig {
+    applicationId "com.skydoves.androidveildemo"
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.compileSdk
+    versionCode Configuration.versionCode
+    versionName Configuration.versionName
+  }
+  lintOptions {
+    abortOnError false
+  }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+  buildFeatures {
+    viewBinding true
+  }
 }
 
 dependencies {
-    implementation "com.google.android.material:material:$versions.googleMaterial"
-    implementation project(":androidveil")
+  implementation Dependencies.material
+  implementation project(":androidveil")
 }
 

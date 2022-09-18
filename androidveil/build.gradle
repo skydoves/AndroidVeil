@@ -1,16 +1,27 @@
+import com.skydoves.androidveil.Configuration
+import com.skydoves.androidveil.Dependencies
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'binary-compatibility-validator'
 apply from: "$rootDir/dependencies.gradle"
 
+ext {
+  PUBLISH_GROUP_ID = Configuration.artifactGroup
+  PUBLISH_ARTIFACT_ID = 'androidveil'
+  PUBLISH_VERSION = rootVersionName
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
+
 android {
-  compileSdkVersion versions.compileSdk
+  compileSdkVersion Configuration.compileSdk
   defaultConfig {
-    minSdkVersion versions.minSdk
-    targetSdkVersion versions.compileSdk
-    versionCode versions.versionCode
-    versionName versions.versionName
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.compileSdk
+    versionCode Configuration.versionCode
+    versionName Configuration.versionName
   }
 
   resourcePrefix "veil"
@@ -44,9 +55,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 dependencies {
-  implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
-  implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
-  api "com.facebook.shimmer:shimmer:$versions.shimmer"
+  implementation Dependencies.appcompat
+  implementation Dependencies.recyclerview
+  api Dependencies.shimmer
 }
-
-apply plugin: "com.vanniktech.maven.publish"
