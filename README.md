@@ -39,7 +39,7 @@ And add the dependency below to your **module**'s `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:androidveil:1.1.2"
+    implementation "com.github.skydoves:androidveil:1.1.3"
 }
 ```
 
