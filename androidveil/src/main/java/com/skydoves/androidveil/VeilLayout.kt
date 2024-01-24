@@ -70,11 +70,20 @@ public class VeilLayout : FrameLayout {
   public var drawable: Drawable? = null
 
   @LayoutRes
-  public var layout: Int = -1
-    set(value) {
-      field = value
-      invalidateLayout(value)
+  private var layout: Int = -1
+  private var isPrepared: Boolean = false
+
+  public fun setLayout(@LayoutRes layout: Int, isPrepared: Boolean = false) {
+    this.layout = layout
+    this.isPrepared = isPrepared
+    if (isPrepared) {
+      defaultChildVisible = true
     }
+    invalidateLayout(layout)
+  }
+
+  @LayoutRes
+  public fun getLayout(): Int = layout
 
   public var isVeiled: Boolean = false
     private set
@@ -120,7 +129,7 @@ public class VeilLayout : FrameLayout {
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int,
-    defStyleRes: Int
+    defStyleRes: Int,
   ) : super(
     context,
     attrs,
@@ -201,9 +210,20 @@ public class VeilLayout : FrameLayout {
   /** Invokes addMaskElements method after inflating. */
   override fun onFinishInflate() {
     super.onFinishInflate()
-    removeView(shimmerContainer)
-    addView(shimmerContainer)
-    addMaskElements(this)
+    if (!isPrepared) {
+      removeView(shimmerContainer)
+      addView(shimmerContainer)
+      addMaskElements(this)
+    }
+    // Invalidate the whole masked view.
+    invalidate()
+
+    // Auto veiled
+    this.isVeiled = !this.isVeiled
+    when (this.isVeiled) {
+      true -> unVeil()
+      false -> veil()
+    }
   }
 
   /**
@@ -218,48 +238,50 @@ public class VeilLayout : FrameLayout {
         if (child is ViewGroup) {
           addMaskElements(child)
         } else {
-          var marginX = 0f
-          var marginY = 0f
-          var grandParent = parent.parent
-          while (grandParent !is VeilLayout) {
-            if (grandParent is ViewGroup) {
-              val params = grandParent.layoutParams
-              if (params is MarginLayoutParams) {
-                marginX += grandParent.x
-                marginY += grandParent.y
-              }
-              grandParent = grandParent.parent
-            } else {
-              break
-            }
-          }
-
-          // create a masked view
-          View(context).apply {
-            layoutParams = LayoutParams(child.width, child.height)
-            x = marginX + parent.x + child.x
-            y = marginY + parent.y + child.y
-            setBackgroundColor(baseColor)
-
-            background = drawable ?: GradientDrawable().apply {
-              setColor(Color.DKGRAY)
-              cornerRadius = radius
-            }
-            shimmerContainer.addView(this)
-          }
+          val (marginX, marginY) = findMargins(parent)
+          val view = createMaskedView(child, marginX, parent, marginY)
+          shimmerContainer.addView(view)
         }
       }
     }
+  }
 
-    // Invalidate the whole masked view.
-    invalidate()
+  private fun createMaskedView(
+    child: View,
+    marginX: Float,
+    parent: ViewGroup,
+    marginY: Float,
+  ): View {
+    return View(context).apply {
+      layoutParams = LayoutParams(child.width, child.height)
+      x = marginX + parent.x + child.x
+      y = marginY + parent.y + child.y
+      setBackgroundColor(baseColor)
 
-    // Auto veiled
-    this.isVeiled = !this.isVeiled
-    when (this.isVeiled) {
-      true -> unVeil()
-      false -> veil()
+      background = drawable ?: GradientDrawable().apply {
+        setColor(Color.DKGRAY)
+        cornerRadius = radius
+      }
     }
+  }
+
+  private fun findMargins(parent: ViewGroup): Pair<Float, Float> {
+    var marginX = 0f
+    var marginY = 0f
+    var grandParent = parent.parent
+    while (grandParent !is VeilLayout) {
+      if (grandParent is ViewGroup) {
+        val params = grandParent.layoutParams
+        if (params is MarginLayoutParams) {
+          marginX += grandParent.x
+          marginY += grandParent.y
+        }
+        grandParent = grandParent.parent
+      } else {
+        break
+      }
+    }
+    return Pair(marginX, marginY)
   }
 
   /** Make appear the mask. */

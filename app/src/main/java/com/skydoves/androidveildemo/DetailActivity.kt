@@ -26,7 +26,6 @@ import com.skydoves.androidveildemo.databinding.ActivityDetailBinding
  * Developed by skydoves on 2018-10-30.
  * Copyright (c) 2018 skydoves rights reserved.
  */
-
 class DetailActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {

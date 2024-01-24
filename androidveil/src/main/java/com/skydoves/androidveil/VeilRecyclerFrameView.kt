@@ -25,6 +25,7 @@ import android.util.AttributeSet
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
+import androidx.annotation.IntRange
 import androidx.annotation.LayoutRes
 import androidx.annotation.Px
 import androidx.recyclerview.widget.GridLayoutManager
@@ -173,56 +174,47 @@ public class VeilRecyclerFrameView : RelativeLayout {
     }
 
     if (this.layout != -1) {
-      setVeilLayout(this.layout)
+      // TODO get isPrepared from attrs as well
+      setVeilLayout(layout = this.layout, isPrepared = false)
     }
   }
 
-  /** Sets mask layout. */
-  public fun setVeilLayout(@LayoutRes layout: Int) {
-    this.veiledAdapter =
-      VeiledAdapter(
-        userLayout = layout,
-        isListItemWrapContentWidth = isItemWrapContentWidth,
-        isListItemWrapContentHeight = isItemWrapContentHeight
-      )
-    this.veiledRecyclerView.adapter = this.veiledAdapter
-    requestLayout()
-  }
-
-  /** Sets mask layout and VeiledItemOnClickListener. */
+  /** Sets mask layout */
   public fun setVeilLayout(
     @LayoutRes layout: Int,
-    onItemClickListener: VeiledItemOnClickListener
+    isPrepared: Boolean = false,
+    onItemClickListener: VeiledItemOnClickListener? = null,
   ) {
     this.veiledAdapter =
       VeiledAdapter(
         userLayout = layout,
+        isPrepared = isPrepared,
         onItemClickListener = onItemClickListener,
         isListItemWrapContentWidth = isItemWrapContentWidth,
         isListItemWrapContentHeight = isItemWrapContentHeight
       )
     this.veiledRecyclerView.adapter = this.veiledAdapter
+    requestLayout()
   }
 
   /** Sets mask layout and adds masked items. */
-  public fun setVeilLayout(@LayoutRes layout: Int, size: Int) {
-    this.setVeilLayout(layout)
+  public fun setVeilLayout(
+    @LayoutRes layout: Int,
+    @IntRange(from = 1) size: Int,
+    isPrepared: Boolean,
+    onItemClickListener: VeiledItemOnClickListener? = null,
+  ) {
+    this.setVeilLayout(
+      layout = layout,
+      isPrepared = isPrepared,
+      onItemClickListener = onItemClickListener
+    )
     this.addVeiledItems(size)
     requestLayout()
   }
 
-  /** Sets mask layout and VeiledItemOnClickListener and adds masked items. */
-  public fun setVeilLayout(
-    @LayoutRes layout: Int,
-    onItemClickListener: VeiledItemOnClickListener,
-    size: Int
-  ) {
-    this.setVeilLayout(layout, onItemClickListener)
-    this.addVeiledItems(size)
-  }
-
   /** Adds masked items. */
-  public fun addVeiledItems(size: Int) {
+  public fun addVeiledItems(@IntRange(from = 1) size: Int) {
     val paramList = ArrayList<VeilParams>()
     for (i in 0 until size) {
       paramList.add(
@@ -252,7 +244,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   /** Sets userRecyclerView's adapter and RecyclerViews LayoutManager. */
   public fun setAdapter(
     adapter: RecyclerView.Adapter<*>?,
-    layoutManager: RecyclerView.LayoutManager
+    layoutManager: RecyclerView.LayoutManager,
   ) {
     this.setAdapter(adapter)
     this.setLayoutManager(layoutManager)
@@ -265,9 +257,11 @@ public class VeilRecyclerFrameView : RelativeLayout {
       is GridLayoutManager ->
         this.veiledRecyclerView.layoutManager =
           GridLayoutManager(context, layoutManager.spanCount)
+
       is StaggeredGridLayoutManager ->
         this.veiledRecyclerView.layoutManager =
           StaggeredGridLayoutManager(layoutManager.spanCount, layoutManager.orientation)
+
       is LinearLayoutManager ->
         this.veiledRecyclerView.layoutManager =
           LinearLayoutManager(
@@ -275,6 +269,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
             layoutManager.orientation,
             layoutManager.reverseLayout
           )
+
       else -> this.veiledRecyclerView.layoutManager
     }
   }

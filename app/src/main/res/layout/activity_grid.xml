@@ -35,7 +35,7 @@
     android:layout_height="match_parent"
     app:veilFrame_baseColor="@color/shimmerBase0"
     app:veilFrame_highlightColor="@color/shimmerHighlight1"
-    app:veilFrame_layout="@layout/item_profile"
+    app:veilFrame_layout="@layout/item_profile_list"
     app:veilFrame_radius="4dp"
     app:veilFrame_shimmerEnable="true"
     app:veilFrame_veiled="true" />

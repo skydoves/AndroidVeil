@@ -24,9 +24,10 @@ import com.skydoves.androidveil.databinding.VeilItemLayoutBinding
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
+  private val isPrepared: Boolean,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
-  private val isListItemWrapContentHeight: Boolean = true
+  private val isListItemWrapContentHeight: Boolean = true,
 ) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
@@ -53,8 +54,8 @@ internal class VeiledAdapter(
         getLayoutParams(isListItemWrapContentWidth),
         getLayoutParams(isListItemWrapContentHeight)
       )
-      if (layout == -1) {
-        layout = userLayout
+      if (getLayout() == -1) {
+        setLayout(userLayout, isPrepared)
         veilParams.shimmer?.let {
           shimmer = it
         } ?: let {
@@ -69,7 +70,7 @@ internal class VeiledAdapter(
         radius = veilParams.radius
         drawable = veilParams.drawable
         shimmerEnable = veilParams.shimmerEnable
-        defaultChildVisible = veilParams.defaultChildVisible
+        defaultChildVisible = veilParams.defaultChildVisible || isPrepared
       } else {
         startShimmer()
       }

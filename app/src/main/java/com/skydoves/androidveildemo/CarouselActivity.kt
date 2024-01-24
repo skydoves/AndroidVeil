@@ -18,38 +18,54 @@ package com.skydoves.androidveildemo
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.androidveil.VeiledItemOnClickListener
-import com.skydoves.androidveildemo.databinding.ActivitySecondBinding
+import com.skydoves.androidveildemo.databinding.ActivityCarouselBinding
 import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
 import com.skydoves.androidveildemo.profile.ProfileAdapter
+import com.skydoves.androidveildemo.profile.ProfileCarouselAdapter
 
-class SecondActivity :
+class CarouselActivity :
   AppCompatActivity(),
   VeiledItemOnClickListener,
-  ProfileAdapter.ProfileViewHolder.Delegate {
+  ProfileCarouselAdapter.ProfileViewHolder.Delegate {
 
-  private val adapter = ProfileAdapter(this)
+  private val adapter = ProfileCarouselAdapter(this)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val binding = ActivitySecondBinding.inflate(layoutInflater)
+    val binding = ActivityCarouselBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
     // sets VeilRecyclerView's properties
-    binding.veilFrameView.run {
-      setVeilLayout(R.layout.item_preview, this@SecondActivity)
+    binding.veilRecyclerView.run {
+      setVeilLayout(
+        layout = R.layout.item_preview_carousel,
+        isPrepared = true,
+        onItemClickListener = this@CarouselActivity
+      )
       setAdapter(adapter)
-      setLayoutManager(GridLayoutManager(this@SecondActivity, 2))
-      addVeiledItems(12)
+      setLayoutManager(LinearLayoutManager(this@CarouselActivity, RecyclerView.HORIZONTAL, false))
+      addVeiledItems(6)
     }
 
     // add profile times to adapter
     adapter.addProfiles(ListItemUtils.getProfiles(this))
+
+    // delay-auto-unveil
+    Handler(Looper.getMainLooper()).postDelayed(
+      {
+        binding.veilRecyclerView.unVeil()
+      },
+      5000
+    )
   }
 
   /** OnItemClickListener by Veiled Item */

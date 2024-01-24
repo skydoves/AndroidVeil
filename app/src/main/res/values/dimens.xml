@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <dimen name="item_picture_size">65dp</dimen>
+  <dimen name="distance_fab_first">55dp</dimen>
+  <dimen name="distance_fab_second">105dp</dimen>
+  <dimen name="margin_default">12dp</dimen>
+</resources>
