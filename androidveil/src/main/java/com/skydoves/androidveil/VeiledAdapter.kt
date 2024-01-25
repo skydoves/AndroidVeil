@@ -24,7 +24,7 @@ import com.skydoves.androidveil.databinding.VeilItemLayoutBinding
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
-  private val isPrepared: Boolean,
+  private val isPrepared: Boolean = false,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
   private val isListItemWrapContentHeight: Boolean = true

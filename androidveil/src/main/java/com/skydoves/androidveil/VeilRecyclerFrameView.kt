@@ -205,7 +205,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   public fun setVeilLayout(
     @LayoutRes layout: Int,
     @IntRange(from = 1) size: Int,
-    isPrepared: Boolean,
+    isPrepared: Boolean = false,
     onItemClickListener: VeiledItemOnClickListener? = null
   ) {
     this.setVeilLayout(
