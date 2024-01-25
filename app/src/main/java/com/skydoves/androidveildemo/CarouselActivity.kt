@@ -46,8 +46,8 @@ class CarouselActivity :
     val binding = ActivityCarouselBinding.inflate(layoutInflater)
     setContentView(binding.root)
     setSupportActionBar(binding.toolbar)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true);
-    supportActionBar?.setDisplayShowHomeEnabled(true);
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    supportActionBar?.setDisplayShowHomeEnabled(true)
 
     val adapter = ProfileCarouselAdapter(this)
     // sets VeilRecyclerView's properties

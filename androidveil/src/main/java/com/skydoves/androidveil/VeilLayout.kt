@@ -137,7 +137,7 @@ public class VeilLayout : FrameLayout {
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int,
-    defStyleRes: Int,
+    defStyleRes: Int
   ) : super(
     context,
     attrs,
@@ -266,7 +266,7 @@ public class VeilLayout : FrameLayout {
     child: View,
     marginX: Float,
     parent: ViewGroup,
-    marginY: Float,
+    marginY: Float
   ): View {
     return View(context).apply {
       layoutParams = LayoutParams(child.width, child.height)

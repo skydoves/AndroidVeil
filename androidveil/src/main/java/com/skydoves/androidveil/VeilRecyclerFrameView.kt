@@ -187,7 +187,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   public fun setVeilLayout(
     @LayoutRes layout: Int,
     isPrepared: Boolean = false,
-    onItemClickListener: VeiledItemOnClickListener? = null,
+    onItemClickListener: VeiledItemOnClickListener? = null
   ) {
     this.veiledAdapter =
       VeiledAdapter(
@@ -206,7 +206,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
     @LayoutRes layout: Int,
     @IntRange(from = 1) size: Int,
     isPrepared: Boolean,
-    onItemClickListener: VeiledItemOnClickListener? = null,
+    onItemClickListener: VeiledItemOnClickListener? = null
   ) {
     this.setVeilLayout(
       layout = layout,
@@ -248,7 +248,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   /** Sets userRecyclerView's adapter and RecyclerViews LayoutManager. */
   public fun setAdapter(
     adapter: RecyclerView.Adapter<*>?,
-    layoutManager: RecyclerView.LayoutManager,
+    layoutManager: RecyclerView.LayoutManager
   ) {
     this.setAdapter(adapter)
     this.setLayoutManager(layoutManager)

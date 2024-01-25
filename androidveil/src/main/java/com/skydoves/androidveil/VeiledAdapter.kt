@@ -27,7 +27,7 @@ internal class VeiledAdapter(
   private val isPrepared: Boolean,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
-  private val isListItemWrapContentHeight: Boolean = true,
+  private val isListItemWrapContentHeight: Boolean = true
 ) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
