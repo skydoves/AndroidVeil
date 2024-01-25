@@ -34,11 +34,19 @@ class GridActivity :
 
   private val adapter = ProfileAdapter(this)
 
+  override fun onSupportNavigateUp(): Boolean {
+    onBackPressed()
+    return true
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     val binding = ActivityGridBinding.inflate(layoutInflater)
     setContentView(binding.root)
+    setSupportActionBar(binding.toolbar)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true);
+    supportActionBar?.setDisplayShowHomeEnabled(true);
 
     // sets VeilRecyclerView's properties
     binding.veilFrameView.run {

@@ -22,18 +22,45 @@
   android:orientation="vertical">
 
   <androidx.appcompat.widget.Toolbar
-    android:id="@+id/detail_toolbar"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary"
     app:title="@string/app_name" />
 
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_default"
+    android:text="Carousel 1"
+    android:textColor="@android:color/white"
+    android:textStyle="bold" />
+
   <com.skydoves.androidveil.VeilRecyclerFrameView
     android:id="@+id/veilRecyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/detail_toolbar"
+    android:layout_height="150dp"
+    app:veilFrame_baseAlpha="0.6"
+    app:veilFrame_baseColor="@android:color/holo_green_dark"
+    app:veilFrame_highlightAlpha="1.0"
+    app:veilFrame_highlightColor="@android:color/holo_green_light"
+    app:veilFrame_isItemWrapContentWidth="true"
+    app:veilFrame_radius="4dp"
+    app:veilFrame_shimmerEnable="true"
+    app:veilFrame_veiled="true" />
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_default"
+    android:text="Carousel 2"
+    android:textColor="@android:color/white"
+    android:textStyle="bold" />
+
+  <com.skydoves.androidveil.VeilRecyclerFrameView
+    android:id="@+id/veilRecyclerView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:veilFrame_baseAlpha="0.6"
     app:veilFrame_baseColor="@android:color/holo_green_dark"
     app:veilFrame_highlightAlpha="1.0"

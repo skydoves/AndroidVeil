@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Designed and developed by 2018 skydoves (Jaewoong Eum)
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +22,7 @@
   android:orientation="vertical">
 
   <androidx.appcompat.widget.Toolbar
-    android:id="@+id/detail_toolbar"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary"

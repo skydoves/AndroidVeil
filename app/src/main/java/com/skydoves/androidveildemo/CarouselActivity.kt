@@ -28,7 +28,6 @@ import com.skydoves.androidveil.VeiledItemOnClickListener
 import com.skydoves.androidveildemo.databinding.ActivityCarouselBinding
 import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
-import com.skydoves.androidveildemo.profile.ProfileAdapter
 import com.skydoves.androidveildemo.profile.ProfileCarouselAdapter
 
 class CarouselActivity :
@@ -36,24 +35,42 @@ class CarouselActivity :
   VeiledItemOnClickListener,
   ProfileCarouselAdapter.ProfileViewHolder.Delegate {
 
-  private val adapter = ProfileCarouselAdapter(this)
+  override fun onSupportNavigateUp(): Boolean {
+    onBackPressed()
+    return true
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     val binding = ActivityCarouselBinding.inflate(layoutInflater)
     setContentView(binding.root)
+    setSupportActionBar(binding.toolbar)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true);
+    supportActionBar?.setDisplayShowHomeEnabled(true);
 
+    val adapter = ProfileCarouselAdapter(this)
     // sets VeilRecyclerView's properties
     binding.veilRecyclerView.run {
       setVeilLayout(
-        layout = R.layout.item_preview_carousel,
+        layout = R.layout.item_prepared_shimmer_carousel,
         isPrepared = true,
         onItemClickListener = this@CarouselActivity
       )
       setAdapter(adapter)
       setLayoutManager(LinearLayoutManager(this@CarouselActivity, RecyclerView.HORIZONTAL, false))
-      addVeiledItems(6)
+      addVeiledItems(10)
+    }
+
+    binding.veilRecyclerView2.run {
+      setVeilLayout(
+        layout = R.layout.item_prepared_shimmer_carousel,
+        isPrepared = true,
+        onItemClickListener = this@CarouselActivity
+      )
+      setAdapter(adapter)
+      setLayoutManager(LinearLayoutManager(this@CarouselActivity, RecyclerView.HORIZONTAL, false))
+      addVeiledItems(10)
     }
 
     // add profile times to adapter
@@ -63,6 +80,12 @@ class CarouselActivity :
     Handler(Looper.getMainLooper()).postDelayed(
       {
         binding.veilRecyclerView.unVeil()
+      },
+      3000
+    )
+    Handler(Looper.getMainLooper()).postDelayed(
+      {
+        binding.veilRecyclerView2.unVeil()
       },
       5000
     )

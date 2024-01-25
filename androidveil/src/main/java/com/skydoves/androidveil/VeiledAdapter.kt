@@ -70,6 +70,7 @@ internal class VeiledAdapter(
         radius = veilParams.radius
         drawable = veilParams.drawable
         shimmerEnable = veilParams.shimmerEnable
+        // Make sure prepared layout (which is the first child view) is always visible
         defaultChildVisible = veilParams.defaultChildVisible || isPrepared
       } else {
         startShimmer()

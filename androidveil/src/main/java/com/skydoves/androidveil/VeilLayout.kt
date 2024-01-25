@@ -95,13 +95,21 @@ public class VeilLayout : FrameLayout {
     set(value) {
       field = value
       shimmerContainer.setShimmer(value)
+      getPreparedView()?.setShimmer(value)
     }
   public var shimmerEnable: Boolean = true
     set(value) {
       field = value
       when (value) {
-        true -> shimmerContainer.setShimmer(shimmer)
-        false -> shimmerContainer.setShimmer(nonShimmer)
+        true -> {
+          shimmerContainer.setShimmer(shimmer)
+          getPreparedView()?.setShimmer(shimmer)
+        }
+
+        false -> {
+          shimmerContainer.setShimmer(nonShimmer)
+          getPreparedView()?.setShimmer(nonShimmer)
+        }
       }
     }
   public var defaultChildVisible: Boolean = false
@@ -179,6 +187,10 @@ public class VeilLayout : FrameLayout {
         defaultChildVisible =
           a.getBoolean(R.styleable.VeilLayout_veilLayout_defaultChildVisible, defaultChildVisible)
       }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_isPrepared)) {
+        isPrepared =
+          a.getBoolean(R.styleable.VeilLayout_veilLayout_isPrepared, isPrepared)
+      }
     } finally {
       a.recycle()
     }
@@ -201,6 +213,9 @@ public class VeilLayout : FrameLayout {
 
   /** Remove previous views and inflate a new layout using an inflated view. */
   public fun setLayout(layout: View) {
+    require(!isPrepared || layout is ShimmerFrameLayout) {
+      "If you place a 'prepared' Layout, then it must be a ShimmerFrameLayout"
+    }
     removeAllViews()
     addView(layout)
     shimmerContainer.removeAllViews()
@@ -210,8 +225,9 @@ public class VeilLayout : FrameLayout {
   /** Invokes addMaskElements method after inflating. */
   override fun onFinishInflate() {
     super.onFinishInflate()
+    removeView(shimmerContainer)
     if (!isPrepared) {
-      removeView(shimmerContainer)
+      // The layout is not pre-shimmering, this VeilLayout will  try to make a close representation
       addView(shimmerContainer)
       addMaskElements(this)
     }
@@ -304,9 +320,17 @@ public class VeilLayout : FrameLayout {
 
   /** Starts the shimmer animation. */
   public fun startShimmer() {
-    this.shimmerContainer.visible()
-    if (this.shimmerEnable) {
-      this.shimmerContainer.startShimmer()
+    if (shimmerEnable) {
+      if (isPrepared) {
+        getPreparedView()?.apply {
+          setShimmer(shimmer)
+          visible()
+          startShimmer()
+        }
+      } else {
+        shimmerContainer.visible()
+        shimmerContainer.startShimmer()
+      }
     }
     if (!this.defaultChildVisible) {
       setChildVisibility(false)
@@ -334,5 +358,13 @@ public class VeilLayout : FrameLayout {
   override fun invalidate() {
     super.invalidate()
     this.shimmerContainer.invalidate()
+  }
+
+  private fun getPreparedView(): ShimmerFrameLayout? {
+    if (childCount > 0) {
+      val view = getChildAt(0)
+      if (view is ShimmerFrameLayout) return view
+    }
+    return null
   }
 }

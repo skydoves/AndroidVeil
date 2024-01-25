@@ -69,6 +69,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   public var shimmer: Shimmer? = null
   public var shimmerEnable: Boolean = true
   public var defaultChildVisible: Boolean = false
+  public var isPrepared: Boolean = false
   private var isItemWrapContentWidth = false
   private var isItemWrapContentHeight = true
   private val threshold = 10
@@ -146,6 +147,10 @@ public class VeilRecyclerFrameView : RelativeLayout {
             defaultChildVisible
           )
       }
+      if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isPrepared)) {
+        isPrepared =
+          a.getBoolean(R.styleable.VeilRecyclerFrameView_veilFrame_isPrepared, isPrepared)
+      }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth)) {
         isItemWrapContentWidth = a.getBoolean(
           R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth,
@@ -174,8 +179,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
     }
 
     if (this.layout != -1) {
-      // TODO get isPrepared from attrs as well
-      setVeilLayout(layout = this.layout, isPrepared = false)
+      setVeilLayout(layout = this.layout, isPrepared = this.isPrepared)
     }
   }
 

@@ -20,6 +20,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,13 +80,15 @@ class MainActivity :
       } else {
         closeFloatingMenu()
       }
-      }
+    }
     binding.fabGrid.setOnClickListener {
       startActivity(Intent(this, GridActivity::class.java))
-      }
+      closeFloatingMenu()
+    }
     binding.fabCarousel.setOnClickListener {
       startActivity(Intent(this, CarouselActivity::class.java))
-      }
+      closeFloatingMenu()
+    }
   }
 
   override fun onBackPressed() {
@@ -98,14 +101,20 @@ class MainActivity :
 
   private fun showFloatingMenu() {
     isFloatingMenuOpen = true
-    binding.fabCarousel.animate().translationY(-resources.getDimension(R.dimen.distance_fab_first))
-    binding.fabGrid.animate().translationY(-resources.getDimension(R.dimen.distance_fab_second))
+    binding.containerFabCarousel.animate()
+      .translationY(-resources.getDimension(R.dimen.distance_fab_first))
+    binding.containerFabGrid.animate()
+      .translationY(-resources.getDimension(R.dimen.distance_fab_second))
+    binding.fabGridText.visibility = View.VISIBLE
+    binding.fabCarouselText.visibility = View.VISIBLE
   }
 
   private fun closeFloatingMenu() {
     isFloatingMenuOpen = false;
-    binding.fabCarousel.animate().translationY(0f);
-    binding.fabGrid.animate().translationY(0f);
+    binding.containerFabCarousel.animate().translationY(0f);
+    binding.containerFabGrid.animate().translationY(0f);
+    binding.fabGridText.visibility = View.GONE
+    binding.fabCarouselText.visibility = View.GONE
   }
 
   /** OnItemClickListener by Veiled Item */
