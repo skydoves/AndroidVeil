@@ -15,8 +15,9 @@ public final class com/skydoves/androidveil/VeilLayout : android/widget/FrameLay
 	public final fun isVeiled ()Z
 	public final fun setDefaultChildVisible (Z)V
 	public final fun setDrawable (Landroid/graphics/drawable/Drawable;)V
-	public final fun setLayout (I)V
+	public final fun setLayout (IZ)V
 	public final fun setLayout (Landroid/view/View;)V
+	public static synthetic fun setLayout$default (Lcom/skydoves/androidveil/VeilLayout;IZILjava/lang/Object;)V
 	public final fun setRadius (F)V
 	public final fun setShimmer (Lcom/facebook/shimmer/Shimmer;)V
 	public final fun setShimmerEnable (Z)V
@@ -41,17 +42,19 @@ public final class com/skydoves/androidveil/VeilRecyclerFrameView : android/widg
 	public final fun getShimmer ()Lcom/facebook/shimmer/Shimmer;
 	public final fun getShimmerEnable ()Z
 	public final fun getVeiledRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun isPrepared ()Z
 	public final fun isVeiled ()Z
 	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
 	public final fun setAdapter (Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
 	public final fun setDefaultChildVisible (Z)V
 	public final fun setLayoutManager (Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+	public final fun setPrepared (Z)V
 	public final fun setShimmer (Lcom/facebook/shimmer/Shimmer;)V
 	public final fun setShimmerEnable (Z)V
-	public final fun setVeilLayout (I)V
-	public final fun setVeilLayout (II)V
-	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;)V
-	public final fun setVeilLayout (ILcom/skydoves/androidveil/VeiledItemOnClickListener;I)V
+	public final fun setVeilLayout (IIZLcom/skydoves/androidveil/VeiledItemOnClickListener;)V
+	public final fun setVeilLayout (IZLcom/skydoves/androidveil/VeiledItemOnClickListener;)V
+	public static synthetic fun setVeilLayout$default (Lcom/skydoves/androidveil/VeilRecyclerFrameView;IIZLcom/skydoves/androidveil/VeiledItemOnClickListener;ILjava/lang/Object;)V
+	public static synthetic fun setVeilLayout$default (Lcom/skydoves/androidveil/VeilRecyclerFrameView;IZLcom/skydoves/androidveil/VeiledItemOnClickListener;ILjava/lang/Object;)V
 	public final fun unVeil ()V
 	public final fun veil ()V
 }
