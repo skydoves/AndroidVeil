@@ -120,6 +120,17 @@ veilRecyclerView.setAdapter(adapter) // sets your own adapter
 veilRecyclerView.setLayoutManager(LinearLayoutManager(this)) // sets LayoutManager
 veilRecyclerView.addVeiledItems(15) // add veiled 15 items
 ```
+Automatically masking a horizontal layout is **not supported yet**.
+Horizontal (carousel) layouts can be used if you specify their shimmer layout yourself in advance (and tell the view to use this prepared layout by setting `isPrepared = true`). See `CarouselActivity` for an example
+```kotlin
+veilRecyclerView.setVeilLayout(
+  layout = R.layout.item_prepared_shimmer_carousel,
+  isPrepared = true
+)
+veilRecyclerView.setAdapter(adapter)
+veilRecyclerView.setLayoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
+addVeiledItems(15)
+```
 
 #### Veil and UnVeil
 We can implement veiled skeletons using below methods.
