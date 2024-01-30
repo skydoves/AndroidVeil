@@ -121,7 +121,7 @@ veilRecyclerView.setLayoutManager(LinearLayoutManager(this)) // sets LayoutManag
 veilRecyclerView.addVeiledItems(15) // add veiled 15 items
 ```
 
-#### Carousel View
+#### VeilRecyclerFrameView with a horizontal carousel
 
 Automatically masking a horizontal layout is **not supported yet**. Horizontal (carousel) layouts **can** be used if you specify their shimmer layout yourself in advance (and tell the view to use this prepared layout by setting `isPrepared = true`). See `CarouselActivity` for an example
 ```kotlin
