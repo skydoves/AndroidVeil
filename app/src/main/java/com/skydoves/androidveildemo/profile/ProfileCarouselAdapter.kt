@@ -19,21 +19,21 @@ package com.skydoves.androidveildemo.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.androidveildemo.databinding.ItemProfileListBinding
+import com.skydoves.androidveildemo.databinding.ItemProfileCarouselBinding
 
 /**
  * Developed by skydoves on 2018-10-30.
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
-class ProfileAdapter(
+class ProfileCarouselAdapter(
   private val delegate: ProfileViewHolder.Delegate
-) : RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
+) : RecyclerView.Adapter<ProfileCarouselAdapter.ProfileViewHolder>() {
 
   private val profileList: MutableList<Profile> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
-    val binding = ItemProfileListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val binding = ItemProfileCarouselBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return ProfileViewHolder(binding)
   }
 
@@ -54,7 +54,7 @@ class ProfileAdapter(
 
   override fun getItemCount() = this.profileList.size
 
-  class ProfileViewHolder(val binding: ItemProfileListBinding) :
+  class ProfileViewHolder(val binding: ItemProfileCarouselBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun interface Delegate {

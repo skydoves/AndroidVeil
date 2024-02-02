@@ -70,11 +70,20 @@ public class VeilLayout : FrameLayout {
   public var drawable: Drawable? = null
 
   @LayoutRes
-  public var layout: Int = -1
-    set(value) {
-      field = value
-      invalidateLayout(value)
+  private var layout: Int = -1
+  private var isPrepared: Boolean = false
+
+  public fun setLayout(@LayoutRes layout: Int, isPrepared: Boolean = false) {
+    this.layout = layout
+    this.isPrepared = isPrepared
+    if (isPrepared) {
+      defaultChildVisible = true
     }
+    invalidateLayout(layout)
+  }
+
+  @LayoutRes
+  public fun getLayout(): Int = layout
 
   public var isVeiled: Boolean = false
     private set
@@ -86,13 +95,21 @@ public class VeilLayout : FrameLayout {
     set(value) {
       field = value
       shimmerContainer.setShimmer(value)
+      getPreparedView()?.setShimmer(value)
     }
   public var shimmerEnable: Boolean = true
     set(value) {
       field = value
       when (value) {
-        true -> shimmerContainer.setShimmer(shimmer)
-        false -> shimmerContainer.setShimmer(nonShimmer)
+        true -> {
+          shimmerContainer.setShimmer(shimmer)
+          getPreparedView()?.setShimmer(shimmer)
+        }
+
+        false -> {
+          shimmerContainer.setShimmer(nonShimmer)
+          getPreparedView()?.setShimmer(nonShimmer)
+        }
       }
     }
   public var defaultChildVisible: Boolean = false
@@ -170,6 +187,10 @@ public class VeilLayout : FrameLayout {
         defaultChildVisible =
           a.getBoolean(R.styleable.VeilLayout_veilLayout_defaultChildVisible, defaultChildVisible)
       }
+      if (a.hasValue(R.styleable.VeilLayout_veilLayout_isPrepared)) {
+        isPrepared =
+          a.getBoolean(R.styleable.VeilLayout_veilLayout_isPrepared, isPrepared)
+      }
     } finally {
       a.recycle()
     }
@@ -192,6 +213,9 @@ public class VeilLayout : FrameLayout {
 
   /** Remove previous views and inflate a new layout using an inflated view. */
   public fun setLayout(layout: View) {
+    require(!isPrepared || layout is ShimmerFrameLayout) {
+      "If you place a 'prepared' Layout, then it must be a ShimmerFrameLayout"
+    }
     removeAllViews()
     addView(layout)
     shimmerContainer.removeAllViews()
@@ -202,8 +226,20 @@ public class VeilLayout : FrameLayout {
   override fun onFinishInflate() {
     super.onFinishInflate()
     removeView(shimmerContainer)
-    addView(shimmerContainer)
-    addMaskElements(this)
+    if (!isPrepared) {
+      // The layout is not pre-shimmering, this VeilLayout will  try to make a close representation
+      addView(shimmerContainer)
+      addMaskElements(this)
+    }
+    // Invalidate the whole masked view.
+    invalidate()
+
+    // Auto veiled
+    this.isVeiled = !this.isVeiled
+    when (this.isVeiled) {
+      true -> unVeil()
+      false -> veil()
+    }
   }
 
   /**
@@ -218,48 +254,50 @@ public class VeilLayout : FrameLayout {
         if (child is ViewGroup) {
           addMaskElements(child)
         } else {
-          var marginX = 0f
-          var marginY = 0f
-          var grandParent = parent.parent
-          while (grandParent !is VeilLayout) {
-            if (grandParent is ViewGroup) {
-              val params = grandParent.layoutParams
-              if (params is MarginLayoutParams) {
-                marginX += grandParent.x
-                marginY += grandParent.y
-              }
-              grandParent = grandParent.parent
-            } else {
-              break
-            }
-          }
-
-          // create a masked view
-          View(context).apply {
-            layoutParams = LayoutParams(child.width, child.height)
-            x = marginX + parent.x + child.x
-            y = marginY + parent.y + child.y
-            setBackgroundColor(baseColor)
-
-            background = drawable ?: GradientDrawable().apply {
-              setColor(Color.DKGRAY)
-              cornerRadius = radius
-            }
-            shimmerContainer.addView(this)
-          }
+          val (marginX, marginY) = findMargins(parent)
+          val view = createMaskedView(child, marginX, parent, marginY)
+          shimmerContainer.addView(view)
         }
       }
     }
+  }
 
-    // Invalidate the whole masked view.
-    invalidate()
+  private fun createMaskedView(
+    child: View,
+    marginX: Float,
+    parent: ViewGroup,
+    marginY: Float
+  ): View {
+    return View(context).apply {
+      layoutParams = LayoutParams(child.width, child.height)
+      x = marginX + parent.x + child.x
+      y = marginY + parent.y + child.y
+      setBackgroundColor(baseColor)
 
-    // Auto veiled
-    this.isVeiled = !this.isVeiled
-    when (this.isVeiled) {
-      true -> unVeil()
-      false -> veil()
+      background = drawable ?: GradientDrawable().apply {
+        setColor(Color.DKGRAY)
+        cornerRadius = radius
+      }
     }
+  }
+
+  private fun findMargins(parent: ViewGroup): Pair<Float, Float> {
+    var marginX = 0f
+    var marginY = 0f
+    var grandParent = parent.parent
+    while (grandParent !is VeilLayout) {
+      if (grandParent is ViewGroup) {
+        val params = grandParent.layoutParams
+        if (params is MarginLayoutParams) {
+          marginX += grandParent.x
+          marginY += grandParent.y
+        }
+        grandParent = grandParent.parent
+      } else {
+        break
+      }
+    }
+    return Pair(marginX, marginY)
   }
 
   /** Make appear the mask. */
@@ -282,9 +320,17 @@ public class VeilLayout : FrameLayout {
 
   /** Starts the shimmer animation. */
   public fun startShimmer() {
-    this.shimmerContainer.visible()
-    if (this.shimmerEnable) {
-      this.shimmerContainer.startShimmer()
+    if (shimmerEnable) {
+      if (isPrepared) {
+        getPreparedView()?.apply {
+          setShimmer(shimmer)
+          visible()
+          startShimmer()
+        }
+      } else {
+        shimmerContainer.visible()
+        shimmerContainer.startShimmer()
+      }
     }
     if (!this.defaultChildVisible) {
       setChildVisibility(false)
@@ -312,5 +358,13 @@ public class VeilLayout : FrameLayout {
   override fun invalidate() {
     super.invalidate()
     this.shimmerContainer.invalidate()
+  }
+
+  private fun getPreparedView(): ShimmerFrameLayout? {
+    if (childCount > 0) {
+      val view = getChildAt(0)
+      if (view is ShimmerFrameLayout) return view
+    }
+    return null
   }
 }

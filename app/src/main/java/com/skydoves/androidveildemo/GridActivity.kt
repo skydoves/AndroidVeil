@@ -22,29 +22,41 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.androidveil.VeiledItemOnClickListener
-import com.skydoves.androidveildemo.databinding.ActivitySecondBinding
+import com.skydoves.androidveildemo.databinding.ActivityGridBinding
 import com.skydoves.androidveildemo.profile.ListItemUtils
 import com.skydoves.androidveildemo.profile.Profile
 import com.skydoves.androidveildemo.profile.ProfileAdapter
 
-class SecondActivity :
+class GridActivity :
   AppCompatActivity(),
   VeiledItemOnClickListener,
   ProfileAdapter.ProfileViewHolder.Delegate {
 
   private val adapter = ProfileAdapter(this)
 
+  override fun onSupportNavigateUp(): Boolean {
+    onBackPressed()
+    return true
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val binding = ActivitySecondBinding.inflate(layoutInflater)
+    val binding = ActivityGridBinding.inflate(layoutInflater)
     setContentView(binding.root)
+    setSupportActionBar(binding.toolbar)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    supportActionBar?.setDisplayShowHomeEnabled(true)
 
     // sets VeilRecyclerView's properties
     binding.veilFrameView.run {
-      setVeilLayout(R.layout.item_preview, this@SecondActivity)
+      setVeilLayout(
+        layout = R.layout.item_preview_grid,
+        isPrepared = false,
+        onItemClickListener = this@GridActivity
+      )
       setAdapter(adapter)
-      setLayoutManager(GridLayoutManager(this@SecondActivity, 2))
+      setLayoutManager(GridLayoutManager(this@GridActivity, 2))
       addVeiledItems(12)
     }
 

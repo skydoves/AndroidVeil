@@ -29,7 +29,8 @@
     <activity
       android:name=".DetailActivity"
       android:theme="@style/DetailTheme" />
-    <activity android:name=".SecondActivity" />
+    <activity android:name=".GridActivity" />
+    <activity android:name=".CarouselActivity" />
     <activity
       android:name=".MainActivity"
       android:exported="true">

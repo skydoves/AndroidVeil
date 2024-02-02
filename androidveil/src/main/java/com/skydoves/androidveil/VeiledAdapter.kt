@@ -24,6 +24,7 @@ import com.skydoves.androidveil.databinding.VeilItemLayoutBinding
 
 internal class VeiledAdapter(
   @LayoutRes private val userLayout: Int,
+  private val isPrepared: Boolean = false,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
   private val isListItemWrapContentHeight: Boolean = true
@@ -53,8 +54,8 @@ internal class VeiledAdapter(
         getLayoutParams(isListItemWrapContentWidth),
         getLayoutParams(isListItemWrapContentHeight)
       )
-      if (layout == -1) {
-        layout = userLayout
+      if (getLayout() == -1) {
+        setLayout(userLayout, isPrepared)
         veilParams.shimmer?.let {
           shimmer = it
         } ?: let {
@@ -69,7 +70,8 @@ internal class VeiledAdapter(
         radius = veilParams.radius
         drawable = veilParams.drawable
         shimmerEnable = veilParams.shimmerEnable
-        defaultChildVisible = veilParams.defaultChildVisible
+        // Make sure prepared layout (which is the first child view) is always visible
+        defaultChildVisible = veilParams.defaultChildVisible || isPrepared
       } else {
         startShimmer()
       }

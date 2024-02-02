@@ -27,6 +27,7 @@
     <attr name="veilLayout_highlightAlpha" format="float" />
     <attr name="veilLayout_dropOff" format="float" />
     <attr name="veilLayout_defaultChildVisible" format="boolean" />
+    <attr name="veilLayout_isPrepared" format="boolean" />
   </declare-styleable>
   <declare-styleable name="VeilRecyclerFrameView">
     <attr name="veilFrame_veiled" format="boolean" />
@@ -42,5 +43,6 @@
     <attr name="veilFrame_isItemWrapContentWidth" format="boolean" />
     <attr name="veilFrame_isItemWrapContentHeight" format="boolean" />
     <attr name="veilFrame_defaultChildVisible" format="boolean" />
+    <attr name="veilFrame_isPrepared" format="boolean" />
   </declare-styleable>
 </resources>
