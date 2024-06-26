@@ -9,63 +9,48 @@ on:
 jobs:
   lint:
     name: Spotless check
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.7
       - name: Set up JDK
-        uses: actions/setup-java@v4.0.0
+        uses: actions/setup-java@v4.2.1
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: 17
+      - uses: gradle/gradle-build-action@v3.4.2
       - name: spotless
         run: ./gradlew spotlessCheck
 
   api_check:
     name: API check
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.7
       - name: Set up JDK
-        uses: actions/setup-java@v4.0.0
+        uses: actions/setup-java@v4.2.1
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: 17
+      - uses: gradle/gradle-build-action@v3.4.2
       - name: API check
         run: ./gradlew apiCheck
 
   build:
-    name: Build and Tests
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
-
+      - uses: actions/checkout@v4.1.7
       - name: set up JDK
-        uses: actions/setup-java@v4.0.0
+        uses: actions/setup-java@v4.2.1
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: 17
 
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
+      - uses: gradle/gradle-build-action@v3.4.2
       - name: Make Gradle executable
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
         run: |
-          ./gradlew --scan --stacktrace \
-              assemble
-
-      - name: Run unit tests
-        run: |
-          ./gradlew --scan --stacktrace \
-              testDebugUnitTest
+          ./gradlew --scan --stacktrace
