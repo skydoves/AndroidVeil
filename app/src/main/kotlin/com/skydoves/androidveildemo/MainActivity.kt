@@ -53,7 +53,7 @@ class MainActivity :
     binding.veilRecyclerView.run {
       setVeilLayout(
         layout = R.layout.item_profile_list,
-        onItemClickListener = this@MainActivity
+        onItemClickListener = this@MainActivity,
       )
       setAdapter(adapter)
       setLayoutManager(LinearLayoutManager(this@MainActivity))
@@ -68,7 +68,7 @@ class MainActivity :
       {
         binding.veilRecyclerView.unVeil()
       },
-      5000
+      5000,
     )
   }
 

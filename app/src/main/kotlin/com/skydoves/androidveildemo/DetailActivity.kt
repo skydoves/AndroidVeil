@@ -44,7 +44,7 @@ class DetailActivity : AppCompatActivity() {
         binding.detailVeilLayoutHeader.unVeil()
         binding.detailVeilLayoutBody.unVeil()
       },
-      3000
+      3000,
     )
   }
 }

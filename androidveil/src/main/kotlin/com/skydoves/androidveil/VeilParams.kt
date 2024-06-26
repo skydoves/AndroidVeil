@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-package com.skydoves.androidveildemo.profile
+package com.skydoves.androidveil
 
 import android.graphics.drawable.Drawable
+import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
+import androidx.annotation.Px
+import com.facebook.shimmer.Shimmer
 
-/**
- * Developed by skydoves on 2018-10-30.
- * Copyright (c) 2018 skydoves rights reserved.
- */
-
-data class Profile(
-  val image: Drawable?,
-  val name: String,
-  val content: String
+internal data class VeilParams(
+  @ColorInt var baseColor: Int,
+  @ColorInt var highlightColor: Int,
+  var drawable: Drawable?,
+  @Px var radius: Float,
+  @FloatRange(from = 0.0, to = 1.0) var baseAlpha: Float,
+  @FloatRange(from = 0.0, to = 1.0) var highlightAlpha: Float,
+  var dropOff: Float,
+  var shimmerEnable: Boolean,
+  var shimmer: Shimmer?,
+  var defaultChildVisible: Boolean,
 )

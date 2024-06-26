@@ -55,7 +55,7 @@ class CarouselActivity :
       setVeilLayout(
         layout = R.layout.item_prepared_shimmer_carousel,
         isPrepared = true,
-        onItemClickListener = this@CarouselActivity
+        onItemClickListener = this@CarouselActivity,
       )
       setAdapter(adapter)
       setLayoutManager(LinearLayoutManager(this@CarouselActivity, RecyclerView.HORIZONTAL, false))
@@ -66,7 +66,7 @@ class CarouselActivity :
       setVeilLayout(
         layout = R.layout.item_prepared_shimmer_carousel,
         isPrepared = true,
-        onItemClickListener = this@CarouselActivity
+        onItemClickListener = this@CarouselActivity,
       )
       setAdapter(adapter)
       setLayoutManager(LinearLayoutManager(this@CarouselActivity, RecyclerView.HORIZONTAL, false))
@@ -81,13 +81,13 @@ class CarouselActivity :
       {
         binding.veilRecyclerView.unVeil()
       },
-      3000
+      3000,
     )
     Handler(Looper.getMainLooper()).postDelayed(
       {
         binding.veilRecyclerView2.unVeil()
       },
-      5000
+      5000,
     )
   }
 

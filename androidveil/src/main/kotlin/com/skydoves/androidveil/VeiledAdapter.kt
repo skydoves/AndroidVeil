@@ -27,7 +27,7 @@ internal class VeiledAdapter(
   private val isPrepared: Boolean = false,
   private val onItemClickListener: VeiledItemOnClickListener? = null,
   private val isListItemWrapContentWidth: Boolean = false,
-  private val isListItemWrapContentHeight: Boolean = true
+  private val isListItemWrapContentHeight: Boolean = true,
 ) : RecyclerView.Adapter<VeiledAdapter.VeiledViewHolder>() {
 
   private val veilParamList: MutableList<VeilParams> = mutableListOf()
@@ -36,7 +36,7 @@ internal class VeiledAdapter(
     val binding = VeilItemLayoutBinding.inflate(
       LayoutInflater.from(parent.context),
       parent,
-      false
+      false,
     )
     return VeiledViewHolder(binding).apply {
       binding.root.setOnClickListener {
@@ -52,7 +52,7 @@ internal class VeiledAdapter(
     with(holder.binding.itemVeilLayoutMain) {
       layoutParams = ViewGroup.LayoutParams(
         getLayoutParams(isListItemWrapContentWidth),
-        getLayoutParams(isListItemWrapContentHeight)
+        getLayoutParams(isListItemWrapContentHeight),
       )
       if (getLayout() == -1) {
         setLayout(userLayout, isPrepared)
