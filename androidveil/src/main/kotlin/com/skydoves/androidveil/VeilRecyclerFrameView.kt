@@ -86,7 +86,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   public constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
     context,
     attrs,
-    defStyle
+    defStyle,
   ) {
     getAttrs(attrs)
     onCreate()
@@ -112,7 +112,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
         shimmerEnable =
           a.getBoolean(
             R.styleable.VeilRecyclerFrameView_veilFrame_shimmerEnable,
-            shimmerEnable
+            shimmerEnable,
           )
       }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_baseColor)) {
@@ -123,7 +123,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
         highlightColor =
           a.getColor(
             R.styleable.VeilRecyclerFrameView_veilFrame_highlightColor,
-            highlightColor
+            highlightColor,
           )
       }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_baseAlpha)) {
@@ -134,7 +134,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
         highlightAlpha =
           a.getFloat(
             R.styleable.VeilRecyclerFrameView_veilFrame_highlightAlpha,
-            highlightAlpha
+            highlightAlpha,
           )
       }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_dropOff)) {
@@ -144,7 +144,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
         defaultChildVisible =
           a.getBoolean(
             R.styleable.VeilRecyclerFrameView_veilFrame_defaultChildVisible,
-            defaultChildVisible
+            defaultChildVisible,
           )
       }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isPrepared)) {
@@ -154,13 +154,13 @@ public class VeilRecyclerFrameView : RelativeLayout {
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth)) {
         isItemWrapContentWidth = a.getBoolean(
           R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentWidth,
-          isItemWrapContentWidth
+          isItemWrapContentWidth,
         )
       }
       if (a.hasValue(R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentHeight)) {
         isItemWrapContentHeight = a.getBoolean(
           R.styleable.VeilRecyclerFrameView_veilFrame_isItemWrapContentHeight,
-          isItemWrapContentHeight
+          isItemWrapContentHeight,
         )
       }
     } finally {
@@ -187,7 +187,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   public fun setVeilLayout(
     @LayoutRes layout: Int,
     isPrepared: Boolean = false,
-    onItemClickListener: VeiledItemOnClickListener? = null
+    onItemClickListener: VeiledItemOnClickListener? = null,
   ) {
     this.veiledAdapter =
       VeiledAdapter(
@@ -195,7 +195,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
         isPrepared = isPrepared,
         onItemClickListener = onItemClickListener,
         isListItemWrapContentWidth = isItemWrapContentWidth,
-        isListItemWrapContentHeight = isItemWrapContentHeight
+        isListItemWrapContentHeight = isItemWrapContentHeight,
       )
     this.veiledRecyclerView.adapter = this.veiledAdapter
     requestLayout()
@@ -206,12 +206,12 @@ public class VeilRecyclerFrameView : RelativeLayout {
     @LayoutRes layout: Int,
     @IntRange(from = 1) size: Int,
     isPrepared: Boolean = false,
-    onItemClickListener: VeiledItemOnClickListener? = null
+    onItemClickListener: VeiledItemOnClickListener? = null,
   ) {
     this.setVeilLayout(
       layout = layout,
       isPrepared = isPrepared,
-      onItemClickListener = onItemClickListener
+      onItemClickListener = onItemClickListener,
     )
     this.addVeiledItems(size)
     requestLayout()
@@ -232,8 +232,8 @@ public class VeilRecyclerFrameView : RelativeLayout {
           dropOff = dropOff,
           shimmerEnable = shimmerEnable,
           shimmer = shimmer,
-          defaultChildVisible = defaultChildVisible
-        )
+          defaultChildVisible = defaultChildVisible,
+        ),
       )
     }
     this.veiledAdapter?.updateParams(paramList)
@@ -248,7 +248,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
   /** Sets userRecyclerView's adapter and RecyclerViews LayoutManager. */
   public fun setAdapter(
     adapter: RecyclerView.Adapter<*>?,
-    layoutManager: RecyclerView.LayoutManager
+    layoutManager: RecyclerView.LayoutManager,
   ) {
     this.setAdapter(adapter)
     this.setLayoutManager(layoutManager)
@@ -271,7 +271,7 @@ public class VeilRecyclerFrameView : RelativeLayout {
           LinearLayoutManager(
             context,
             layoutManager.orientation,
-            layoutManager.reverseLayout
+            layoutManager.reverseLayout,
           )
 
       else -> this.veiledRecyclerView.layoutManager

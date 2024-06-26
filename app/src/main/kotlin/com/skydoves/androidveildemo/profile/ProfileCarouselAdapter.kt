@@ -27,13 +27,17 @@ import com.skydoves.androidveildemo.databinding.ItemProfileCarouselBinding
  */
 
 class ProfileCarouselAdapter(
-  private val delegate: ProfileViewHolder.Delegate
+  private val delegate: ProfileViewHolder.Delegate,
 ) : RecyclerView.Adapter<ProfileCarouselAdapter.ProfileViewHolder>() {
 
   private val profileList: MutableList<Profile> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
-    val binding = ItemProfileCarouselBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val binding = ItemProfileCarouselBinding.inflate(
+      LayoutInflater.from(parent.context),
+      parent,
+      false,
+    )
     return ProfileViewHolder(binding)
   }
 

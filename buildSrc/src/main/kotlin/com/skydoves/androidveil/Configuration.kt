@@ -17,9 +17,9 @@
 package com.skydoves.androidveil
 
 object Configuration {
-  const val compileSdk = 32
-  const val targetSdk = 32
-  const val minSdk = 16
+  const val compileSdk = 34
+  const val targetSdk = 34
+  const val minSdk = 21
   const val majorVersion = 1
   const val minorVersion = 1
   const val patchVersion = 3

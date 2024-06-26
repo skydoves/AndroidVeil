@@ -38,12 +38,16 @@ import com.facebook.shimmer.ShimmerFrameLayout
 
 /** create a [Shimmer] by [Shimmer.AlphaHighlightBuilder] using dsl. */
 @JvmSynthetic
-public inline fun alphaShimmer(crossinline block: Shimmer.AlphaHighlightBuilder.() -> Unit): Shimmer =
+public inline fun alphaShimmer(
+  crossinline block: Shimmer.AlphaHighlightBuilder.() -> Unit,
+): Shimmer =
   Shimmer.AlphaHighlightBuilder().apply(block).build()
 
 /** create a [Shimmer] by [Shimmer.ColorHighlightBuilder] using dsl. */
 @JvmSynthetic
-public inline fun colorShimmer(crossinline block: Shimmer.ColorHighlightBuilder.() -> Unit): Shimmer =
+public inline fun colorShimmer(
+  crossinline block: Shimmer.ColorHighlightBuilder.() -> Unit,
+): Shimmer =
   Shimmer.ColorHighlightBuilder().apply(block).build()
 
 /** VeilLayout creates skeletons about the complex child views with shimmering effect. */
@@ -126,7 +130,7 @@ public class VeilLayout : FrameLayout {
   public constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
     context,
     attrs,
-    defStyleAttr
+    defStyleAttr,
   ) {
     getAttrs(attrs)
     onCreate()
@@ -137,12 +141,12 @@ public class VeilLayout : FrameLayout {
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int,
-    defStyleRes: Int
+    defStyleRes: Int,
   ) : super(
     context,
     attrs,
     defStyleAttr,
-    defStyleRes
+    defStyleRes,
   ) {
     getAttrs(attrs)
     onCreate()
@@ -266,7 +270,7 @@ public class VeilLayout : FrameLayout {
     child: View,
     marginX: Float,
     parent: ViewGroup,
-    marginY: Float
+    marginY: Float,
   ): View {
     return View(context).apply {
       layoutParams = LayoutParams(child.width, child.height)

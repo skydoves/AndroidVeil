@@ -53,7 +53,7 @@ class GridActivity :
       setVeilLayout(
         layout = R.layout.item_preview_grid,
         isPrepared = false,
-        onItemClickListener = this@GridActivity
+        onItemClickListener = this@GridActivity,
       )
       setAdapter(adapter)
       setLayoutManager(GridLayoutManager(this@GridActivity, 2))

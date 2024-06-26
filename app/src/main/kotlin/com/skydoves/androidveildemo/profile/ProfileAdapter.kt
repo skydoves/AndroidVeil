@@ -27,7 +27,7 @@ import com.skydoves.androidveildemo.databinding.ItemProfileListBinding
  */
 
 class ProfileAdapter(
-  private val delegate: ProfileViewHolder.Delegate
+  private val delegate: ProfileViewHolder.Delegate,
 ) : RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
 
   private val profileList: MutableList<Profile> = mutableListOf()
