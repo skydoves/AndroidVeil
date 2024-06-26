@@ -169,9 +169,11 @@ public class VeilRecyclerFrameView : RelativeLayout {
   }
 
   private fun onCreate() {
-    addView(this.userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-    addView(this.veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-    this.veiledRecyclerView.setHasFixedSize(true)
+    addView(userRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    addView(veiledRecyclerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    userRecyclerView.clipToPadding = this@VeilRecyclerFrameView.clipToPadding
+    veiledRecyclerView.clipToPadding = this@VeilRecyclerFrameView.clipToPadding
+    veiledRecyclerView.setHasFixedSize(true)
     applyOverScrollMode()
     when (this.isVeiled) {
       true -> visibleVeilRecyclerView()
